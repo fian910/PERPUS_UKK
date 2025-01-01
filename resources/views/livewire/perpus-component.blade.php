@@ -1,0 +1,128 @@
+<div>
+    <div class="card">
+        <div class="card-header">
+            Kelola Perpustakaan
+        </div>
+        <div class="card-body">
+            <div class="table-responsive">
+                <table class="table table-striped table-hover table-bordered">
+                    <thead>
+                        <tr>
+                            <th scope="col">No.</th>
+                            <th scope="col">Perpustakaan</th>
+                            <th scope="col">Pustakawan</th>
+                            <th scope="col">Alamat</th>
+                            <th scope="col">Email</th>
+                            <th scope="col">Website</th>
+                            <th scope="col">No Telp</th>
+                            <th scope="col">Keterangan</th>
+                            <th scope="col">Proses</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach ($perpus as $data)
+                            <tr>
+                                <th scope="row">{{ $loop->iteration }}</th>
+                                <td>{{ $data->nama_perpustakaan }}</td>
+                                <td>{{ $data->nama_pustakawan }}</td>
+                                <td>{{ $data->alamat }}</td>
+                                <td>{{ $data->email }}</td>
+                                <td>{{ $data->website }}</td>
+                                <td>{{ $data->no_telp }}</td>
+                                <td>{{ $data->keterangan }}</td>
+                                <td class="proses">
+                                    <div class="btn-group" role="group" aria-label="Proses Buttons">
+                                        <button type="button" class="btn btn-sm btn-info mr-2">Ubah</button>
+                                        <button type="button" class="btn btn-sm btn-danger">Hapus</button>
+                                    </div>
+                                </td>
+                            </tr>
+                        @endforeach
+                    </tbody>
+                </table>
+            </div>
+            <a href="#" class="btn btn-md btn-primary mt-3" data-toggle="modal"
+                data-target="#addperpus">Tambah</a>
+        </div>
+    </div>
+
+    {{-- modal --}}
+    <div wire:ignore.self class="modal fade" id="addperpus" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Tambah Perpustakaan</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+
+                    <form>
+                        <div class="form-group">
+                            <label>Nama Perpustakaan</label>
+                            <input type="text" class="form-control" wire:model="nama_perpustakaan"
+                                value="{{ @old('nama_perpustakaan') }}">
+                            @error('nama_perpustakaan')
+                                <small class="form-text text-danger">{{ $message }}</small>
+                            @enderror
+                        </div>
+                        <div class="form-group">
+                            <label>Nama Pustakawan</label>
+                            <input type="text" class="form-control" wire:model="nama_pustakawan"
+                                value="{{ @old('nama_pustakawan') }}">
+                            @error('nama_pustakawan')
+                                <small class="form-text text-danger">{{ $message }}</small>
+                            @enderror
+                        </div>
+                        <div class="form-group">
+                            <label>Alamat</label>
+                            <input type="text" class="form-control" wire:model="alamat"
+                                value="{{ @old('alamat') }}">
+                            @error('alamat')
+                                <small class="form-text text-danger">{{ $message }}</small>
+                            @enderror
+                        </div>
+                        <div class="form-group">
+                            <label>Email</label>
+                            <input type="text" class="form-control" wire:model="email"
+                                value="{{ @old('email') }}">
+                            @error('email')
+                                <small class="form-text text-danger">{{ $message }}</small>
+                            @enderror
+                        </div>
+                        <div class="form-group">
+                            <label>Website</label>
+                            <input type="text" class="form-control" wire:model="website"
+                                value="{{ @old('website') }}">
+                            @error('website')
+                                <small class="form-text text-danger">{{ $message }}</small>
+                            @enderror
+                        </div>
+                        <div class="form-group">
+                            <label>No Telp</label>
+                            <input type="number" class="form-control" wire:model="no_telp"
+                                value="{{ @old('no_telp') }}">
+                            @error('no_telp')
+                                <small class="form-text text-danger">{{ $message }}</small>
+                            @enderror
+                        </div>
+                        <div class="form-group">
+                            <label>Keterangan</label>
+                            <input type="text" class="form-control" wire:model="keterangan"
+                                value="{{ @old('keterangan') }}">
+                            @error('keterangan')
+                                <small class="form-text text-danger">{{ $message }}</small>
+                            @enderror
+                        </div>
+                    </form>
+
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    <button type="button" wire:click="store" class="btn btn-primary">Save changes</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
