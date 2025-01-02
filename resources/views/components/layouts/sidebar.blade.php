@@ -1,4 +1,3 @@
-<!-- Sidebar -->
 <nav class="col-md-2 bg-dark sidebar">
     <div class="sidebar-sticky">
         <ul class="nav flex-column">
@@ -40,7 +39,7 @@
             </li>
             <li class="nav-item">
                 <a class="nav-link text-white" href="{{ route('perpus') }}">
-                    <span data-feather="user"></span>
+                    <span data-feather="bookmark"></span>
                     Manage Library
                 </a>
             </li>
