@@ -29,6 +29,8 @@ class LoginComponent extends Component
             return redirect()->route('home');
         }
 
+        session()->flash('error', 'Autentikasi Gagal!');
+
         return back()->withErrors([
             'email' => 'Autentikasi Gagal!',
         ])->onlyInput('email');

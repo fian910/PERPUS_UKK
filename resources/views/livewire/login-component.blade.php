@@ -3,10 +3,14 @@
         <img src="{{ asset('assets/login.png') }}" alt="Library Logo">
         <h2>Library Login</h2>
     </div>
+    @if (session()->has('error'))
+        <div class="alert alert-danger" role="alert">
+            {{ session('error') }}
+        </div>
+    @endif
     <form>
         <div class="form-group">
-            <input type="text" wire:model="email" class="form-control" id="email"
-                placeholder="Email Address">
+            <input type="text" wire:model="email" class="form-control" id="email" placeholder="Email Address">
             @error('email')
                 <div class="alert alert-danger" role="alert">
                     {{ $message }}
@@ -14,8 +18,7 @@
             @enderror
         </div>
         <div class="form-group">
-            <input type="password" wire:model="password" class="form-control" id="password"
-                placeholder="Password">
+            <input type="password" wire:model="password" class="form-control" id="password" placeholder="Password">
             @error('password')
                 <div class="alert alert-danger" role="alert">
                     {{ $message }}

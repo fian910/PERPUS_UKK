@@ -39,7 +39,7 @@ class PerpusComponent extends Component
             'no_telp' => $this->no_telp,
             'keterangan' => $this->keterangan,
         ]);
-        session()->flash('Success', 'Berhasil Menyimpan!');
+        session()->flash('Success', 'Berhasil Disimpan!');
         $this->reset();
     }
     public function edit($id)
