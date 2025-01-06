@@ -8,7 +8,7 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', HomeComponent::class)->middleware('auth')->name('home');
 
-Route::get('/jenisanggota', JenisAnggotaComponent::class)->name('jenisanggota');
+Route::get('/jenis_anggota', JenisAnggotaComponent::class)->name('jenis_anggota');
 Route::get('/perpus',PerpusComponent::class)->name('perpus');
 Route::get('/login', LoginComponent::class)->name('login');
 Route::get('/logout', LoginComponent::class, 'keluar')->name('logout');

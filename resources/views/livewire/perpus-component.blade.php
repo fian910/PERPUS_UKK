@@ -27,7 +27,7 @@
                         </tr>
                     </thead>
                     <tbody>
-                        @foreach ($perpus as $data)
+                        @foreach ($perpustakaan as $data)
                             <tr>
                                 <th scope="row">{{ $loop->iteration }}</th>
                                 <td>{{ $data->nama_perpustakaan }}</td>

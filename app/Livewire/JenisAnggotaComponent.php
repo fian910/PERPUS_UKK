@@ -7,11 +7,11 @@ use Livewire\Component;
 
 class JenisAnggotaComponent extends Component
 {
-    public $id, $kode_jenis_anggota, $jenis_anggota, $max_pinjam, $keterangan;
+    public $kode_jenis_anggota, $jns_anggota, $max_pinjam, $keterangan, $id;
     public function render()
     {
-        $layout['title']="Kelola Jenis Anggota";
-        $data['jenisanggota']= JenisAnggota::all();
+        $layout['title'] = "Kelola Jenis Anggota";
+        $data['jenis_anggota'] = JenisAnggota::all();
         return view('livewire.jenis-anggota-component', $data)->layoutData($layout);
     }
 
@@ -19,13 +19,13 @@ class JenisAnggotaComponent extends Component
     {
         $this->validate([
             'kode_jenis_anggota' => 'required',
-            'jenis_anggota' => 'required',
+            'jns_anggota' => 'required',
             'max_pinjam' => 'required',
             'keterangan' => 'required',
         ]);
         JenisAnggota::create([
             'kode_jenis_anggota' => $this->kode_jenis_anggota,
-            'jenis_anggota' => $this->jenis_anggota,
+            'jns_anggota' => $this->jns_anggota,
             'max_pinjam' => $this->max_pinjam,
             'keterangan' => $this->keterangan,
         ]);
@@ -35,21 +35,23 @@ class JenisAnggotaComponent extends Component
 
     public function edit($id)
     {
-        $jenisanggota = JenisAnggota::find($id);
-        $this->kode_jenis_anggota = $jenisanggota->kode_jenis_anggota;
-        $this->jenis_anggota = $jenisanggota->jenis_anggota;
-        $this->max_pinjam = $jenisanggota->max_pinjam;
-        $this->keterangan = $jenisanggota->keterangan;
+        $jenis_anggota = JenisAnggota::find($id);
+        $this->kode_jenis_anggota = $jenis_anggota->kode_jenis_anggota;
+        $this->jns_anggota = $jenis_anggota->jns_anggota;
+        $this->max_pinjam = $jenis_anggota->max_pinjam;
+        $this->keterangan = $jenis_anggota->keterangan;
+        $this->id = $jenis_anggota->id;
+
     }
 
     public function update()
     {
-        $jenisanggota = JenisAnggota::find($this->id);
-        $jenisanggota->update([
+        $jenis_anggota = JenisAnggota::find($this->id);
+        $jenis_anggota->update([
             'kode_jenis_anggota' => $this->kode_jenis_anggota,
-            'jenis_anggota' => $this->jenis_anggota,
+            'jns_anggota' => $this->jns_anggota,
             'max_pinjam' => $this->max_pinjam,
-            'keterangan' => $this->keterangan,
+            'keterangan' => $this->keterangan
         ]);
         session()->flash('success', 'Berhasil Diubah!');
         $this->reset();
@@ -62,8 +64,8 @@ class JenisAnggotaComponent extends Component
 
     public function destroy()
     {
-        $jenisanggota= JenisAnggota::find($this->id);
-        $jenisanggota->delete();
+        $jenis_anggota = JenisAnggota::find($this->id);
+        $jenis_anggota->delete();
         session()->flash('success', 'Data Berhasil Dihapus!');
         $this->reset();
     }

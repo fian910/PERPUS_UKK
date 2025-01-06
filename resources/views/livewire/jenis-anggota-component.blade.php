@@ -24,11 +24,11 @@
                         </tr>
                     </thead>
                     <tbody>
-                        @foreach ($jenisanggota as $data)
+                        @foreach ($jenis_anggota as $data)
                             <tr>
                                 <td scope="row">{{ $loop->iteration }}</td>
                                 <td>{{ $data->kode_jenis_anggota }}</td>
-                                <td>{{ $data->jenis_anggota }}</td>
+                                <td>{{ $data->jns_anggota }}</td>
                                 <td>{{ $data->max_pinjam }}</td>
                                 <td>{{ $data->keterangan }}</td>
                                 <td class="proses">
@@ -75,9 +75,9 @@
                         </div>
                         <div class="form-group">
                             <label>Jenis Anggota</label>
-                            <input type="text" class="form-control" wire:model="jenis_anggota"
-                                value="{{ @old('jenis_anggota') }}">
-                            @error('jenis_anggota')
+                            <input type="text" class="form-control" wire:model="jns_anggota"
+                                value="{{ @old('jns_anggota') }}">
+                            @error('jns_anggota')
                                 <small class="form-text text-danger">{{ $message }}</small>
                             @enderror
                         </div>
@@ -126,16 +126,16 @@
                         <div class="form-group">
                             <label>Kode Jenis Anggota</label>
                             <input type="text" class="form-control" wire:model="kode_jenis_anggota"
-                                value="{{ @old('kode_jenis_anggota') }}" disabled>
+                                value="{{ @old('kode_jenis_anggota') }}">
                             @error('kode_jenis_anggota')
                                 <small class="form-text text-danger">{{ $message }}</small>
                             @enderror
                         </div>
                         <div class="form-group">
                             <label>Jenis Anggota</label>
-                            <input type="text" class="form-control" wire:model="jenis_anggota"
-                                value="{{ @old('jenis_anggota') }}">
-                            @error('jenis_anggota')
+                            <input type="text" class="form-control" wire:model="jns_anggota"
+                                value="{{ @old('jns_anggota') }}">
+                            @error('jns_anggota')
                                 <small class="form-text text-danger">{{ $message }}</small>
                             @enderror
                         </div>
@@ -173,7 +173,7 @@
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">Ubah Perpustakaan</h5>
+                    <h5 class="modal-title" id="exampleModalLabel">Ubah Jenis Anggota</h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
@@ -191,3 +191,4 @@
         </div>
     </div>
 </div>
+

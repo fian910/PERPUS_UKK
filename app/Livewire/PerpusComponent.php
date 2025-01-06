@@ -12,11 +12,11 @@ class PerpusComponent extends Component
     {
         $layout['title'] = "Kelola Perpustakaan";
         if ($this->cari) {
-            $data['perpus'] = Perpustakaan::where('nama_perpustakaan', 'like', '%' . $this->cari . '%')
+            $data['perpustakaan'] = Perpustakaan::where('nama_perpustakaan', 'like', '%' . $this->cari . '%')
                 ->orwhere('nama_pustakawan', 'like', '%' . $this->cari . '%')
                 ->get();
         } else {
-            $data['perpus'] = Perpustakaan::all();
+            $data['perpustakaan'] = Perpustakaan::all();
         }
         return view('livewire.perpus-component', $data)->layoutData($layout);
     }
@@ -74,7 +74,7 @@ class PerpusComponent extends Component
     public function confirm($id)
     {
         $this->id = $id;
-    }
+    }   
     public function destroy()
     {
         $perpustakaan = Perpustakaan::find($this->id);

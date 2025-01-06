@@ -14,7 +14,7 @@ return new class extends Migration
         Schema::create('jenis_anggotas', function (Blueprint $table) {
             $table->id()->autoIncrement();
             $table->string('kode_jenis_anggota', 2);
-            $table->string('jenis_anggota', 15);
+            $table->string('jns_anggota', 15);
             $table->string('max_pinjam', 5);
             $table->string('keterangan', 50);
             $table->timestamps();

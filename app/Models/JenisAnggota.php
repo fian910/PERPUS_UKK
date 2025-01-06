@@ -17,7 +17,7 @@ class JenisAnggota extends Model
     protected $fillable = [
         'id',
         'kode_jenis_anggota',
-        'jenis_anggota',
+        'jns_anggota',
         'max_pinjam',
         'keterangan'
     ];
