@@ -2,7 +2,7 @@
     <div class="sidebar-sticky">
         <ul class="nav flex-column">
             <li class="nav-item">
-                <a class="nav-link active text-white" href="#dashboard">
+                <a class="nav-link active text-white" href="{{ route('home') }}">
                     <span data-feather="home"></span>
                     Dashboard
                 </a>
@@ -32,17 +32,17 @@
                 </a>
             </li>
             <li class="nav-item">
-                <a class="nav-link text-white" href="#categories">
-                    <span data-feather="tag"></span>
-                    Manage Categories
+                <a class="nav-link text-white" href="{{route('jenisanggota')}}">
+                    <span data-feather="user"></span>
+                    Kelola Jenis Anggota
                 </a>
             </li>
             <li class="nav-item">
                 <a class="nav-link text-white" href="{{ route('perpus') }}">
                     <span data-feather="bookmark"></span>
-                    Manage Library
+                    Kelola Perpustakaan
                 </a>
             </li>
         </ul>
-    </div>
+    </div>      
 </nav>

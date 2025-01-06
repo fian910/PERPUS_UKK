@@ -12,7 +12,9 @@ class PerpusComponent extends Component
     {
         $layout['title'] = "Kelola Perpustakaan";
         if ($this->cari) {
-            $data['perpus'] = Perpustakaan::where('nama_perpustakaan', 'like', '%' . $this->cari . '%')->get();
+            $data['perpus'] = Perpustakaan::where('nama_perpustakaan', 'like', '%' . $this->cari . '%')
+                ->orwhere('nama_pustakawan', 'like', '%' . $this->cari . '%')
+                ->get();
         } else {
             $data['perpus'] = Perpustakaan::all();
         }
@@ -75,9 +77,9 @@ class PerpusComponent extends Component
     }
     public function destroy()
     {
-        $perpustakaan= Perpustakaan::find($this->id);
+        $perpustakaan = Perpustakaan::find($this->id);
         $perpustakaan->delete();
-        session()->flash('success','Data Berhasil Dihapus!');
+        session()->flash('success', 'Data Berhasil Dihapus!');
         $this->reset();
     }
 }
