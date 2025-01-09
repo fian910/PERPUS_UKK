@@ -3,43 +3,31 @@
         <ul class="nav flex-column">
             <li class="nav-item">
                 <a class="nav-link active text-white" href="{{ route('home') }}">
-                    <span data-feather="home"></span>
+                    <i class="fa-solid fa-house fa-lg me-2"></i>
                     Dashboard
                 </a>
             </li>
             <li class="nav-item">
-                <a class="nav-link text-white" href="#members">
-                    <span data-feather="users"></span>
-                    Manage Members
+                <a class="nav-link text-white" href="{{ route('rak') }}">
+                    <i class="fa-solid fa-book-open"></i>
+                    Kelola Rak Buku
                 </a>
             </li>
             <li class="nav-item">
-                <a class="nav-link text-white" href="#books">
-                    <span data-feather="book"></span>
-                    Manage Books
-                </a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link text-white" href="#loans">
-                    <span data-feather="file"></span>
-                    Manage Loans
-                </a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link text-white" href="{{ route('anggota')}}">
-                    <span data-feather="users"></span>
-                    Manage Returns
+                <a class="nav-link text-white" href="{{ route('anggota') }}">
+                    <i class="fa-solid fa-user-plus fa-lg me-2"></i>
+                    Kelola Anggota
                 </a>
             </li>
             <li class="nav-item">
                 <a class="nav-link text-white" href="{{ route('jenis_anggota') }}">
-                    <span data-feather="user"></span>
+                    <i class="fa-solid fa-user fa-lg me-2"></i>
                     Kelola Jenis Anggota
                 </a>
             </li>
             <li class="nav-item">
                 <a class="nav-link text-white" href="{{ route('perpus') }}">
-                    <span data-feather="bookmark"></span>
+                    <i class="fa-solid fa-book-atlas fa-lg me-2"></i>
                     Kelola Perpustakaan
                 </a>
             </li>

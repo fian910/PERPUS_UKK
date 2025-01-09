@@ -10,6 +10,7 @@
                 </div>
             @endif
 
+            <input type="text" wire:model.live="cari" class="form-control w-50" placeholder="Cari Perpustakaan...">
             <div class="table-responsive">
                 <table class="table table-stripped table-hover table-bordered">
                     <thead>

@@ -6,7 +6,15 @@
             <button type="button" class="btn btn-sm btn-outline-secondary">Profile</button>
         </div>
         <div class="btn-group">
-            <a href="{{ route('logout') }}" class="btn btn-sm btn-outline-secondary">Logout</a>
+            <form method="POST" action="{{ route('logout') }}">
+            @csrf
+
+            <a :href="route('logout')"
+                    onclick="event.preventDefault();
+                                this.closest('form').submit();" class="btn btn-sm btn-outline-secondary">
+                {{ __('Log Out') }}
+            </a>
+            </form>
         </div>
     </div>
 </div>
