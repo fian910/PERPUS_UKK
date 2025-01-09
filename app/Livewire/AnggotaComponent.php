@@ -2,12 +2,177 @@
 
 namespace App\Livewire;
 
+use App\Models\Anggota;
+use App\Models\JenisAnggota;
+use Illuminate\Support\Facades\Hash;
 use Livewire\Component;
+use Livewire\WithFileUploads;
+use Livewire\WithoutUrlPagination;
+use Livewire\WithPagination;
+use Illuminate\Support\Facades\Storage;
 
 class AnggotaComponent extends Component
 {
+    use WithPagination, WithoutUrlPagination, WithFileUploads;
+    protected $paginationTheme = 'bootstrap';
+    public $jenis_anggota_id, $kode_anggota, $nama_anggota, $tempat, $tgl_lahir, $alamat, $no_telp, $email, $tgl_daftar, $masa_aktif, $fa, $keterangan, $foto, $username, $password, $id, $cari;
     public function render()
     {
-        return view('livewire.anggota-component');
+        $layout['title'] = "Kelola Anggota";
+        if ($this->cari) {
+            $data['anggota'] = Anggota::where('kode_anggota', 'like', '%' . $this->cari . '%')
+                ->orwhere('nama_anggota', 'like', '%' . $this->cari . '%')
+                ->paginate(5);
+        } else {
+            $data['anggota'] = Anggota::paginate(5);
+        }
+        $data['jenis_anggota'] = JenisAnggota::all();
+        return view('livewire.anggota-component', $data)->layoutData($layout);
+    }
+
+    public function store()
+    {
+        $this->validate([
+            'jenis_anggota_id' => 'required|exists:jenis_anggotas,id',
+            'kode_anggota' => 'required|string|unique:anggotas,kode_anggota',
+            'nama_anggota' => 'required|string|max:255',
+            'tempat' => 'required|string|max:255',
+            'tgl_lahir' => 'required|date',
+            'alamat' => 'required|string',
+            'no_telp' => 'required|string|max:15',
+            'email' => 'required|email|unique:anggotas,email',
+            'tgl_daftar' => 'required|date',
+            'masa_aktif' => 'required|date',
+            'fa' => 'required|string|max:255',
+            'keterangan' => 'nullable|string',
+            'foto' => 'required|image|mimes:jpeg,png,jpg|max:2048',
+            'username' => 'required|string|unique:anggotas,username|min:4',
+            'password' => 'required',
+        ]);
+
+        $namaFoto = $this->kode_anggota . '_' . time() . '.' . $this->foto->getClientOriginalExtension();
+        $pathFoto = $this->foto->storeAs('fotos', $namaFoto, 'public');
+
+        Anggota::create([
+            'jenis_anggota_id' => $this->jenis_anggota_id,
+            'kode_anggota' => $this->kode_anggota,
+            'nama_anggota' => $this->nama_anggota,
+            'tempat' => $this->tempat,
+            'tgl_lahir' => $this->tgl_lahir,
+            'alamat' => $this->alamat,
+            'no_telp' => $this->no_telp,
+            'email' => $this->email,
+            'tgl_daftar' => $this->tgl_daftar,
+            'masa_aktif' => $this->masa_aktif,
+            'fa' => $this->fa,
+            'keterangan' => $this->keterangan,
+            'foto' => $pathFoto,
+            'username' => $this->username,
+            'password' => Hash::make($this->password),
+        ]);
+        $this->reset();
+        session()->flash('Success', 'Berhasil Disimpan!');
+        return redirect()->route('anggota');
+    }
+
+    public function edit($id)
+    {
+        $anggota = Anggota::find($id);
+        $this->id = $anggota->id;
+        $this->jenis_anggota_id = $anggota->jenis_anggota_id; // Ambil ID langsung
+        $this->kode_anggota = $anggota->kode_anggota;
+        $this->nama_anggota = $anggota->nama_anggota;
+        $this->tempat = $anggota->tempat;
+        $this->tgl_lahir = $anggota->tgl_lahir;
+        $this->alamat = $anggota->alamat;
+        $this->no_telp = $anggota->no_telp;
+        $this->email = $anggota->email;
+        $this->tgl_daftar = $anggota->tgl_daftar;
+        $this->masa_aktif = $anggota->masa_aktif;
+        $this->fa = $anggota->fa;
+        $this->keterangan = $anggota->keterangan;
+        $this->foto = $anggota->foto;
+        $this->username = $anggota->username;
+    }
+
+    public function update()
+    {
+        $this->validate([
+            // Validasi lainnya...
+            'foto' => 'required|image|mimes:jpeg,png,jpg|max:2048',
+        ]);
+
+        $anggota = Anggota::find($this->id);
+
+
+        if (!$anggota) {
+            session()->flash('error', 'Anggota tidak ditemukan!');
+            return;
+        }
+
+        if ($this->foto) {
+
+            if ($anggota->foto) {
+                Storage::disk('public')->delete($anggota->foto);
+            }
+
+            $namaFoto = $this->kode_anggota . '_' . time() . '.' . $this->foto->getClientOriginalExtension();
+            $pathFoto = $this->foto->storeAs('fotos', $namaFoto, 'public');
+        } else {
+            $pathFoto = $anggota->foto;
+        }
+
+        if ($this->password == "") {
+            $anggota->update([
+                'jenis_anggota_id' => $this->jenis_anggota_id,
+                'kode_anggota' => $this->kode_anggota,
+                'nama_anggota' => $this->nama_anggota,
+                'tempat' => $this->tempat,
+                'tgl_lahir' => $this->tgl_lahir,
+                'alamat' => $this->alamat,
+                'no_telp' => $this->no_telp,
+                'email' => $this->email,
+                'tgl_daftar' => $this->tgl_daftar,
+                'masa_aktif' => $this->masa_aktif,
+                'fa' => $this->fa,
+                'keterangan' => $this->keterangan,
+                'foto' => $pathFoto,
+                'username' => $this->username,
+            ]);
+        } else {
+            $anggota->update([
+                'jenis_anggota_id' => $this->jenis_anggota_id,
+                'kode_anggota' => $this->kode_anggota,
+                'nama_anggota' => $this->nama_anggota,
+                'tempat' => $this->tempat,
+                'tgl_lahir' => $this->tgl_lahir,
+                'alamat' => $this->alamat,
+                'no_telp' => $this->no_telp,
+                'email' => $this->email,
+                'tgl_daftar' => $this->tgl_daftar,
+                'masa_aktif' => $this->masa_aktif,
+                'fa' => $this->fa,
+                'keterangan' => $this->keterangan,
+                'foto' => $pathFoto,
+                'username' => $this->username,
+                'password' => $this->password,
+            ]);
+        }
+
+        session()->flash('success', 'Berhasil Diubah!');
+        return redirect()->route('anggota');
+    }
+
+    public function confirm($id)
+    {
+        $this->id = $id;
+    }
+
+    public function destroy()
+    {
+        $anggota = Anggota::find($this->id);
+        $anggota->delete();
+        session()->flash('success', 'Data Berhasil Dihapus!');
+        $this->reset();
     }
 }

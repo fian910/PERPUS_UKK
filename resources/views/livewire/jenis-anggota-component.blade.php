@@ -14,12 +14,12 @@
                 <table class="table table-stripped table-hover table-bordered">
                     <thead>
                         <tr>
-                            <th scope="col">No.</th>
-                            <th scope="col">Kode Jenis Anggota</th>
-                            <th scope="col">Jenis Anggota</th>
-                            <th scope="col">Batas Pinjam</th>
-                            <th scope="col">Keterangan</th>
-                            <th scope="col">Proses</th>
+                            <th style="white-space: nowrap;" scope="col">No.</th>
+                            <th style="white-space: nowrap;" scope="col">Kode Jenis Anggota</th>
+                            <th style="white-space: nowrap;" scope="col">Jenis Anggota</th>
+                            <th style="white-space: nowrap;" scope="col">Batas Pinjam</th>
+                            <th style="white-space: nowrap;" scope="col">Keterangan</th>
+                            <th style="white-space: nowrap;" scope="col">Proses</th>
 
                         </tr>
                     </thead>
@@ -126,7 +126,7 @@
                         <div class="form-group">
                             <label>Kode Jenis Anggota</label>
                             <input type="text" class="form-control" wire:model="kode_jenis_anggota"
-                                value="{{ @old('kode_jenis_anggota') }}">
+                                value="{{ @old('kode_jenis_anggota') }}" disabled>
                             @error('kode_jenis_anggota')
                                 <small class="form-text text-danger">{{ $message }}</small>
                             @enderror
@@ -173,7 +173,7 @@
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">Ubah Jenis Anggota</h5>
+                    <h5 class="modal-title" id="exampleModalLabel">Hapus Jenis Anggota</h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>

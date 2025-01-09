@@ -15,15 +15,15 @@
                 <table class="table table-striped table-hover table-bordered">
                     <thead>
                         <tr>
-                            <th scope="col">No.</th>
-                            <th scope="col">Perpustakaan</th>
-                            <th scope="col">Pustakawan</th>
-                            <th scope="col">Alamat</th>
-                            <th scope="col">Email</th>
-                            <th scope="col">Website</th>
-                            <th scope="col">No Telp</th>
-                            <th scope="col">Keterangan</th>
-                            <th scope="col">Proses</th>
+                            <th style="white-space: nowrap;" scope="col">No.</th>
+                            <th style="white-space: nowrap;" scope="col">Perpustakaan</th>
+                            <th style="white-space: nowrap;" scope="col">Pustakawan</th>
+                            <th style="white-space: nowrap;" scope="col">Alamat</th>
+                            <th style="white-space: nowrap;" scope="col">Email</th>
+                            <th style="white-space: nowrap;" scope="col">Website</th>
+                            <th style="white-space: nowrap;" scope="col">No Telp</th>
+                            <th style="white-space: nowrap;" scope="col">Keterangan</th>
+                            <th style="white-space: nowrap;" scope="col">Proses</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -89,8 +89,7 @@
                         </div>
                         <div class="form-group">
                             <label>Alamat</label>
-                            <input type="text" class="form-control" wire:model="alamat"
-                                value="{{ @old('alamat') }}">
+                            <textarea type="text" class="form-control" wire:model="alamat" cols="30" rows="10">{{ @old('alamat') }}</textarea>
                             @error('alamat')
                                 <small class="form-text text-danger">{{ $message }}</small>
                             @enderror
@@ -226,14 +225,14 @@
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">Ubah Perpustakaan</h5>
+                    <h5 class="modal-title" id="exampleModalLabel">Hapus Perpustakaan</h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
                 <div class="modal-body">
                     <p>Yakin Mau Hapus Data?</p>
-                
+
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Tutup</button>

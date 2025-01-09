@@ -42,6 +42,6 @@ class Anggota extends Model
 
     public function jenis_anggota()
     {
-        return $this->belongsTo(JenisAnggota::class, 'anggota_id');
+        return $this->belongsTo(JenisAnggota::class, 'jenis_anggota_id');
     }
 }

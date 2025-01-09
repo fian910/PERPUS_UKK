@@ -1,5 +1,6 @@
 <?php
 
+use App\Livewire\AnggotaComponent;
 use App\Livewire\HomeComponent;
 use App\Livewire\LoginComponent;
 use App\Livewire\PerpusComponent;
@@ -8,6 +9,7 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', HomeComponent::class)->middleware('auth')->name('home');
 
+Route::get('/anggota', AnggotaComponent::class)->name('anggota');
 Route::get('/jenis_anggota', JenisAnggotaComponent::class)->name('jenis_anggota');
 Route::get('/perpus',PerpusComponent::class)->name('perpus');
 Route::get('/login', LoginComponent::class)->name('login');

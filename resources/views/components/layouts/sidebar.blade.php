@@ -26,13 +26,13 @@
                 </a>
             </li>
             <li class="nav-item">
-                <a class="nav-link text-white" href="#returns">
-                    <span data-feather="check-circle"></span>
+                <a class="nav-link text-white" href="{{ route('anggota')}}">
+                    <span data-feather="users"></span>
                     Manage Returns
                 </a>
             </li>
             <li class="nav-item">
-                <a class="nav-link text-white" href="{{route('jenis_anggota')}}">
+                <a class="nav-link text-white" href="{{ route('jenis_anggota') }}">
                     <span data-feather="user"></span>
                     Kelola Jenis Anggota
                 </a>
@@ -44,5 +44,5 @@
                 </a>
             </li>
         </ul>
-    </div>      
+    </div>
 </nav>
