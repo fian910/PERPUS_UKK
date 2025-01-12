@@ -22,29 +22,34 @@
                         </tr>
                     </thead>
                     <tbody>
-                        @foreach ($raks as $data)
+                        @if ($raks->isEmpty())
                             <tr>
-                                <th scope="row">{{ $loop->iteration }}</th>
-                                <td>{{ $data->kode_rak }}</td>
-                                <td>{{ $data->rak }}</td>
-                                <td>{{ $data->keterangan }}</td>
-                                <td class="proses">
-                                    <div class="btn-group" role="group" aria-label="Proses Buttons">
-                                        <button type="button" wire:click="edit({{ $data->id }})"
-                                            class="btn btn-sm btn-info mr-2" data-toggle="modal"
-                                            data-target="#editpage">Ubah</button>
-                                        <button type="button" wire:click="confirm({{ $data->id }})"
-                                            class="btn btn-sm btn-danger" data-toggle="modal"
-                                            data-target="#deletepage">Hapus</button>
-                                    </div>
-                                </td>
+                                <td colspan="5" class="text-center">Data belum dimasukkan</td>
                             </tr>
-                        @endforeach
+                        @else
+                            @foreach ($raks as $data)
+                                <tr>
+                                    <th scope="row">{{ $loop->iteration }}</th>
+                                    <td>{{ $data->kode_rak }}</td>
+                                    <td>{{ $data->rak }}</td>
+                                    <td>{{ $data->keterangan }}</td>
+                                    <td class="proses">
+                                        <div class="btn-group" role="group" aria-label="Proses Buttons">
+                                            <button type="button" wire:click="edit({{ $data->id }})"
+                                                class="btn btn-sm btn-info mr-2" data-toggle="modal"
+                                                data-target="#editpage">Ubah</button>
+                                            <button type="button" wire:click="confirm({{ $data->id }})"
+                                                class="btn btn-sm btn-danger" data-toggle="modal"
+                                                data-target="#deletepage">Hapus</button>
+                                        </div>
+                                    </td>
+                                </tr>
+                            @endforeach
+                        @endif
                     </tbody>
                 </table>
             </div>
-            <a href="#" class="btn btn-md btn-primary mt-3" data-toggle="modal"
-                data-target="#addpage">Tambah</a>
+            <a href="#" class="btn btn-md btn-primary mt-3" data-toggle="modal" data-target="#addpage">Tambah</a>
         </div>
     </div>
 
@@ -64,7 +69,7 @@
                     <form>
                         <div class="form-group">
                             <label>Kode Rak</label>
-                            <input type="text" class="form-control" wire:model="kode_rak"
+                            <input type="text" class="form-control" wire:model="kode_rak" maxlength="10"
                                 value="{{ @old('kode_rak') }}">
                             @error('kode_rak')
                                 <small class="form-text text-danger">{{ $message }}</small>
@@ -72,8 +77,7 @@
                         </div>
                         <div class="form-group">
                             <label>Rak</label>
-                            <input type="text" class="form-control" wire:model="rak"
-                                value="{{ @old('rak') }}">
+                            <input type="text" class="form-control" wire:model="rak" value="{{ @old('rak') }}">
                             @error('rak')
                                 <small class="form-text text-danger">{{ $message }}</small>
                             @enderror
@@ -91,8 +95,7 @@
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Tutup</button>
-                    <button type="button" wire:click="store" class="btn btn-primary"
-                        data-dismiss="modal">Simpan</button>
+                    <button type="button" wire:click="store" class="btn btn-primary">Simpan</button>
                 </div>
             </div>
         </div>
@@ -114,7 +117,7 @@
                     <form>
                         <div class="form-group">
                             <label>Kode Rak Buku</label>
-                            <input type="text" class="form-control" wire:model="kode_rak"
+                            <input type="text" class="form-control" wire:model="kode_rak" disabled
                                 value="{{ @old('kode_rak') }}">
                             @error('kode_rak')
                                 <small class="form-text text-danger">{{ $message }}</small>
@@ -141,8 +144,7 @@
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Tutup</button>
-                    <button type="button" wire:click="update" class="btn btn-primary"
-                        data-dismiss="modal">Simpan</button>
+                    <button type="button" wire:click="update" class="btn btn-primary">Simpan</button>
                 </div>
             </div>
         </div>
@@ -165,8 +167,7 @@
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Tutup</button>
-                    <button type="button" wire:click="destroy" class="btn btn-primary"
-                        data-dismiss="modal">Simpan</button>
+                    <button type="button" wire:click="destroy" class="btn btn-primary">Simpan</button>
                 </div>
             </div>
         </div>

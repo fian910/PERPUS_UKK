@@ -22,6 +22,18 @@ class RakComponent extends Component
             'kode_rak' => 'required|string|unique:raks,kode_rak|max:10',
             'rak' => 'required|string|unique:raks,rak|max:25',
             'keterangan' => 'nullable'
+        ], [
+            'kode_rak.required' => 'Kode rak wajib diisi.',
+            'kode_rak.string' => 'Kode rak harus berupa string.',
+            'kode_rak.unique' => 'Kode rak sudah terdaftar.',
+            'kode_rak.max' => 'Kode rak maksimal 10 karakter.',
+
+            'rak.required' => 'Rak wajib diisi.',
+            'rak.string' => 'Rak harus berupa string.',
+            'rak.unique' => 'Rak sudah terdaftar.',
+            'rak.max' => 'Rak maksimal 25 karakter.',
+            
+            'keterangan.string' => 'Keterangan harus berupa string.'
         ]);
 
         Rak::create([
@@ -51,8 +63,9 @@ class RakComponent extends Component
             'rak' => $this->rak,
             'keterangan' => $this->keterangan,
         ]);
-        session()->flash('success', 'Berhasil Diubah!');
         $this->reset();
+        session()->flash('success', 'Berhasil Diubah!');
+        return redirect()->route('rak');
     }
 
     public function confirm($id)
@@ -64,7 +77,8 @@ class RakComponent extends Component
     {
         $rak = Rak::find($this->id);
         $rak->delete();
-        session()->flash('success', 'Data Berhasil Dihapus!');
         $this->reset();
+        session()->flash('success', 'Data Berhasil Dihapus!');
+        return redirect()->route('rak');
     }
 }

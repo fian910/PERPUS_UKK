@@ -3,9 +3,12 @@
 use App\Http\Controllers\ProfileController;
 use App\Livewire\HomeComponent;
 use App\Livewire\AnggotaComponent;
+use App\Livewire\FormatComponent;
 use App\Livewire\LoginComponent;
 use App\Livewire\PerpusComponent;
 use App\Livewire\JenisAnggotaComponent;
+use App\Livewire\PenerbitComponent;
+use App\Livewire\PengarangComponent;
 use App\Livewire\RakComponent;
 use Illuminate\Support\Facades\Route;
 
@@ -16,6 +19,9 @@ Route::get('/', function () {
 Route::get('/home', HomeComponent::class)->middleware('auth', 'verified')->name('home');
 
 
+Route::get('/pengarang', PengarangComponent::class)->name('pengarang');
+Route::get('/penerbit', PenerbitComponent::class)->name('penerbit');
+Route::get('/format', FormatComponent::class)->name('format');
 Route::get('/rak', RakComponent::class)->name('rak');
 Route::get('/anggota', AnggotaComponent::class)->name('anggota');
 Route::get('/jenis_anggota', JenisAnggotaComponent::class)->name('jenis_anggota');

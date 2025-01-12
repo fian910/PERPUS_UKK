@@ -34,43 +34,49 @@
                         </tr>
                     </thead>
                     <tbody>
-                        @foreach ($anggota as $data)
+                        @if ($anggota->isEmpty())
                             <tr>
-                                <td scope="row">{{ $loop->iteration }}</td>
-                                <td>{{ $data->nama_anggota }}</td>
-                                <td>{{ $data->kode_anggota }}</td>
-                                <td>{{ $data->jenis_anggota->jns_anggota }}</td>
-                                <td>{{ $data->tempat }}</td>
-                                <td>{{ $data->tgl_lahir }}</td>
-                                <td>{{ $data->alamat }}</td>
-                                <td>{{ $data->no_telp }}</td>
-                                <td>{{ $data->email }}</td>
-                                <td>{{ $data->tgl_daftar }}</td>
-                                <td>{{ $data->masa_aktif }}</td>
-                                <td>{{ $data->fa }}</td>
-                                <td>{{ $data->keterangan }}</td>
-                                <td>
-                                    @if ($data->foto)
-                                        <img src="{{ asset('storage/' . $data->foto) }}"
-                                            alt="Foto {{ $data->nama_anggota }}" class="img-thumbnail"
-                                            style="max-width: 100px;">
-                                    @else
-                                        <span class="text-muted">Tidak ada foto</span>
-                                    @endif
-                                </td>
-                                <td>{{ $data->username }}</td>
-                                <td class="proses">
-                                    <div class="btn-group" role="group" aria-label="Proses Buttons">
-                                        <button type="button" wire:click="edit({{ $data->id }})"
-                                            class="btn btn-sm btn-info mr-2" data-toggle="modal"
-                                            data-target="#editpage">Ubah</button>
-                                        <button type="button" wire:click="confirm({{ $data->id }})"
-                                            class="btn btn-sm btn-danger" data-toggle="modal"
-                                            data-target="#deletepage">Hapus</button>
-                                    </div>
-                                </td>
+                                <td colspan="15" class="text-center">Data belum dimasukkan</td>
                             </tr>
-                        @endforeach
+                        @else
+                            @foreach ($anggota as $data)
+                                <tr>
+                                    <td scope="row">{{ $loop->iteration }}</td>
+                                    <td>{{ $data->nama_anggota }}</td>
+                                    <td>{{ $data->kode_anggota }}</td>
+                                    <td>{{ $data->jenis_anggota->jns_anggota }}</td>
+                                    <td>{{ $data->tempat }}</td>
+                                    <td>{{ $data->tgl_lahir }}</td>
+                                    <td>{{ $data->alamat }}</td>
+                                    <td>{{ $data->no_telp }}</td>
+                                    <td>{{ $data->email }}</td>
+                                    <td>{{ $data->tgl_daftar }}</td>
+                                    <td>{{ $data->masa_aktif }}</td>
+                                    <td>{{ $data->fa }}</td>
+                                    <td>{{ $data->keterangan }}</td>
+                                    <td>
+                                        @if ($data->foto)
+                                            <img src="{{ asset('storage/' . $data->foto) }}"
+                                                alt="Foto {{ $data->nama_anggota }}" class="img-thumbnail"
+                                                style="max-width: 100px;">
+                                        @else
+                                            <span class="text-muted">Tidak ada foto</span>
+                                        @endif
+                                    </td>
+                                    <td>{{ $data->username }}</td>
+                                    <td class="proses">
+                                        <div class="btn-group" role="group" aria-label="Proses Buttons">
+                                            <button type="button" wire:click="edit({{ $data->id }})"
+                                                class="btn btn-sm btn-info mr-2" data-toggle="modal"
+                                                data-target="#editpage">Ubah</button>
+                                            <button type="button" wire:click="confirm({{ $data->id }})"
+                                                class="btn btn-sm btn-danger" data-toggle="modal"
+                                                data-target="#deletepage">Hapus</button>
+                                        </div>
+                                    </td>
+                                </tr>
+                            @endforeach
+                        @endif
                     </tbody>
                 </table>
                 {{ $anggota->links() }}
@@ -107,7 +113,7 @@
                         </div>
                         <div class="form-group">
                             <label>Kode Anggota</label>
-                            <input type="text" class="form-control" wire:model="kode_anggota"
+                            <input type="text" class="form-control" wire:model="kode_anggota" maxlength="10"
                                 value="{{ @old('kode_anggota') }}">
                             @error('kode_anggota')
                                 <small class="form-text text-danger">{{ $message }}</small>
@@ -230,8 +236,7 @@
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Tutup</button>
-                    <button type="button" wire:click="store" class="btn btn-primary"
-                        data-dismiss="modal">Simpan</button>
+                    <button type="button" wire:click="store" class="btn btn-primary">Simpan</button>
                 </div>
             </div>
         </div>
@@ -265,7 +270,7 @@
                         </div>
                         <div class="form-group">
                             <label>Kode Anggota</label>
-                            <input type="text" class="form-control" wire:model="kode_anggota"
+                            <input type="text" class="form-control" wire:model="kode_anggota" maxlength="10"
                                 value="{{ @old('kode_anggota') }}"disabled>
                             @error('kode_anggota')
                                 <small class="form-text text-danger">{{ $message }}</small>
@@ -388,8 +393,7 @@
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Tutup</button>
-                    <button type="button" wire:click="update" class="btn btn-primary"
-                        data-dismiss="modal">Simpan</button>
+                    <button type="button" wire:click="update" class="btn btn-primary">Simpan</button>
                 </div>
             </div>
         </div>

@@ -22,6 +22,11 @@ class JenisAnggotaComponent extends Component
             'jns_anggota' => 'required',
             'max_pinjam' => 'required',
             'keterangan' => 'required',
+        ], [
+            'kode_jenis_anggota.required' => 'Kode jenis anggota wajib diisi.',
+            'jns_anggota.required' => 'Jenis anggota wajib diisi.',
+            'max_pinjam.required' => 'Jumlah maksimum pinjam wajib diisi.',
+            'keterangan.required' => 'Keterangan wajib diisi.'
         ]);
         JenisAnggota::create([
             'kode_jenis_anggota' => $this->kode_jenis_anggota,
@@ -29,8 +34,9 @@ class JenisAnggotaComponent extends Component
             'max_pinjam' => $this->max_pinjam,
             'keterangan' => $this->keterangan,
         ]);
-        session()->flash('Success', 'Berhasil Disimpan!');
         $this->reset();
+        session()->flash('Success', 'Berhasil Disimpan!');
+        return redirect()->route('jenis_anggota');
     }
 
     public function edit($id)
@@ -41,7 +47,6 @@ class JenisAnggotaComponent extends Component
         $this->max_pinjam = $jenis_anggota->max_pinjam;
         $this->keterangan = $jenis_anggota->keterangan;
         $this->id = $jenis_anggota->id;
-
     }
 
     public function update()
@@ -53,8 +58,9 @@ class JenisAnggotaComponent extends Component
             'max_pinjam' => $this->max_pinjam,
             'keterangan' => $this->keterangan
         ]);
-        session()->flash('success', 'Berhasil Diubah!');
         $this->reset();
+        session()->flash('success', 'Berhasil Diubah!');
+        return redirect()->route('jenis_anggota');
     }
 
     public function confirm($id)
@@ -66,7 +72,8 @@ class JenisAnggotaComponent extends Component
     {
         $jenis_anggota = JenisAnggota::find($this->id);
         $jenis_anggota->delete();
-        session()->flash('success', 'Data Berhasil Dihapus!');
         $this->reset();
+        session()->flash('success', 'Data Berhasil Dihapus!');
+        return redirect()->route('jenis_anggota');
     }
 }

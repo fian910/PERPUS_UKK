@@ -39,7 +39,7 @@ class AnggotaComponent extends Component
             'tempat' => 'required|string|max:255',
             'tgl_lahir' => 'required|date',
             'alamat' => 'required|string',
-            'no_telp' => 'required|string|max:15',
+            'no_telp' => 'required|string|max:15|regex:/^([0-9\s\-\+\(\)]*)$/',
             'email' => 'required|email|unique:anggotas,email',
             'tgl_daftar' => 'required|date',
             'masa_aktif' => 'required|date',
@@ -48,6 +48,60 @@ class AnggotaComponent extends Component
             'foto' => 'required|image|mimes:jpeg,png,jpg|max:2048',
             'username' => 'required|string|unique:anggotas,username|min:4',
             'password' => 'required',
+        ], [
+            'jenis_anggota_id.required' => 'ID jenis anggota wajib diisi.',
+            'jenis_anggota_id.exists' => 'ID jenis anggota tidak valid.',
+
+            'kode_anggota.required' => 'Kode anggota wajib diisi.',
+            'kode_anggota.string' => 'Kode anggota harus berupa string.',
+            'kode_anggota.unique' => 'Kode anggota sudah terdaftar.',
+
+            'nama_anggota.required' => 'Nama anggota wajib diisi.',
+            'nama_anggota.string' => 'Nama anggota harus berupa string.',
+            'nama_anggota.max' => 'Nama anggota maksimal 255 karakter.',
+
+            'tempat.required' => 'Tempat wajib diisi.',
+            'tempat.string' => 'Tempat harus berupa string.',
+            'tempat.max' => 'Tempat maksimal 255 karakter.',
+
+            'tgl_lahir.required' => 'Tanggal lahir wajib diisi.',
+            'tgl_lahir.date' => 'Format tanggal lahir tidak valid.',
+
+            'alamat.required' => 'Alamat wajib diisi.',
+            'alamat.string' => 'Alamat harus berupa string.',
+
+            'no_telp.required' => 'Nomor telepon wajib diisi.',
+            'no_telp.string' => 'Nomor telepon harus berupa string.',
+            'no_telp.max' => 'Nomor telepon maksimal 15 karakter.',
+            'no_telp.regex' => 'Nomor telepon tidak valid.',
+
+            'email.required' => 'Email wajib diisi.',
+            'email.email' => 'Format email tidak valid.',
+            'email.unique' => 'Email sudah terdaftar.',
+
+            'tgl_daftar.required' => 'Tanggal daftar wajib diisi.',
+            'tgl_daftar.date' => 'Format tanggal daftar tidak valid.',
+
+            'masa_aktif.required' => 'Masa aktif wajib diisi.',
+            'masa_aktif.date' => 'Format masa aktif tidak valid.',
+
+            'fa.required' => 'Fa wajib diisi.',
+            'fa.string' => 'Fa harus berupa string.',
+            'fa.max' => 'Fa maksimal 255 karakter.',
+
+            'keterangan.string' => 'Keterangan harus berupa string.',
+            
+            'foto.required' => 'Foto wajib diisi.',
+            'foto.image' => 'Format file foto harus berupa gambar.',
+            'foto.mimes' => 'Foto harus memiliki format jpeg, png, atau jpg.',
+            'foto.max' => 'Ukuran foto maksimal 2048 KB.',
+
+            'username.required' => 'Username wajib diisi.',
+            'username.string' => 'Username harus berupa string.',
+            'username.unique' => 'Username sudah terdaftar.',
+            'username.min' => 'Username minimal 4 karakter.',
+            
+            'password.required' => 'Password wajib diisi.'
         ]);
 
         $namaFoto = $this->kode_anggota . '_' . time() . '.' . $this->foto->getClientOriginalExtension();
@@ -158,7 +212,7 @@ class AnggotaComponent extends Component
                 'password' => $this->password,
             ]);
         }
-
+        $this->reset();
         session()->flash('success', 'Berhasil Diubah!');
         return redirect()->route('anggota');
     }
@@ -172,7 +226,8 @@ class AnggotaComponent extends Component
     {
         $anggota = Anggota::find($this->id);
         $anggota->delete();
-        session()->flash('success', 'Data Berhasil Dihapus!');
         $this->reset();
+        session()->flash('success', 'Data Berhasil Dihapus!');
+        return redirect()->route('anggota');
     }
 }

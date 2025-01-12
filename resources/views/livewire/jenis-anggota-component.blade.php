@@ -24,25 +24,31 @@
                         </tr>
                     </thead>
                     <tbody>
-                        @foreach ($jenis_anggota as $data)
+                        @if ($jenis_anggota->isEmpty())
                             <tr>
-                                <td scope="row">{{ $loop->iteration }}</td>
-                                <td>{{ $data->kode_jenis_anggota }}</td>
-                                <td>{{ $data->jns_anggota }}</td>
-                                <td>{{ $data->max_pinjam }}</td>
-                                <td>{{ $data->keterangan }}</td>
-                                <td class="proses">
-                                    <div class="btn-group" role="group" aria-label="Proses Buttons">
-                                        <button type="button" wire:click="edit({{ $data->id }})"
-                                            class="btn btn-sm btn-info mr-2" data-toggle="modal"
-                                            data-target="#editjenisanggota">Ubah</button>
-                                        <button type="button" wire:click="confirm({{ $data->id }})"
-                                            class="btn btn-sm btn-danger" data-toggle="modal"
-                                            data-target="#deletejenisanggota">Hapus</button>
-                                    </div>
-                                </td>
+                                <td colspan="6" class="text-center">Data belum dimasukkan</td>
                             </tr>
-                        @endforeach
+                        @else
+                            @foreach ($jenis_anggota as $data)
+                                <tr>
+                                    <td scope="row">{{ $loop->iteration }}</td>
+                                    <td>{{ $data->kode_jenis_anggota }}</td>
+                                    <td>{{ $data->jns_anggota }}</td>
+                                    <td>{{ $data->max_pinjam }}</td>
+                                    <td>{{ $data->keterangan }}</td>
+                                    <td class="proses">
+                                        <div class="btn-group" role="group" aria-label="Proses Buttons">
+                                            <button type="button" wire:click="edit({{ $data->id }})"
+                                                class="btn btn-sm btn-info mr-2" data-toggle="modal"
+                                                data-target="#editjenisanggota">Ubah</button>
+                                            <button type="button" wire:click="confirm({{ $data->id }})"
+                                                class="btn btn-sm btn-danger" data-toggle="modal"
+                                                data-target="#deletejenisanggota">Hapus</button>
+                                        </div>
+                                    </td>
+                                </tr>
+                            @endforeach
+                        @endif
                     </tbody>
                 </table>
             </div>
@@ -67,7 +73,7 @@
                     <form>
                         <div class="form-group">
                             <label>Kode Jenis Aggota</label>
-                            <input type="text" class="form-control" wire:model="kode_jenis_anggota"
+                            <input type="text" class="form-control" wire:model="kode_jenis_anggota" maxlength="10"
                                 value="{{ @old('kode_jenis_anggota') }}">
                             @error('kode_jenis_anggota')
                                 <small class="form-text text-danger">{{ $message }}</small>
@@ -102,8 +108,7 @@
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Tutup</button>
-                    <button type="button" wire:click="store" class="btn btn-primary"
-                        data-dismiss="modal">Simpan</button>
+                    <button type="button" wire:click="store" class="btn btn-primary">Simpan</button>
                 </div>
             </div>
         </div>
@@ -115,7 +120,7 @@
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">Ubah Jenis anggota</h5>
+                    <h5 class="modal-title" id="exampleModalLabel">Ubah Jenis Anggota</h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
@@ -125,8 +130,8 @@
                     <form>
                         <div class="form-group">
                             <label>Kode Jenis Anggota</label>
-                            <input type="text" class="form-control" wire:model="kode_jenis_anggota"
-                                value="{{ @old('kode_jenis_anggota') }}" disabled>
+                            <input type="text" class="form-control" wire:model="kode_jenis_anggota" disabled
+                                value="{{ @old('kode_jenis_anggota') }}">
                             @error('kode_jenis_anggota')
                                 <small class="form-text text-danger">{{ $message }}</small>
                             @enderror
@@ -160,16 +165,15 @@
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Tutup</button>
-                    <button type="button" wire:click="update" class="btn btn-primary"
-                        data-dismiss="modal">Simpan</button>
+                    <button type="button" wire:click="update" class="btn btn-primary">Simpan</button>
                 </div>
             </div>
         </div>
     </div>
 
     {{-- Delete --}}
-    <div wire:ignore.self class="modal fade" id="deletejenisanggota" tabindex="-1" aria-labelledby="exampleModalLabel"
-        aria-hidden="true">
+    <div wire:ignore.self class="modal fade" id="deletejenisanggota" tabindex="-1"
+        aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
@@ -180,7 +184,7 @@
                 </div>
                 <div class="modal-body">
                     <p>Yakin Mau Hapus Data?</p>
-                
+
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Tutup</button>
@@ -191,4 +195,3 @@
         </div>
     </div>
 </div>
-
