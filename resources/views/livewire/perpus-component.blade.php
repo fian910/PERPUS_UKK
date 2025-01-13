@@ -45,11 +45,11 @@
                                     <td class="proses">
                                         <div class="btn-group" role="group" aria-label="Proses Buttons">
                                             <button type="button" wire:click="edit({{ $data->id }})"
-                                                class="btn btn-sm btn-info mr-2" data-toggle="modal"
-                                                data-target="#editperpus">Ubah</button>
+                                                class="btn btn-sm btn-info mr-2" data-bs-toggle="modal"
+                                                data-bs-target="#editperpus">Ubah</button>
                                             <button type="button" wire:click="confirm({{ $data->id }})"
-                                                class="btn btn-sm btn-danger" data-toggle="modal"
-                                                data-target="#deleteperpus">Hapus</button>
+                                                class="btn btn-sm btn-danger" data-bs-toggle="modal"
+                                                data-bs-target="#deleteperpus">Hapus</button>
                                         </div>
                                     </td>
                                 </tr>
@@ -58,8 +58,8 @@
                     </tbody>
                 </table>
             </div>
-            <a href="#" class="btn btn-md btn-primary mt-3" data-toggle="modal"
-                data-target="#addperpus">Tambah</a>
+            <a href="#" class="btn btn-md btn-primary mt-3" data-bs-toggle="modal"
+                data-bs-target="#addperpus">Tambah</a>
         </div>
     </div>
 
@@ -70,7 +70,8 @@
             <div class="modal-content">
                 <div class="modal-header">
                     <h5 class="modal-title" id="exampleModalLabel">Tambah Perpustakaan</h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <button type="button" class="btn-close text-dark" data-bs-dismiss="modal" aria-label="Close">
+
                         <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
@@ -135,7 +136,7 @@
 
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Tutup</button>
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Tutup</button>
                     <button type="button" wire:click="store" class="btn btn-primary">Simpan</button>
                 </div>
             </div>
@@ -149,7 +150,8 @@
             <div class="modal-content">
                 <div class="modal-header">
                     <h5 class="modal-title" id="exampleModalLabel">Ubah Perpustakaan</h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <button type="button" class="btn-close text-dark" data-bs-dismiss="modal" aria-label="Close">
+
                         <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
@@ -216,7 +218,7 @@
 
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Tutup</button>
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Tutup</button>
                     <button type="button" wire:click="update" class="btn btn-primary">Simpan</button>
                 </div>
             </div>
@@ -230,7 +232,8 @@
             <div class="modal-content">
                 <div class="modal-header">
                     <h5 class="modal-title" id="exampleModalLabel">Hapus Perpustakaan</h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <button type="button" class="btn-close text-dark" data-bs-dismiss="modal" aria-label="Close">
+
                         <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
@@ -239,9 +242,9 @@
 
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Tutup</button>
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Tutup</button>
                     <button type="button" wire:click="destroy" class="btn btn-primary"
-                        data-dismiss="modal">Simpan</button>
+                        data-bs-dismiss="modal">Simpan</button>
                 </div>
             </div>
         </div>

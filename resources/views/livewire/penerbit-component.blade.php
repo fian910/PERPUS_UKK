@@ -37,7 +37,7 @@
                                     <th scope="row">{{ $loop->iteration }}</th>
                                     <td>{{ $data->kode_penerbit }}</td>
                                     <td>{{ $data->nama_penerbit }}</td>
-                                    <td>{{ $data->alamat_penerbit}}</td>
+                                    <td>{{ $data->alamat_penerbit }}</td>
                                     <td>{{ $data->no_telp }}</td>
                                     <td>{{ $data->email }}</td>
                                     <td>{{ $data->fax }}</td>
@@ -46,11 +46,11 @@
                                     <td class="proses">
                                         <div class="btn-group" role="group" aria-label="Proses Buttons">
                                             <button type="button" wire:click="edit({{ $data->id }})"
-                                                class="btn btn-sm btn-info mr-2" data-toggle="modal"
-                                                data-target="#editpage">Ubah</button>
+                                                class="btn btn-sm btn-info mr-2" data-bs-toggle="modal"
+                                                data-bs-target="#editpage">Ubah</button>
                                             <button type="button" wire:click="confirm({{ $data->id }})"
-                                                class="btn btn-sm btn-danger" data-toggle="modal"
-                                                data-target="#deletepage">Hapus</button>
+                                                class="btn btn-sm btn-danger" data-bs-toggle="modal"
+                                                data-bs-target="#deletepage">Hapus</button>
                                         </div>
                                     </td>
                                 </tr>
@@ -59,7 +59,8 @@
                     </tbody>
                 </table>
             </div>
-            <a href="#" class="btn btn-md btn-primary mt-3" data-toggle="modal" data-target="#addpage">Tambah</a>
+            <a href="#" class="btn btn-md btn-primary mt-3" data-bs-toggle="modal"
+                data-bs-target="#addpage">Tambah</a>
         </div>
     </div>
 
@@ -70,7 +71,8 @@
             <div class="modal-content">
                 <div class="modal-header">
                     <h5 class="modal-title" id="exampleModalLabel">Tambah Penerbit Buku</h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <button type="button" class="btn-close text-dark" data-bs-dismiss="modal" aria-label="Close">
+
                         <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
@@ -143,7 +145,7 @@
 
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Tutup</button>
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Tutup</button>
                     <button type="button" wire:click="store" class="btn btn-primary">Simpan</button>
                 </div>
             </div>
@@ -157,7 +159,8 @@
             <div class="modal-content">
                 <div class="modal-header">
                     <h5 class="modal-title" id="exampleModalLabel">Ubah Penerbit Buku</h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <button type="button" class="btn-close text-dark" data-bs-dismiss="modal" aria-label="Close">
+
                         <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
@@ -189,15 +192,16 @@
                         </div>
                         <div class="form-group">
                             <label>No Telp</label>
-                            <input type="tel" class="form-control" wire:model="no_telp" pattern="[0-9\s\-\+\(\)]*"
-                                maxlength="15" value="{{ @old('no_telp') }}">
+                            <input type="tel" class="form-control" wire:model="no_telp"
+                                pattern="[0-9\s\-\+\(\)]*" maxlength="15" value="{{ @old('no_telp') }}">
                             @error('no_telp')
                                 <small class="form-text text-danger">{{ $message }}</small>
                             @enderror
                         </div>
                         <div class="form-group">
                             <label>Email</label>
-                            <input type="email" class="form-control" wire:model="email" value="{{ @old('email') }}">
+                            <input type="email" class="form-control" wire:model="email"
+                                value="{{ @old('email') }}">
                             @error('email')
                                 <small class="form-text text-danger">{{ $message }}</small>
                             @enderror
@@ -230,7 +234,7 @@
 
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Tutup</button>
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Tutup</button>
                     <button type="button" wire:click="update" class="btn btn-primary">Simpan</button>
                 </div>
             </div>
@@ -244,7 +248,8 @@
             <div class="modal-content">
                 <div class="modal-header">
                     <h5 class="modal-title" id="exampleModalLabel">Hapus Penerbit Buku</h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <button type="button" class="btn-close text-dark" data-bs-dismiss="modal" aria-label="Close">
+
                         <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
@@ -253,9 +258,9 @@
 
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Tutup</button>
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Tutup</button>
                     <button type="button" wire:click="destroy" class="btn btn-primary"
-                        data-dismiss="modal">Simpan</button>
+                        data-bs-dismiss="modal">Simpan</button>
                 </div>
             </div>
         </div>
