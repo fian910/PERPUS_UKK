@@ -18,12 +18,13 @@ class JenisAnggotaComponent extends Component
     public function store()
     {
         $this->validate([
-            'kode_jenis_anggota' => 'required',
+            'kode_jenis_anggota' => 'required|max:10',
             'jns_anggota' => 'required',
             'max_pinjam' => 'required',
             'keterangan' => 'required',
         ], [
             'kode_jenis_anggota.required' => 'Kode jenis anggota wajib diisi.',
+            'kode_jenis_anggota.max' => 'Kode jenis anggota maksimal 10 karakter',
             'jns_anggota.required' => 'Jenis anggota wajib diisi.',
             'max_pinjam.required' => 'Jumlah maksimum pinjam wajib diisi.',
             'keterangan.required' => 'Keterangan wajib diisi.'

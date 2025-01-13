@@ -12,7 +12,7 @@
 
             <input type="text" wire:model.live="cari" class="form-control w-50" placeholder="Cari Perpustakaan...">
             <div class="table-responsive">
-                <table class="table table-striped table-hover table-bordered">
+                <table class="table table-striped table-bordered table-hover align-items-center mb-0">
                     <thead>
                         <tr>
                             <th style="white-space: nowrap;" scope="col">No.</th>
@@ -45,7 +45,7 @@
                                     <td class="proses">
                                         <div class="btn-group" role="group" aria-label="Proses Buttons">
                                             <button type="button" wire:click="edit({{ $data->id }})"
-                                                class="btn btn-sm btn-info mr-2" data-bs-toggle="modal"
+                                                class="btn btn-sm btn-warning me-2" data-bs-toggle="modal"
                                                 data-bs-target="#editperpus">Ubah</button>
                                             <button type="button" wire:click="confirm({{ $data->id }})"
                                                 class="btn btn-sm btn-danger" data-bs-toggle="modal"
@@ -58,7 +58,7 @@
                     </tbody>
                 </table>
             </div>
-            <a href="#" class="btn btn-md btn-primary mt-3" data-bs-toggle="modal"
+            <a href="#" class="btn btn-md btn-info mt-3" data-bs-toggle="modal"
                 data-bs-target="#addperpus">Tambah</a>
         </div>
     </div>

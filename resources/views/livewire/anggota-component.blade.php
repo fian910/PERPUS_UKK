@@ -10,9 +10,11 @@
                 </div>
             @endif
 
-            <input type="text" wire:model.live="cari" class="form-control w-50" placeholder="Cari Perpustakaan...">
+            <div class="d-flex justify-content-end mb-3">
+                <input type="text" wire:model.live="cari" class="form-control w-30" placeholder="Cari Perpustakaan...">
+            </div>
             <div class="table-responsive">
-                <table class="table table-stripped table-hover table-bordered">
+                <table class="table table-striped table-bordered table-hover align-items-center mb-0">
                     <thead>
                         <tr>
                             <th style="white-space: nowrap;" scope="col">No.</th>
@@ -67,7 +69,7 @@
                                     <td class="proses">
                                         <div class="btn-group" role="group" aria-label="Proses Buttons">
                                             <button type="button" wire:click="edit({{ $data->id }})"
-                                                class="btn btn-sm btn-info mr-2" data-bs-toggle="modal"
+                                                class="btn btn-sm btn-warning me-2" data-bs-toggle="modal"
                                                 data-bs-target="#editpage">Ubah</button>
                                             <button type="button" wire:click="confirm({{ $data->id }})"
                                                 class="btn btn-sm btn-danger" data-bs-toggle="modal"
@@ -81,7 +83,7 @@
                 </table>
                 {{ $anggota->links() }}
             </div>
-            <a href="#" class="btn btn-primary mt-3" data-bs-toggle="modal" data-bs-target="#addpage"> Tambah</a>
+            <a href="#" class="btn btn-info mt-3" data-bs-toggle="modal" data-bs-target="#addpage"> Tambah</a>
         </div>
     </div>
 
@@ -93,7 +95,6 @@
                 <div class="modal-header">
                     <h5 class="modal-title" id="exampleModalLabel">Tambah Anggota</h5>
                     <button type="button" class="btn-close text-dark" data-bs-dismiss="modal" aria-label="Close">
-
                         <span aria-hidden="true">&times;</span>
                     </button>
                 </div>

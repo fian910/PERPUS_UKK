@@ -3,6 +3,7 @@
 use App\Http\Controllers\ProfileController;
 use App\Livewire\HomeComponent;
 use App\Livewire\AnggotaComponent;
+use App\Livewire\DdcComponent;
 use App\Livewire\FormatComponent;
 use App\Livewire\LoginComponent;
 use App\Livewire\PerpusComponent;
@@ -19,6 +20,7 @@ Route::get('/', function () {
 Route::get('/home', HomeComponent::class)->middleware('auth', 'verified')->name('home');
 
 
+Route::get('/ddc', DdcComponent::class)->name('ddc');
 Route::get('/pengarang', PengarangComponent::class)->name('pengarang');
 Route::get('/penerbit', PenerbitComponent::class)->name('penerbit');
 Route::get('/format', FormatComponent::class)->name('format');

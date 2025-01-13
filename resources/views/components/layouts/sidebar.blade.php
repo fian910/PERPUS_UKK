@@ -5,8 +5,8 @@
             aria-hidden="true" id="iconSidenav"></i>
         <a class="navbar-brand m-0" href=" https://demos.creative-tim.com/soft-ui-dashboard/pages/dashboard.html "
             target="_blank">
-            <img src="../assets/img/logo-ct-dark.png" class="navbar-brand-img h-100" alt="main_logo">
-            <span class="ms-1 font-weight-bold">Soft UI Dashboard 3</span>
+            <img src="{{ asset('assets/img/login.png') }}" class="navbar-brand-img h-100" alt="main_logo">
+            <span class="ms-1 font-weight-bold">Perpustakaan Belajar</span>
         </a>
     </div>
     <hr class="horizontal dark mt-0">
@@ -45,6 +45,15 @@
                         <i class="fa-solid fa-swatchbook text-dark"></i>
                     </div>
                     <span class="nav-link-text ms-1">Kelola Rak</span>
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="{{ route('ddc') }}">
+                    <div
+                        class="icon icon-shape icon-sm shadow border-radius-md bg-white text-center me-2 d-flex align-items-center justify-content-center">
+                        <i class="fa-solid fa-file text-dark"></i>
+                    </div>
+                    <span class="nav-link-text ms-1">Kelola DDC</span>
                 </a>
             </li>
             <li class="nav-item">
