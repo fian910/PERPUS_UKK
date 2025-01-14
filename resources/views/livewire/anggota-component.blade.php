@@ -43,7 +43,7 @@
                         @else
                             @foreach ($anggota as $data)
                                 <tr>
-                                    <td scope="row">{{ $loop->iteration }}</td>
+                                    <th scope="row">{{ $loop->iteration }}</th>
                                     <td>{{ $data->nama_anggota }}</td>
                                     <td>{{ $data->kode_anggota }}</td>
                                     <td>{{ $data->jenis_anggota->jns_anggota }}</td>

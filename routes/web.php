@@ -10,6 +10,7 @@ use App\Livewire\PerpusComponent;
 use App\Livewire\JenisAnggotaComponent;
 use App\Livewire\PenerbitComponent;
 use App\Livewire\PengarangComponent;
+use App\Livewire\PustakaComponent;
 use App\Livewire\RakComponent;
 use Illuminate\Support\Facades\Route;
 
@@ -20,6 +21,7 @@ Route::get('/', function () {
 Route::get('/home', HomeComponent::class)->middleware('auth', 'verified')->name('home');
 
 
+Route::get('/pustaka', PustakaComponent::class)->name('pustaka');
 Route::get('/ddc', DdcComponent::class)->name('ddc');
 Route::get('/pengarang', PengarangComponent::class)->name('pengarang');
 Route::get('/penerbit', PenerbitComponent::class)->name('penerbit');

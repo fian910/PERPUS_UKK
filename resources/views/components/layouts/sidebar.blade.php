@@ -38,6 +38,11 @@
                     <span class="nav-link-text ms-1">Dashboard</span>
                 </a>
             </li>
+
+            <li class="nav-item mt-3">
+                <h6 class="ps-4 ms-2 text-uppercase text-xs font-weight-bolder opacity-6">Manajemen Katalog</h6>
+            </li>
+
             <li class="nav-item">
                 <a class="nav-link" href="{{ route('rak') }}">
                     <div
@@ -66,6 +71,19 @@
                 </a>
             </li>
             <li class="nav-item">
+                <a class="nav-link" href="{{ route('pustaka') }}">
+                    <div class="icon icon-shape icon-sm shadow border-radius-md bg-white text-center me-2 d-flex align-items-center justify-content-center">
+                        <i class="fa-solid fa-book-open text-dark"></i>
+                    </div>
+                    <span class="nav-link-text ms-1">Kelola Pustaka</span>
+                </a>
+            </li>
+
+            <li class="nav-item mt-3">
+                <h6 class="ps-4 ms-2 text-uppercase text-xs font-weight-bolder opacity-6">Manajemen Author</h6>
+            </li>
+
+            <li class="nav-item">
                 <a class="nav-link  " href="{{ route('penerbit') }}">
                     <div
                         class="icon icon-shape icon-sm shadow border-radius-md bg-white text-center me-2 d-flex align-items-center justify-content-center">
@@ -83,9 +101,11 @@
                     <span class="nav-link-text ms-1">Kelola Pengarang</span>
                 </a>
             </li>
+
             <li class="nav-item mt-3">
-                <h6 class="ps-4 ms-2 text-uppercase text-xs font-weight-bolder opacity-6">Halaman Anggota</h6>
+                <h6 class="ps-4 ms-2 text-uppercase text-xs font-weight-bolder opacity-6">Manajemen Keanggotaan</h6>
             </li>
+
             <li class="nav-item">
                 <a class="nav-link  " href="{{ route('anggota') }}">
                     <div
@@ -105,7 +125,7 @@
                 </a>
             </li>
             <li class="nav-item mt-3">
-                <h6 class="ps-4 ms-2 text-uppercase text-xs font-weight-bolder opacity-6">Halaman Perpustakaan</h6>
+                <h6 class="ps-4 ms-2 text-uppercase text-xs font-weight-bolder opacity-6">Manajemen Perpustakaan</h6>
             </li>
             <li class="nav-item">
                 <a class="nav-link  " href="{{ route('perpus') }}">
