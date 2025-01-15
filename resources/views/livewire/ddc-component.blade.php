@@ -25,7 +25,7 @@
                     <tbody>
                         @if ($ddcs->isEmpty())
                             <tr>
-                                <td colspan="10" class="text-center">Data belum dimasukkan</td>
+                                <td colspan="6" class="text-center">Data belum dimasukkan</td>
                             </tr>
                         @else
                             @foreach ($ddcs as $data)

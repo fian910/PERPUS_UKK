@@ -72,4 +72,48 @@ class TransaksiComponent extends Component
         session()->flash('Success', 'Berhasil Disimpan!');
         return redirect()->route('transaksi');
     }
+
+    public function edit($id)
+    {
+        $transaksi = Transaksi::find($id);
+        $this->pustaka_id = $transaksi->pustaka_id;
+        $this->anggota_id = $transaksi->anggota_id;
+        $this->tgl_pinjam = $transaksi->tgl_pinjam;
+        $this->tgl_kembali = $transaksi->tgl_kembali;
+        $this->tgl_pengembalian = $transaksi->tgl_pengembalian;
+        $this->fp = $transaksi->fp;
+        $this->keterangan = $transaksi->keterangan;
+        $this->id = $transaksi->id;
+    }
+
+    public function update()
+    {
+        $transaksi = Transaksi::find($this->id);
+        $transaksi->update([
+            'pustaka_id' => $this->pustaka_id,
+            'anggota_id' => $this->anggota_id,
+            'tgl_pinjam' => $this->tgl_pinjam,
+            'tgl_kembali' => $this->tgl_kembali,
+            'tgl_pengembalian' => $this->tgl_pengembalian,
+            'fp' => $this->fp,
+            'keterangan' => $this->keterangan,
+        ]);
+        $this->reset();
+        session()->flash('success', 'Berhasil Diubah!');
+        return redirect()->route('transaksi');
+    }
+
+    public function confirm($id)
+    {
+        $this->id = $id;
+    }
+
+    public function destroy()
+    {
+        $transaksi = Transaksi::find($this->id);
+        $transaksi->delete();
+        $this->reset();
+        session()->flash('success', 'Data Berhasil Dihapus!');
+        return redirect()->route('transaksi'); 
+    }
 }

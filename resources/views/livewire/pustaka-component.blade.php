@@ -11,7 +11,7 @@
             @endif
 
             <div class="d-flex justify-content-end mb-3">
-                <input type="text" wire:model.live="cari" class="form-control w-30" placeholder="Cari Perpustakaan...">
+                <input type="text" wire:model.live="cari" class="form-control w-30" placeholder="Cari Pustaka...">
             </div>
             <div class="table-responsive">
                 <table class="table table-striped table-bordered table-hover align-items-center mb-0">

@@ -11,7 +11,7 @@
             @endif
 
             <div class="d-flex justify-content-end mb-3">
-                <input type="text" wire:model.live="cari" class="form-control w-30" placeholder="Cari Perpustakaan...">
+                <input type="text" wire:model.live="cari" class="form-control w-30" placeholder="Cari Anggota...">
             </div>
             <div class="table-responsive">
                 <table class="table table-striped table-bordered table-hover align-items-center mb-0">
@@ -38,7 +38,7 @@
                     <tbody>
                         @if ($anggota->isEmpty())
                             <tr>
-                                <td colspan="15" class="text-center">Data belum dimasukkan</td>
+                                <td colspan="16" class="text-center">Data belum dimasukkan</td>
                             </tr>
                         @else
                             @foreach ($anggota as $data)

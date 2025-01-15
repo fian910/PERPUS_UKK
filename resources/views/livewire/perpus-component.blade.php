@@ -29,7 +29,7 @@
                     <tbody>
                         @if ($perpustakaan->isEmpty())
                             <tr>
-                                <td colspan="8" class="text-center">Data belum dimasukkan</td>
+                                <td colspan="9" class="text-center">Data belum dimasukkan</td>
                             </tr>
                         @else
                             @foreach ($perpustakaan as $data)
