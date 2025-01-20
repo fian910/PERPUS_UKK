@@ -9,6 +9,6 @@ class HomeComponent extends Component
     public function render()
     {
         $x['title'] = "Perpustakaan";
-        return view('livewire.home-component')->layoutData($x);
+        return view('livewire.admin.home-component')->layoutData($x);
     }
 }

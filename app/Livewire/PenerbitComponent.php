@@ -12,7 +12,7 @@ class PenerbitComponent extends Component
     {
         $layout['title'] = "Kelola Penerbit";
         $data['penerbit'] = Penerbit::all();
-        return view('livewire.penerbit-component', $data)->layoutData($layout);
+        return view('livewire.admin.penerbit-component', $data)->layoutData($layout);
     }
 
     public function store()

@@ -27,7 +27,7 @@ class AnggotaComponent extends Component
             $data['anggota'] = Anggota::paginate(5);
         }
         $data['jenis_anggota'] = JenisAnggota::all();
-        return view('livewire.anggota-component', $data)->layoutData($layout);
+        return view('livewire.admin.anggota-component', $data)->layoutData($layout);
     }
 
     public function store()

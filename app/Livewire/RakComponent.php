@@ -13,7 +13,7 @@ class RakComponent extends Component
     {
         $layout['title'] = "Kelola Rak";
         $data['raks'] = Rak::all();
-        return view('livewire.rak-component', $data)->layoutData($layout);
+        return view('livewire.admin.rak-component', $data)->layoutData($layout);
     }
 
     public function store()

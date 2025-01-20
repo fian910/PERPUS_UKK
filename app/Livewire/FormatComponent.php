@@ -12,7 +12,7 @@ class FormatComponent extends Component
     {
         $layout['title'] = "Kelola Format";
         $data['formats'] = Format::all();
-        return view('livewire.format-component', $data)->layoutData($layout);
+        return view('livewire.admin.format-component', $data)->layoutData($layout);
     }
 
     public function store()

@@ -12,7 +12,7 @@ class JenisAnggotaComponent extends Component
     {
         $layout['title'] = "Kelola Jenis Anggota";
         $data['jenis_anggota'] = JenisAnggota::all();
-        return view('livewire.jenis-anggota-component', $data)->layoutData($layout);
+        return view('livewire.admin.jenis-anggota-component', $data)->layoutData($layout);
     }
 
     public function store()

@@ -14,7 +14,7 @@ class DdcComponent extends Component
         $layout['title'] = "Kelola DDC";
         $data['ddcs'] = Ddc::all();
         $data['raks'] = Rak::all();
-        return view('livewire.ddc-component', $data)->layoutData($layout);
+        return view('livewire.admin.ddc-component', $data)->layoutData($layout);
     }
 
     public function store()

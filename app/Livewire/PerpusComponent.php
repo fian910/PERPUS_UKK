@@ -18,7 +18,7 @@ class PerpusComponent extends Component
         } else {
             $data['perpustakaan'] = Perpustakaan::all();
         }
-        return view('livewire.perpus-component', $data)->layoutData($layout);
+        return view('livewire.admin.perpus-component', $data)->layoutData($layout);
     }
 
     public function store()

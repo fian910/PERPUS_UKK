@@ -12,7 +12,7 @@ class PengarangComponent extends Component
     {
         $layout['title'] = "Kelola Pengarang";
         $data['pengarang'] = Pengarang::all();
-        return view('livewire.pengarang-component', $data)->layoutData($layout);
+        return view('livewire.admin.pengarang-component', $data)->layoutData($layout);
     }
 
     public function store()

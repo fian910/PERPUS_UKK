@@ -20,7 +20,7 @@ class TransaksiComponent extends Component
         $data['transaksi'] = Transaksi::paginate(5);
         $data['pustaka'] = Pustaka::all();
         $data['anggota'] = Anggota::all();
-        return view('livewire.transaksi-component', $data)->layoutData($layout);
+        return view('livewire.admin.transaksi-component', $data)->layoutData($layout);
     }
 
     public function store()
