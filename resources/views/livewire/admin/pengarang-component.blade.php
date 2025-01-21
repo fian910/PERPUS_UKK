@@ -1,3 +1,15 @@
+@section('breadcrumb')
+    Halaman
+@endsection
+
+@section('breadcrumb-active')
+    Manajemen Author
+@endsection
+
+@section('page-title')
+    Kelola Pengarang
+@endsection
+
 <div>
     <div class="card">
         <div class="card-header">

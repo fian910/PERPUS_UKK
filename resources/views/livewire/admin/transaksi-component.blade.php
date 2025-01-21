@@ -1,3 +1,16 @@
+@section('breadcrumb')
+    Halaman
+@endsection
+
+@section('breadcrumb-active')
+    Manajemen Katalog
+@endsection
+
+@section('page-title')
+    Kelola Transaksi
+@endsection
+
+
 <div>
     <div class="card">
         <div class="card-header">
@@ -191,43 +204,49 @@
                             <select class="form-control" wire:model="pustaka_id">
                                 <option value="">-- Pilih Pustaka --</option>
                                 @foreach ($pustaka as $data)
-                                    <option value="{{ $data->id }}" {{ old('pustaka_id') == $data->id ? 'selected' : '' }}>{{ $data->judul_pustaka }}</option>
+                                    <option value="{{ $data->id }}"
+                                        {{ old('pustaka_id') == $data->id ? 'selected' : '' }}>
+                                        {{ $data->judul_pustaka }}</option>
                                 @endforeach
                             </select>
                             @error('pustaka_id')
                                 <small class="form-text text-danger">{{ $message }}</small>
                             @enderror
                         </div>
-                    
+
                         <div class="form-group">
                             <label>Anggota</label>
                             <select class="form-control" wire:model="anggota_id">
                                 <option value="">-- Pilih Anggota --</option>
                                 @foreach ($anggota as $data)
-                                    <option value="{{ $data->id }}" {{ old('anggota_id') == $data->id ? 'selected' : '' }}>{{ $data->nama_anggota }}</option>
+                                    <option value="{{ $data->id }}"
+                                        {{ old('anggota_id') == $data->id ? 'selected' : '' }}>
+                                        {{ $data->nama_anggota }}</option>
                                 @endforeach
                             </select>
                             @error('anggota_id')
                                 <small class="form-text text-danger">{{ $message }}</small>
                             @enderror
                         </div>
-                    
+
                         <div class="form-group">
                             <label>Tanggal Pinjam</label>
-                            <input type="number" class="form-control" wire:model="tgl_pinjam" min="1900" max="{{ date('Y') }}" value="{{ old('tgl_pinjam') }}">
+                            <input type="number" class="form-control" wire:model="tgl_pinjam" min="1900"
+                                max="{{ date('Y') }}" value="{{ old('tgl_pinjam') }}">
                             @error('tgl_pinjam')
                                 <small class="form-text text-danger">{{ $message }}</small>
                             @enderror
                         </div>
-                    
+
                         <div class="form-group">
                             <label>Tanggal Kembali</label>
-                            <input type="text" class="form-control" wire:model="tgl_kembali" value="{{ old('tgl_kembali') }}">
+                            <input type="text" class="form-control" wire:model="tgl_kembali"
+                                value="{{ old('tgl_kembali') }}">
                             @error('tgl_kembali')
                                 <small class="form-text text-danger">{{ $message }}</small>
                             @enderror
                         </div>
-                    
+
                         <div class="form-group">
                             <label>Tanggal Pengembalian</label>
                             <textarea class="form-control" wire:model="tgl_pengembalian">{{ old('tgl_pengembalian') }}</textarea>
@@ -235,16 +254,18 @@
                                 <small class="form-text text-danger">{{ $message }}</small>
                             @enderror
                         </div>
-                    
+
                         <div class="form-group">
                             <label>Fp</label>
                             <div>
                                 <div class="form-check">
-                                    <input class="form-check-input" type="radio" name="fp" id="fa0" value="0" wire:model="fp" {{ old('fp') == '0' ? 'checked' : '' }}>
+                                    <input class="form-check-input" type="radio" name="fp" id="fa0"
+                                        value="0" wire:model="fp" {{ old('fp') == '0' ? 'checked' : '' }}>
                                     <label class="form-check-label" for="fa0">0</label>
                                 </div>
                                 <div class="form-check">
-                                    <input class="form-check-input" type="radio" name="fp" id="fa1" value="1" wire:model="fp" {{ old('fp') == '1' ? 'checked' : '' }}>
+                                    <input class="form-check-input" type="radio" name="fp" id="fa1"
+                                        value="1" wire:model="fp" {{ old('fp') == '1' ? 'checked' : '' }}>
                                     <label class="form-check-label" for="fa1">1</label>
                                 </div>
                             </div>
@@ -252,7 +273,7 @@
                                 <small class="form-text text-danger">{{ $message }}</small>
                             @enderror
                         </div>
-                    
+
                         <div class="form-group">
                             <label>Keterangan</label>
                             <textarea class="form-control" wire:model="keterangan">{{ old('keterangan') }}</textarea>
@@ -272,26 +293,26 @@
     </div>
 
     <div wire:ignore.self class="modal fade" id="deletepage" tabindex="-1" aria-labelledby="exampleModalLabel"
-    aria-hidden="true">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel">Hapus Transaksi</h5>
-                <button type="button" class="btn-close text-dark" data-bs-dismiss="modal" aria-label="Close">
+        aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Hapus Transaksi</h5>
+                    <button type="button" class="btn-close text-dark" data-bs-dismiss="modal" aria-label="Close">
 
-                    <span aria-hidden="true">&times;</span>
-                </button>
-            </div>
-            <div class="modal-body">
-                <p>Yakin Mau Hapus Data?</p>
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <p>Yakin Mau Hapus Data?</p>
 
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Tutup</button>
-                <button type="button" wire:click="destroy" class="btn btn-primary"
-                    data-bs-dismiss="modal">Simpan</button>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Tutup</button>
+                    <button type="button" wire:click="destroy" class="btn btn-primary"
+                        data-bs-dismiss="modal">Simpan</button>
+                </div>
             </div>
         </div>
     </div>
-</div>
 </div>

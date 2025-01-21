@@ -1,18 +1,36 @@
+@section('breadcrumb')
+    Halaman
+@endsection
+
+@section('breadcrumb-active')
+    Manajemen Katalog
+@endsection
+
+@section('page-title')
+    Kelola Pustaka
+@endsection
+
 <div>
     <div class="card">
-        <div class="card-header">
-            Kelola Pustaka
+        <div class="card-header pb-0 d-flex justify-content-between align-items-center">
+            <h6>Kelola Pustaka</h6>
+            <!-- Search bar -->
+            <div class="ms-auto pe-md-3 d-flex align-items-center">
+                <div class="input-group">
+                    <span class="input-group-text text-body"><i class="fas fa-search" aria-hidden="true"></i></span>
+                    <input type="search" class="form-control search-input" wire:model.live="search"
+                        placeholder="Cari Pustaka...">
+                </div>
+            </div>
+            <!-- End Search bar -->
         </div>
         <div class="card-body">
+
             @if (@session()->has('success'))
                 <div class="alert alert-success" role="alert">
                     {{ session('success') }}
                 </div>
             @endif
-
-            <div class="d-flex justify-content-end mb-3">
-                <input type="text" wire:model.live="cari" class="form-control w-30" placeholder="Cari Pustaka...">
-            </div>
             <div class="table-responsive">
                 <table class="table table-striped table-bordered table-hover align-items-center mb-0">
                     <thead>
@@ -334,34 +352,38 @@
                     <form>
                         <div class="form-group">
                             <label>Judul Pustaka</label>
-                            <input type="text" class="form-control" wire:model="judul_pustaka" value="{{ @old('judul_pustaka', $judul_pustaka ?? '') }}">
+                            <input type="text" class="form-control" wire:model="judul_pustaka"
+                                value="{{ @old('judul_pustaka', $judul_pustaka ?? '') }}">
                             @error('judul_pustaka')
                                 <small class="form-text text-danger">{{ $message }}</small>
                             @enderror
                         </div>
-                    
+
                         <div class="form-group">
                             <label>Kode Pustaka</label>
-                            <input type="text" class="form-control" wire:model="kode_pustaka" maxlength="10" value="{{ @old('kode_pustaka', $kode_pustaka ?? '') }}">
+                            <input type="text" class="form-control" wire:model="kode_pustaka" maxlength="10"
+                                value="{{ @old('kode_pustaka', $kode_pustaka ?? '') }}">
                             @error('kode_pustaka')
                                 <small class="form-text text-danger">{{ $message }}</small>
                             @enderror
                         </div>
-                    
+
                         <div class="form-group">
                             <label>ISBN</label>
-                            <input type="text" class="form-control" wire:model="isbn" maxlength="13" value="{{ @old('isbn', $isbn ?? '') }}">
+                            <input type="text" class="form-control" wire:model="isbn" maxlength="13"
+                                value="{{ @old('isbn', $isbn ?? '') }}">
                             @error('isbn')
                                 <small class="form-text text-danger">{{ $message }}</small>
                             @enderror
                         </div>
-                    
+
                         <div class="form-group">
                             <label>Jenis DDC</label>
                             <select class="form-control" wire:model="ddc_id">
                                 <option value="">-- Pilih Jenis DDC --</option>
                                 @foreach ($ddc as $jenis)
-                                    <option value="{{ $jenis->id }}" {{ @old('ddc_id', $ddc_id ?? '') == $jenis->id ? 'selected' : '' }}>
+                                    <option value="{{ $jenis->id }}"
+                                        {{ @old('ddc_id', $ddc_id ?? '') == $jenis->id ? 'selected' : '' }}>
                                         {{ $jenis->ddc }}
                                     </option>
                                 @endforeach
@@ -370,13 +392,14 @@
                                 <small class="form-text text-danger">{{ $message }}</small>
                             @enderror
                         </div>
-                    
+
                         <div class="form-group">
                             <label>Jenis Format</label>
                             <select class="form-control" wire:model="format_id">
                                 <option value="">-- Pilih Jenis Format --</option>
                                 @foreach ($format as $jenis)
-                                    <option value="{{ $jenis->id }}" {{ @old('format_id', $format_id ?? '') == $jenis->id ? 'selected' : '' }}>
+                                    <option value="{{ $jenis->id }}"
+                                        {{ @old('format_id', $format_id ?? '') == $jenis->id ? 'selected' : '' }}>
                                         {{ $jenis->format }}
                                     </option>
                                 @endforeach
@@ -385,13 +408,14 @@
                                 <small class="form-text text-danger">{{ $message }}</small>
                             @enderror
                         </div>
-                    
+
                         <div class="form-group">
                             <label>Penerbit</label>
                             <select class="form-control" wire:model="penerbit_id">
                                 <option value="">-- Pilih Penerbit --</option>
                                 @foreach ($penerbit as $data)
-                                    <option value="{{ $data->id }}" {{ @old('penerbit_id', $penerbit_id ?? '') == $data->id ? 'selected' : '' }}>
+                                    <option value="{{ $data->id }}"
+                                        {{ @old('penerbit_id', $penerbit_id ?? '') == $data->id ? 'selected' : '' }}>
                                         {{ $data->nama_penerbit }}
                                     </option>
                                 @endforeach
@@ -400,13 +424,14 @@
                                 <small class="form-text text-danger">{{ $message }}</small>
                             @enderror
                         </div>
-                    
+
                         <div class="form-group">
                             <label>Pengarang</label>
                             <select class="form-control" wire:model="pengarang_id">
                                 <option value="">-- Pilih Pengarang --</option>
                                 @foreach ($pengarang as $data)
-                                    <option value="{{ $data->id }}" {{ @old('pengarang_id', $pengarang_id ?? '') == $data->id ? 'selected' : '' }}>
+                                    <option value="{{ $data->id }}"
+                                        {{ @old('pengarang_id', $pengarang_id ?? '') == $data->id ? 'selected' : '' }}>
                                         {{ $data->nama_pengarang }}
                                     </option>
                                 @endforeach
@@ -415,24 +440,25 @@
                                 <small class="form-text text-danger">{{ $message }}</small>
                             @enderror
                         </div>
-                    
+
                         <div class="form-group">
                             <label>Tahun Terbit</label>
-                            <input type="number" class="form-control" wire:model="tahun_terbit" min="1900" max="{{ date('Y') }}" 
-                                value="{{ @old('tahun_terbit', $tahun_terbit ?? '') }}">
+                            <input type="number" class="form-control" wire:model="tahun_terbit" min="1900"
+                                max="{{ date('Y') }}" value="{{ @old('tahun_terbit', $tahun_terbit ?? '') }}">
                             @error('tahun_terbit')
                                 <small class="form-text text-danger">{{ $message }}</small>
                             @enderror
                         </div>
-                    
+
                         <div class="form-group">
                             <label>Keyword</label>
-                            <input type="text" class="form-control" wire:model="keyword" value="{{ @old('keyword', $keyword ?? '') }}">
+                            <input type="text" class="form-control" wire:model="keyword"
+                                value="{{ @old('keyword', $keyword ?? '') }}">
                             @error('keyword')
                                 <small class="form-text text-danger">{{ $message }}</small>
                             @enderror
                         </div>
-                    
+
                         <div class="form-group">
                             <label>Keterangan Fisik</label>
                             <textarea class="form-control" wire:model="keterangan_fisik">{{ @old('keterangan_fisik', $keterangan_fisik ?? '') }}</textarea>
@@ -440,7 +466,7 @@
                                 <small class="form-text text-danger">{{ $message }}</small>
                             @enderror
                         </div>
-                    
+
                         <div class="form-group">
                             <label>Keterangan Tambahan</label>
                             <textarea class="form-control" wire:model="keterangan_tambahan">{{ @old('keterangan_tambahan', $keterangan_tambahan ?? '') }}</textarea>
@@ -448,7 +474,7 @@
                                 <small class="form-text text-danger">{{ $message }}</small>
                             @enderror
                         </div>
-                    
+
                         <div class="form-group">
                             <label>Abstraksi</label>
                             <textarea class="form-control" wire:model="abstraksi">{{ @old('abstraksi', $abstraksi ?? '') }}</textarea>
@@ -456,7 +482,7 @@
                                 <small class="form-text text-danger">{{ $message }}</small>
                             @enderror
                         </div>
-                    
+
                         <div class="form-group">
                             <label>Gambar</label>
                             <input type="file" class="form-control" wire:model="gambar" accept="image/*">
@@ -464,36 +490,38 @@
                                 <small class="form-text text-danger">{{ $message }}</small>
                             @enderror
                         </div>
-                    
+
                         <div class="form-group">
                             <label>Harga Buku</label>
-                            <input type="number" class="form-control" wire:model="harga_buku" min="0" 
+                            <input type="number" class="form-control" wire:model="harga_buku" min="0"
                                 value="{{ @old('harga_buku', $harga_buku ?? '') }}">
                             @error('harga_buku')
                                 <small class="form-text text-danger">{{ $message }}</small>
                             @enderror
                         </div>
-                    
+
                         <div class="form-group">
                             <label>Kondisi Buku</label>
-                            <input type="text" class="form-control" wire:model="kondisi_buku" 
+                            <input type="text" class="form-control" wire:model="kondisi_buku"
                                 value="{{ @old('kondisi_buku', $kondisi_buku ?? '') }}">
                             @error('kondisi_buku')
                                 <small class="form-text text-danger">{{ $message }}</small>
                             @enderror
                         </div>
-                    
+
                         <div class="form-group">
                             <label>Fp</label>
                             <div>
                                 <div class="form-check">
-                                    <input class="form-check-input" type="radio" name="fp" id="fa0" value="0" 
-                                        wire:model="fp" {{ @old('fp', $fp ?? '') == '0' ? 'checked' : '' }}>
+                                    <input class="form-check-input" type="radio" name="fp" id="fa0"
+                                        value="0" wire:model="fp"
+                                        {{ @old('fp', $fp ?? '') == '0' ? 'checked' : '' }}>
                                     <label class="form-check-label" for="fa0">0</label>
                                 </div>
                                 <div class="form-check">
-                                    <input class="form-check-input" type="radio" name="fp" id="fa1" value="1" 
-                                        wire:model="fp" {{ @old('fp', $fp ?? '') == '1' ? 'checked' : '' }}>
+                                    <input class="form-check-input" type="radio" name="fp" id="fa1"
+                                        value="1" wire:model="fp"
+                                        {{ @old('fp', $fp ?? '') == '1' ? 'checked' : '' }}>
                                     <label class="form-check-label" for="fa1">1</label>
                                 </div>
                             </div>
@@ -501,28 +529,28 @@
                                 <small class="form-text text-danger">{{ $message }}</small>
                             @enderror
                         </div>
-                    
+
                         <div class="form-group">
                             <label>Jumlah Pinjam</label>
-                            <input type="number" class="form-control" wire:model="jml_pinjam" min="0" 
+                            <input type="number" class="form-control" wire:model="jml_pinjam" min="0"
                                 value="{{ @old('jml_pinjam', $jml_pinjam ?? '') }}">
                             @error('jml_pinjam')
                                 <small class="form-text text-danger">{{ $message }}</small>
                             @enderror
                         </div>
-                    
+
                         <div class="form-group">
                             <label>Denda Terlambat</label>
-                            <input type="number" class="form-control" wire:model="denda_terlambat" min="0" 
+                            <input type="number" class="form-control" wire:model="denda_terlambat" min="0"
                                 value="{{ @old('denda_terlambat', $denda_terlambat ?? '') }}">
                             @error('denda_terlambat')
                                 <small class="form-text text-danger">{{ $message }}</small>
                             @enderror
                         </div>
-                    
+
                         <div class="form-group">
                             <label>Denda Hilang</label>
-                            <input type="number" class="form-control" wire:model="denda_hilang" min="0" 
+                            <input type="number" class="form-control" wire:model="denda_hilang" min="0"
                                 value="{{ @old('denda_hilang', $denda_hilang ?? '') }}">
                             @error('denda_hilang')
                                 <small class="form-text text-danger">{{ $message }}</small>
@@ -538,7 +566,7 @@
             </div>
         </div>
     </div>
-    
+
     {{-- Delete --}}
     <div wire:ignore.self class="modal fade" id="deletepage" tabindex="-1" aria-labelledby="exampleModalLabel"
         aria-hidden="true">

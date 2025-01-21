@@ -1,3 +1,16 @@
+@section('breadcrumb')
+    Halaman
+@endsection
+
+@section('breadcrumb-active')
+    Manajemen Katalog
+@endsection
+
+@section('page-title')
+    Kelola Ddc
+@endsection
+
+
 <div>
     <div class="card">
         <div class="card-header">
@@ -73,16 +86,16 @@
                     <form>
                         <div class="form-group">
                             <label>DDC</label>
-                            <input type="text" class="form-control" wire:model="ddc" maxlength="5" placeholder="Masukkan DDC"
-                                value="{{ @old('ddc') }}">
+                            <input type="text" class="form-control" wire:model="ddc" maxlength="5"
+                                placeholder="Masukkan DDC" value="{{ @old('ddc') }}">
                             @error('ddc')
                                 <small class="form-text text-danger">{{ $message }}</small>
                             @enderror
                         </div>
                         <div class="form-group">
                             <label>Kode DDC</label>
-                            <input type="text" class="form-control" wire:model="kode_ddc" maxlength="10" placeholder="Masukkan Kode DDC"
-                                value="{{ @old('kode_ddc') }}">
+                            <input type="text" class="form-control" wire:model="kode_ddc" maxlength="10"
+                                placeholder="Masukkan Kode DDC" value="{{ @old('kode_ddc') }}">
                             @error('kode_ddc')
                                 <small class="form-text text-danger">{{ $message }}</small>
                             @enderror
@@ -134,16 +147,16 @@
                     <form>
                         <div class="form-group">
                             <label>DDC</label>
-                            <input type="text" class="form-control" wire:model="ddc" maxlength="5" placeholder="Masukkan DDC"
-                                value="{{ @old('ddc') }}">
+                            <input type="text" class="form-control" wire:model="ddc" maxlength="5"
+                                placeholder="Masukkan DDC" value="{{ @old('ddc') }}">
                             @error('ddc')
                                 <small class="form-text text-danger">{{ $message }}</small>
                             @enderror
                         </div>
                         <div class="form-group">
                             <label>Kode DDC</label>
-                            <input type="text" class="form-control" wire:model="kode_ddc" maxlength="10" placeholder="Masukkan Kode DDC"
-                                value="{{ @old('kode_ddc') }}">
+                            <input type="text" class="form-control" wire:model="kode_ddc" maxlength="10"
+                                placeholder="Masukkan Kode DDC" value="{{ @old('kode_ddc') }}">
                             @error('kode_ddc')
                                 <small class="form-text text-danger">{{ $message }}</small>
                             @enderror

@@ -1,18 +1,36 @@
+@section('breadcrumb')
+    Halaman
+@endsection
+
+@section('breadcrumb-active')
+    Manajemen Keanggotaan
+@endsection
+
+@section('page-title')
+    Kelola Anggota
+@endsection
+
 <div>
     <div class="card">
-        <div class="card-header">
-            Kelola Anggota
+        <div class="card-header pb-0 d-flex justify-content-between align-items-center">
+            <h6>Kelola Anggota</h6>
+            <!-- Search bar -->
+            <div class="ms-auto pe-md-3 d-flex align-items-center">
+                <div class="input-group">
+                    <span class="input-group-text text-body"><i class="fas fa-search" aria-hidden="true"></i></span>
+                    <input type="search" class="form-control search-input" wire:model.live="search"
+                        placeholder="Cari Anggota...">
+                </div>
+            </div>
+            <!-- End Search bar -->
         </div>
+
         <div class="card-body">
             @if (@session()->has('success'))
                 <div class="alert alert-success" role="alert">
                     {{ session('success') }}
                 </div>
             @endif
-
-            <div class="d-flex justify-content-end mb-3">
-                <input type="text" wire:model.live="cari" class="form-control w-30" placeholder="Cari Anggota...">
-            </div>
             <div class="table-responsive">
                 <table class="table table-striped table-bordered table-hover align-items-center mb-0">
                     <thead>

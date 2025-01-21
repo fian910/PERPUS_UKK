@@ -1,3 +1,16 @@
+@section('breadcrumb')
+    Halaman
+@endsection
+
+@section('breadcrumb-active')
+    Manajemen Katalog
+@endsection
+
+@section('page-title')
+    Kelola Rak
+@endsection
+
+
 <div>
     <div class="card">
         <div class="card-header">

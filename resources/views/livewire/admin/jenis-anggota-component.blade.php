@@ -1,3 +1,16 @@
+@section('breadcrumb')
+    Halaman
+@endsection
+
+@section('breadcrumb-active')
+    Manajemen Keanggotaan
+@endsection
+
+@section('page-title')
+    Kelola Jenis Anggota
+@endsection
+
+
 <div>
     <div class="card">
         <div class="card-header">
