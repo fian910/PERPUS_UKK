@@ -27,7 +27,10 @@ class AnggotaComponent extends Component
             $data['anggota'] = Anggota::paginate(5);
         }
         $data['jenis_anggota'] = JenisAnggota::all();
-        return view('livewire.admin.anggota-component', $data)->layoutData($layout);
+        return view('livewire.admin.anggota-component', $data)
+            ->extends('components.layouts.app')
+            ->section('content')
+            ->layoutData($layout);
     }
 
     public function store()
@@ -90,7 +93,7 @@ class AnggotaComponent extends Component
             'fa.max' => 'Fa maksimal 255 karakter.',
 
             'keterangan.string' => 'Keterangan harus berupa string.',
-            
+
             'foto.required' => 'Foto wajib diisi.',
             'foto.image' => 'Format file foto harus berupa gambar.',
             'foto.mimes' => 'Foto harus memiliki format jpeg, png, atau jpg.',
@@ -100,7 +103,7 @@ class AnggotaComponent extends Component
             'username.string' => 'Username harus berupa string.',
             'username.unique' => 'Username sudah terdaftar.',
             'username.min' => 'Username minimal 4 karakter.',
-            
+
             'password.required' => 'Password wajib diisi.'
         ]);
 

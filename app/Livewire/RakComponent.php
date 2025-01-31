@@ -8,12 +8,22 @@ use Livewire\Component;
 
 class RakComponent extends Component
 {
-    public $kode_rak, $rak, $keterangan, $id;
+    public $kode_rak, $rak, $keterangan, $id, $cari;
     public function render()
     {
         $layout['title'] = "Kelola Rak";
-        $data['raks'] = Rak::all();
-        return view('livewire.admin.rak-component', $data)->layoutData($layout);
+        if ($this->cari) {
+            $data['raks'] = Rak::where('kode_rak', 'like', '%' . $this->cari . '%')
+                ->orwhere('rak', 'like', '%' . $this->cari . '%')
+                ->get();
+        } else {
+            $data['raks'] = Rak::all();
+        }
+
+        return view('livewire.admin.rak-component', $data)
+            ->extends('components.layouts.app')
+            ->section('content')
+            ->layoutData($layout);
     }
 
     public function store()
@@ -32,7 +42,7 @@ class RakComponent extends Component
             'rak.string' => 'Rak harus berupa string.',
             'rak.unique' => 'Rak sudah terdaftar.',
             'rak.max' => 'Rak maksimal 25 karakter.',
-            
+
             'keterangan.string' => 'Keterangan harus berupa string.'
         ]);
 

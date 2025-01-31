@@ -13,8 +13,17 @@
 
 <div>
     <div class="card">
-        <div class="card-header">
-            Kelola Penerbit Buku
+        <div class="card-header pb-0 d-flex justify-content-between align-items-center">
+            <h6>Kelola Penerbit</h6>
+            <!-- Search bar -->
+            <div class="ms-auto pe-md-3 d-flex align-items-center">
+                <div class="input-group">
+                    <span class="input-group-text text-body"><i class="fas fa-search" aria-hidden="true"></i></span>
+                    <input type="search" class="form-control search-input" wire:model.live="cari"
+                        placeholder="Cari Penerbit...">
+                </div>
+            </div>
+            <!-- End Search bar -->
         </div>
         <div class="card-body">
             @if (@session()->has('success'))
@@ -23,57 +32,78 @@
                 </div>
             @endif
 
-            <div class="table-responsive">
-                <table class="table table-striped table-bordered table-hover align-items-center mb-0">
-                    <thead>
-                        <tr>
-                            <th style="white-space: nowrap;" scope="col">No.</th>
-                            <th style="white-space: nowrap;" scope="col">Kode Penerbit Buku</th>
-                            <th style="white-space: nowrap;" scope="col">Nama Penerbit</th>
-                            <th style="white-space: nowrap;" scope="col">Alamat Penerbit</th>
-                            <th style="white-space: nowrap;" scope="col">No Telp</th>
-                            <th style="white-space: nowrap;" scope="col">Email</th>
-                            <th style="white-space: nowrap;" scope="col">Fax</th>
-                            <th style="white-space: nowrap;" scope="col">Website</th>
-                            <th style="white-space: nowrap;" scope="col">kontak</th>
-                            <th style="white-space: nowrap;" scope="col">Proses</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        @if ($penerbit->isEmpty())
+            <div class="card-body px-0 pb-2">
+                <div class="table-responsive">
+                    <table class="table align-items-center mb-0">
+                        <thead>
                             <tr>
-                                <td colspan="10" class="text-center">Data belum dimasukkan</td>
+                                <th style="white-space: nowrap;" class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7" scope="col">No.</th>
+                                <th style="white-space: nowrap;" class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7" scope="col">Kode Penerbit Buku</th>
+                                <th style="white-space: nowrap;" class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7" scope="col">Nama Penerbit</th>
+                                <th style="white-space: nowrap;" class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7" scope="col">Alamat Penerbit</th>
+                                <th style="white-space: nowrap;" class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7" scope="col">No Telp</th>
+                                <th style="white-space: nowrap;" class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7" scope="col">Email</th>
+                                <th style="white-space: nowrap;" class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7" scope="col">Fax</th>
+                                <th style="white-space: nowrap;" class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7" scope="col">Website</th>
+                                <th style="white-space: nowrap;" class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7" scope="col">kontak</th>
+                                <th style="white-space: nowrap;" class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7" scope="col">Proses</th>
                             </tr>
-                        @else
-                            @foreach ($penerbit as $data)
+                        </thead>
+                        <tbody>
+                            @if ($penerbit->isEmpty())
                                 <tr>
-                                    <th scope="row">{{ $loop->iteration }}</th>
-                                    <td>{{ $data->kode_penerbit }}</td>
-                                    <td>{{ $data->nama_penerbit }}</td>
-                                    <td>{{ $data->alamat_penerbit }}</td>
-                                    <td>{{ $data->no_telp }}</td>
-                                    <td>{{ $data->email }}</td>
-                                    <td>{{ $data->fax }}</td>
-                                    <td>{{ $data->website }}</td>
-                                    <td>{{ $data->kontak }}</td>
-                                    <td class="proses">
-                                        <div class="btn-group" role="group" aria-label="Proses Buttons">
-                                            <button type="button" wire:click="edit({{ $data->id }})"
-                                                class="btn btn-sm btn-warning me-2" data-bs-toggle="modal"
-                                                data-bs-target="#editpage">Ubah</button>
-                                            <button type="button" wire:click="confirm({{ $data->id }})"
-                                                class="btn btn-sm btn-danger" data-bs-toggle="modal"
-                                                data-bs-target="#deletepage">Hapus</button>
-                                        </div>
-                                    </td>
+                                    <td colspan="10" class="text-center">Data belum dimasukkan</td>
                                 </tr>
-                            @endforeach
-                        @endif
-                    </tbody>
-                </table>
+                            @else
+                                @foreach ($penerbit as $data)
+                                    <tr>
+                                        <th scope="row" class="align-middle text-sm text-center">
+                                            <span class="text-xs font-weight-bold">{{ $loop->iteration }}</span>
+                                        </th>
+                                        <td class="align-middle text-sm text-center">
+                                            <span class="text-xs font-weight-bold">{{ $data->kode_penerbit }}</span>
+                                        </td>
+                                        <td class="align-middle text-sm text-center">
+                                            <span class="text-xs font-weight-bold">{{ $data->nama_penerbit }}</span>
+                                        </td>
+                                        <td class="align-middle text-sm text-center">
+                                            <span class="text-xs font-weight-bold">{{ $data->alamat_penerbit }}</span>
+                                        </td>
+                                        <td class="align-middle text-sm text-center">
+                                            <span class="text-xs font-weight-bold">{{ $data->no_telp }}</span>
+                                        </td>
+                                        <td class="align-middle text-sm text-center">
+                                            <span class="text-xs font-weight-bold">{{ $data->email }}</span>
+                                        </td>
+                                        <td class="align-middle text-sm text-center">
+                                            <span class="text-xs font-weight-bold">{{ $data->fax }}</span>
+                                        </td>
+                                        <td class="align-middle text-sm text-center">
+                                            <span class="text-xs font-weight-bold">{{ $data->website }}</span>
+                                        </td>
+                                        <td class="align-middle text-sm text-center">
+                                            <span class="text-xs font-weight-bold">{{ $data->kontak }}</span>
+                                        </td>
+                                        
+                                        <td class="proses">
+                                            <div class="btn-group" role="group" aria-label="Proses Buttons">
+                                                <button type="button" wire:click="edit({{ $data->id }})"
+                                                    class="btn btn-sm btn-warning me-2" data-bs-toggle="modal"
+                                                    data-bs-target="#editpage">Ubah</button>
+                                                <button type="button" wire:click="confirm({{ $data->id }})"
+                                                    class="btn btn-sm btn-danger" data-bs-toggle="modal"
+                                                    data-bs-target="#deletepage">Hapus</button>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                @endforeach
+                            @endif
+                        </tbody>
+                    </table>
+                </div>
+                <a href="#" class="btn btn-md btn-info mt-3" data-bs-toggle="modal"
+                    data-bs-target="#addpage">Tambah</a>
             </div>
-            <a href="#" class="btn btn-md btn-info mt-3" data-bs-toggle="modal"
-                data-bs-target="#addpage">Tambah</a>
         </div>
     </div>
 
@@ -125,7 +155,8 @@
                         </div>
                         <div class="form-group">
                             <label>Email</label>
-                            <input type="email" class="form-control" wire:model="email" value="{{ @old('email') }}">
+                            <input type="email" class="form-control" wire:model="email"
+                                value="{{ @old('email') }}">
                             @error('email')
                                 <small class="form-text text-danger">{{ $message }}</small>
                             @enderror

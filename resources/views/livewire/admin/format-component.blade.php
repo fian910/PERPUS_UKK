@@ -13,8 +13,17 @@
 
 <div>
     <div class="card">
-        <div class="card-header">
-            Kelola Format Buku
+        <div class="card-header pb-0 d-flex justify-content-between align-items-center">
+            <h6>Kelola Format</h6>
+            <!-- Search bar -->
+            <div class="ms-auto pe-md-3 d-flex align-items-center">
+                <div class="input-group">
+                    <span class="input-group-text text-body"><i class="fas fa-search" aria-hidden="true"></i></span>
+                    <input type="search" class="form-control search-input" wire:model.live="cari"
+                        placeholder="Cari Format...">
+                </div>
+            </div>
+            <!-- End Search bar -->
         </div>
         <div class="card-body">
             @if (@session()->has('success'))
@@ -23,47 +32,58 @@
                 </div>
             @endif
 
-            <div class="table-responsive">
-                <table class="table table-striped table-bordered table-hover align-items-center mb-0">
-                    <thead>
-                        <tr>
-                            <th style="white-space: nowrap;" scope="col">No.</th>
-                            <th style="white-space: nowrap;" scope="col">Kode Format Buku</th>
-                            <th style="white-space: nowrap;" scope="col">Format Buku</th>
-                            <th style="white-space: nowrap;" scope="col">Keterangan</th>
-                            <th style="white-space: nowrap;" scope="col">Proses</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        @if ($formats->isEmpty())
+            <div class="card-body px-0 pb-2">
+
+                <div class="table-responsive">
+                    <table class="table align-items-center mb-0">
+                        <thead>
                             <tr>
-                                <td colspan="5" class="text-center">Data belum dimasukkan</td>
+                                <th style="white-space: nowrap;" class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7" scope="col">No.</th>
+                                <th style="white-space: nowrap;" class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7" scope="col">Kode Format Buku</th>
+                                <th style="white-space: nowrap;" class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7" scope="col">Format Buku</th>
+                                <th style="white-space: nowrap;" class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7" scope="col">Keterangan</th>
+                                <th style="white-space: nowrap;" class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7" scope="col">Proses</th>
                             </tr>
-                        @else
-                            @foreach ($formats as $data)
+                        </thead>
+                        <tbody>
+                            @if ($formats->isEmpty())
                                 <tr>
-                                    <th scope="row">{{ $loop->iteration }}</th>
-                                    <td>{{ $data->kode_format }}</td>
-                                    <td>{{ $data->format }}</td>
-                                    <td>{{ $data->keterangan }}</td>
-                                    <td class="proses">
-                                        <div class="btn-group" role="group" aria-label="Proses Buttons">
-                                            <button type="button" wire:click="edit({{ $data->id }})"
-                                                class="btn btn-sm btn-warning me-2" data-bs-toggle="modal"
-                                                data-bs-target="#editpage">Ubah</button>
-                                            <button type="button" wire:click="confirm({{ $data->id }})"
-                                                class="btn btn-sm btn-danger" data-bs-toggle="modal"
-                                                data-bs-target="#deletepage">Hapus</button>
-                                        </div>
-                                    </td>
+                                    <td colspan="5" class="text-center">Data belum dimasukkan</td>
                                 </tr>
-                            @endforeach
-                        @endif
-                    </tbody>
-                </table>
+                            @else
+                                @foreach ($formats as $data)
+                                    <tr>
+                                        <th scope="row" class="align-middle text-sm text-center">
+                                            <span class="text-xs font-weight-bold">{{ $loop->iteration }}</span>
+                                        </th>
+                                        <td class="align-middle text-sm text-center">
+                                            <span class="text-xs font-weight-bold">{{ $data->kode_format }}</span>
+                                        </td>
+                                        <td class="align-middle text-sm text-center">
+                                            <span class="text-xs font-weight-bold">{{ $data->format }}</span>
+                                        </td>
+                                        <td class="align-middle text-sm text-center">
+                                            <span class="text-xs font-weight-bold">{{ $data->keterangan }}</span>
+                                        </td>
+                                        <td class="proses">
+                                            <div class="btn-group" role="group" aria-label="Proses Buttons">
+                                                <button type="button" wire:click="edit({{ $data->id }})"
+                                                    class="btn btn-sm btn-warning me-2" data-bs-toggle="modal"
+                                                    data-bs-target="#editpage">Ubah</button>
+                                                <button type="button" wire:click="confirm({{ $data->id }})"
+                                                    class="btn btn-sm btn-danger" data-bs-toggle="modal"
+                                                    data-bs-target="#deletepage">Hapus</button>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                @endforeach
+                            @endif
+                        </tbody>
+                    </table>
+                </div>
+                <a href="#" class="btn btn-md btn-info mt-3" data-bs-toggle="modal"
+                    data-bs-target="#addpage">Tambah</a>
             </div>
-            <a href="#" class="btn btn-md btn-info mt-3" data-bs-toggle="modal"
-                data-bs-target="#addpage">Tambah</a>
         </div>
     </div>
 
@@ -133,8 +153,8 @@
                     <form>
                         <div class="form-group">
                             <label>Kode Format Buku</label>
-                            <input type="text" class="form-control" wire:model="kode_format" maxlength="10" disabled
-                                value="{{ @old('kode_format') }}">
+                            <input type="text" class="form-control" wire:model="kode_format" maxlength="10"
+                                disabled value="{{ @old('kode_format') }}">
                             @error('kode_format')
                                 <small class="form-text text-danger">{{ $message }}</small>
                             @enderror

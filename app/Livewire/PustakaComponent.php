@@ -33,7 +33,10 @@ class PustakaComponent extends Component
         $data['penerbit'] = Penerbit::all();
         $data['pengarang'] = Pengarang::all();
 
-        return view('livewire.admin.pustaka-component', $data)->layoutData($layout);
+        return view('livewire.admin.pustaka-component', $data)
+            ->extends('components.layouts.app')
+            ->section('content')
+            ->layoutData($layout);
     }
 
     public function store()

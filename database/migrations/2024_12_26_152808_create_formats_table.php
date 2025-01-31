@@ -17,7 +17,6 @@ return new class extends Migration
             $table->string('format', 50)->unique();
             $table->string('keterangan', 100);
             $table->timestamps();
-            $table->softDeletes();
         });
     }
 

@@ -17,7 +17,6 @@ return new class extends Migration
             $table->string('rak', 25);
             $table->string('keterangan', 50);
             $table->timestamps();
-            $table->softDeletes();
         });
     }
 

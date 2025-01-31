@@ -8,13 +8,23 @@ use Livewire\Component;
 
 class DdcComponent extends Component
 {
-    public $rak_id, $kode_ddc, $ddc, $keterangan, $id;
+    public $rak_id, $kode_ddc, $ddc, $keterangan, $id, $cari;
     public function render()
     {
         $layout['title'] = "Kelola DDC";
-        $data['ddcs'] = Ddc::all();
+        if ($this->cari) {
+            $data['ddcs'] = Ddc::where('kode_ddc', 'like', '%' . $this->cari . '%')
+                ->orwhere('ddc', 'like', '%' . $this->cari . '%')
+                ->get();
+        } else {
+            $data['ddcs'] = Ddc::all();
+        }
+
         $data['raks'] = Rak::all();
-        return view('livewire.admin.ddc-component', $data)->layoutData($layout);
+        return view('livewire.admin.ddc-component', $data)
+            ->extends('components.layouts.app')
+            ->section('content')
+            ->layoutData($layout);
     }
 
     public function store()

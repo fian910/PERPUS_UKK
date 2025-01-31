@@ -23,7 +23,6 @@ return new class extends Migration
             $table->longText('biografi');
             $table->string('keterangan', 100);
             $table->timestamps();
-            $table->softDeletes();
         });
     }
 

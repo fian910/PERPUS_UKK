@@ -29,7 +29,6 @@ return new class extends Migration
             $table->enum('fp', ['0', '1'])->default('0');
             $table->string('keterangan', 5)->nullable();
             $table->timestamps();
-            $table->softDeletes();
         });
     }
 

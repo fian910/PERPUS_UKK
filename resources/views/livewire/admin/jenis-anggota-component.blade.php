@@ -13,8 +13,17 @@
 
 <div>
     <div class="card">
-        <div class="card-header">
-            Kelola Jenis Anggota
+        <div class="card-header pb-0 d-flex justify-content-between align-items-center">
+            <h6>Kelola Jenis Anggota</h6>
+            <!-- Search bar -->
+            <div class="ms-auto pe-md-3 d-flex align-items-center">
+                <div class="input-group">
+                    <span class="input-group-text text-body"><i class="fas fa-search" aria-hidden="true"></i></span>
+                    <input type="search" class="form-control search-input" wire:model.live="cari"
+                        placeholder="Cari Jenis Anggota...">
+                </div>
+            </div>
+            <!-- End Search bar -->
         </div>
         <div class="card-body">
             @if (@session()->has('success'))
@@ -23,50 +32,63 @@
                 </div>
             @endif
 
-            <div class="table-responsive">
-                <table class="table table-striped table-bordered table-hover align-items-center mb-0">
-                    <thead>
-                        <tr>
-                            <th style="white-space: nowrap;" scope="col">No.</th>
-                            <th style="white-space: nowrap;" scope="col">Kode Jenis Anggota</th>
-                            <th style="white-space: nowrap;" scope="col">Jenis Anggota</th>
-                            <th style="white-space: nowrap;" scope="col">Batas Pinjam</th>
-                            <th style="white-space: nowrap;" scope="col">Keterangan</th>
-                            <th style="white-space: nowrap;" scope="col">Proses</th>
-
-                        </tr>
-                    </thead>
-                    <tbody>
-                        @if ($jenis_anggota->isEmpty())
+            <div class="card-body px-0 pb-2">
+                <div class="table-responsive">
+                    <table class="table align-items-center mb-0">
+                        <thead>
                             <tr>
-                                <td colspan="6" class="text-center">Data belum dimasukkan</td>
+                                <th style="white-space: nowrap;" class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7" scope="col">No.</th>
+                                <th style="white-space: nowrap;" class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7" scope="col">Kode Jenis Anggota</th>
+                                <th style="white-space: nowrap;" class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7" scope="col">Jenis Anggota</th>
+                                <th style="white-space: nowrap;" class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7" scope="col">Batas Pinjam</th>
+                                <th style="white-space: nowrap;" class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7" scope="col">Keterangan</th>
+                                <th style="white-space: nowrap;" class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7" scope="col">Proses</th>
+
                             </tr>
-                        @else
-                            @foreach ($jenis_anggota as $data)
+                        </thead>
+                        <tbody>
+                            @if ($jenis_anggota->isEmpty())
                                 <tr>
-                                    <td scope="row">{{ $loop->iteration }}</td>
-                                    <td>{{ $data->kode_jenis_anggota }}</td>
-                                    <td>{{ $data->jns_anggota }}</td>
-                                    <td>{{ $data->max_pinjam }}</td>
-                                    <td>{{ $data->keterangan }}</td>
-                                    <td class="proses">
-                                        <div class="btn-group" role="group" aria-label="Proses Buttons">
-                                            <button type="button" wire:click="edit({{ $data->id }})"
-                                                class="btn btn-sm btn-warning me-2" data-bs-toggle="modal"
-                                                data-bs-target="#editjenisanggota">Ubah</button>
-                                            <button type="button" wire:click="confirm({{ $data->id }})"
-                                                class="btn btn-sm btn-danger" data-bs-toggle="modal"
-                                                data-bs-target="#deletejenisanggota">Hapus</button>
-                                        </div>
-                                    </td>
+                                    <td colspan="6" class="text-center">Data belum dimasukkan</td>
                                 </tr>
-                            @endforeach
-                        @endif
-                    </tbody>
-                </table>
+                            @else
+                                @foreach ($jenis_anggota as $data)
+                                    <tr>
+                                        <td scope="row" class="align-middle text-sm text-center">
+                                            <span class="text-xs font-weight-bold">{{ $loop->iteration }}</span>
+                                        </td>
+                                        <td class="align-middle text-sm text-center">
+                                            <span class="text-xs font-weight-bold">{{ $data->kode_jenis_anggota }}</span>
+                                        </td>
+                                        <td class="align-middle text-sm text-center">
+                                            <span class="text-xs font-weight-bold">{{ $data->jns_anggota }}</span>
+                                        </td>
+                                        <td class="align-middle text-sm text-center">
+                                            <span class="text-xs font-weight-bold">{{ $data->max_pinjam }}</span>
+                                        </td>
+                                        <td class="align-middle text-sm text-center">
+                                            <span class="text-xs font-weight-bold">{{ $data->keterangan }}</span>
+                                        </td>
+                                        
+                                        <td class="proses">
+                                            <div class="btn-group" role="group" aria-label="Proses Buttons">
+                                                <button type="button" wire:click="edit({{ $data->id }})"
+                                                    class="btn btn-sm btn-warning me-2" data-bs-toggle="modal"
+                                                    data-bs-target="#editjenisanggota">Ubah</button>
+                                                <button type="button" wire:click="confirm({{ $data->id }})"
+                                                    class="btn btn-sm btn-danger" data-bs-toggle="modal"
+                                                    data-bs-target="#deletejenisanggota">Hapus</button>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                @endforeach
+                            @endif
+                        </tbody>
+                    </table>
+                </div>
+                <a href="#" class="btn btn-md btn-info mt-3" data-bs-toggle="modal"
+                    data-bs-target="#addjenisanggota">Tambah</a>
             </div>
-            <a href="#" class="btn btn-md btn-info mt-3" data-bs-toggle="modal"
-                data-bs-target="#addjenisanggota">Tambah</a>
         </div>
     </div>
 

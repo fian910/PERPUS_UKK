@@ -33,7 +33,6 @@ return new class extends Migration
             $table->string('username', 50)->unique();
             $table->string('password', 50);
             $table->timestamps();
-            $table->softDeletes();
         });
     }
 

@@ -7,12 +7,22 @@ use Livewire\Component;
 
 class FormatComponent extends Component
 {
-    public $kode_format, $format, $keterangan, $id;
+    public $kode_format, $format, $keterangan, $id, $cari;
     public function render()
     {
         $layout['title'] = "Kelola Format";
-        $data['formats'] = Format::all();
-        return view('livewire.admin.format-component', $data)->layoutData($layout);
+        if ($this->cari) {
+            $data['Formats'] = Format::where('kode_format', 'like', '%' . $this->cari . '%')
+                ->orwhere('format', 'like', '%' . $this->cari . '%')
+                ->get();
+        } else {
+            $data['formats'] = Format::all();
+        }
+
+        return view('livewire.admin.format-component', $data)
+            ->extends('components.layouts.app')
+            ->section('content')
+            ->layoutData($layout);
     }
 
     public function store()
@@ -30,7 +40,7 @@ class FormatComponent extends Component
             'format.required' => 'Format wajib diisi.',
             'format.string' => 'Format harus berupa string.',
             'format.unique' => 'Format sudah terdaftar.',
-            
+
             'keterangan.string' => 'Keterangan harus berupa string.'
         ]);
 

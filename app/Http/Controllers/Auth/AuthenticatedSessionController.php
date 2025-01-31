@@ -31,7 +31,7 @@ class AuthenticatedSessionController extends Controller
         return redirect()->route('home');
     }
     
-    return redirect()->route('dashboard'); // halaman default untuk non-admin
+    return redirect()->route('user'); // halaman default untuk non-admin
 }
     /**
      * Destroy an authenticated session.

@@ -22,7 +22,6 @@ return new class extends Migration
             $table->string('website', 100);
             $table->string('kontak', 100);
             $table->timestamps();
-            $table->softDeletes();
         });
     }
 

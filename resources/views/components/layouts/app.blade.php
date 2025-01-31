@@ -19,7 +19,6 @@
     <script src="https://kit.fontawesome.com/26baa55295.js" crossorigin="anonymous"></script>
     <!-- CSS Files -->
     <link id="pagestyle" href="{{ asset('assets/css/soft-ui-dashboard.css?v=1.1.0') }}" rel="stylesheet" />
-    <!-- Nepcha Analytics (nepcha.com) -->
     <!-- Nepcha is a easy-to-use web analytics. No cookies and fully compliant with GDPR, CCPA and PECR. -->
     <script defer data-site="YOUR_DOMAIN_HERE" src="https://api.nepcha.com/js/nepcha-analytics.js"></script>
 </head>
@@ -31,10 +30,11 @@
         @include('components.layouts.navigation')
 
         <div class="mt-3">
-            {{ $slot }}
+            @yield('content')
+            @stack('scripts')
         </div>
         <!-- End Navbar -->
-        <footer class="footer pt-3 mt-3">
+        <footer class="footer pt-3 my-3">
             <div class="container-fluid">
                 <div class="row align-items-center justify-content-lg-between">
                     <div class="col-lg-6 mb-lg-0 mb-4">
@@ -156,7 +156,6 @@
     <script src="{{ asset('assets/js/core/bootstrap.min.js') }}"></script>
     <script src="{{ asset('assets/js/plugins/perfect-scrollbar.min.js') }}"></script>
     <script src="{{ asset('assets/js/plugins/smooth-scrollbar.min.js') }}"></script>
-    <script src="{{ asset('assets/js/plugins/chartjs.min.js') }}"></script>
     <script>
         var ctx = document.getElementById("chart-bars").getContext("2d");
 

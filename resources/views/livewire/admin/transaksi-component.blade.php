@@ -23,62 +23,78 @@
                 </div>
             @endif
 
-            <div class="d-flex justify-content-end mb-3">
-                <input type="text" wire:model.live="cari" class="form-control w-30" placeholder="Cari Perpustakaan...">
-            </div>
-            <div class="table-responsive">
-                <table class="table table-striped table-bordered table-hover align-items-center mb-0">
-                    <thead>
-                        <tr>
-                            <th style="white-space: nowrap;" scope="col">No.</th>
-                            <th style="white-space: nowrap;" scope="col">Pustaka</th>
-                            <th style="white-space: nowrap;" scope="col">Anggota</th>
-                            <th style="white-space: nowrap;" scope="col">Tanggal Pinjam</th>
-                            <th style="white-space: nowrap;" scope="col">Tanggal Kembali</th>
-                            <th style="white-space: nowrap;" scope="col">Tanggal Pengembalian</th>
-                            <th style="white-space: nowrap;" scope="col">Fp</th>
-                            <th style="white-space: nowrap;" scope="col">Keterangan</th>
-                            <th style="white-space: nowrap;" scope="col">Proses</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        @if ($transaksi->isEmpty())
+            <div class="card-body px-0 pb-2">
+                <div class="table-responsive">
+                    <table class="table align-items-center mb-0">
+                        <thead>
                             <tr>
-                                <td colspan="9" class="text-center">Data belum dimasukkan</td>
+                                <th style="white-space: nowrap;" class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7" scope="col">No.</th>
+                                <th style="white-space: nowrap;" class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7" scope="col">Pustaka</th>
+                                <th style="white-space: nowrap;" class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7" scope="col">Anggota</th>
+                                <th style="white-space: nowrap;" class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7" scope="col">Tanggal Pinjam</th>
+                                <th style="white-space: nowrap;" class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7" scope="col">Tanggal Kembali</th>
+                                <th style="white-space: nowrap;" class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7" scope="col">Tanggal Pengembalian</th>
+                                <th style="white-space: nowrap;" class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7" scope="col">Fp</th>
+                                <th style="white-space: nowrap;" class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7" scope="col">Keterangan</th>
+                                <th style="white-space: nowrap;" class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7" scope="col">Proses</th>
                             </tr>
-                        @else
-                            @foreach ($transaksi as $data)
+                        </thead>
+                        <tbody>
+                            @if ($transaksi->isEmpty())
                                 <tr>
-                                    <th scope="row">{{ $loop->iteration }}</th>
-                                    <td>{{ $data->pustaka->judul_pustaka }}</td>
-                                    <td>{{ $data->anggota->nama_anggota }}</td>
-                                    <td>{{ $data->tgl_pinjam }}</td>
-                                    <td>{{ $data->tgl_kembali }}</td>
-                                    <td>{{ $data->tgl_pengembalian }}</td>
-                                    <td>{{ $data->fp }}</td>
-                                    <td>{{ $data->keterangan }}</td>
-                                    <td class="proses">
-                                        <div class="btn-group" role="group" aria-label="Proses Buttons">
-                                            <button type="button" wire:click="edit({{ $data->id }})"
-                                                class="btn btn-sm btn-warning me-2" data-bs-toggle="modal"
-                                                data-bs-target="#editpage">
-                                                Ubah
-                                            </button>
-                                            <button type="button" wire:click="confirm({{ $data->id }})"
-                                                class="btn btn-sm btn-danger" data-bs-toggle="modal"
-                                                data-bs-target="#deletepage">
-                                                Hapus
-                                            </button>
-                                        </div>
-                                    </td>
+                                    <td colspan="9" class="text-center">Data belum dimasukkan</td>
                                 </tr>
-                            @endforeach
-                        @endif
-                    </tbody>
-                </table>
-                {{ $transaksi->links() }}
+                            @else
+                                @foreach ($transaksi as $data)
+                                    <tr>
+                                        <th scope="row" class="align-middle text-center text-sm">
+                                            <span class="text-xs font-weight-bold">{{ $loop->iteration }}</span>
+                                        </th>
+                                        <td class="align-middle text-center text-sm">
+                                            <span class="text-xs font-weight-bold">{{ $data->pustaka->judul_pustaka }}</span>
+                                        </td>
+                                        <td class="align-middle text-center text-sm">
+                                            <span class="text-xs font-weight-bold">{{ $data->anggota->nama_anggota }}</span>
+                                        </td>
+                                        <td class="align-middle text-center text-sm">
+                                            <span class="text-xs font-weight-bold">{{ $data->tgl_pinjam }}</span>
+                                        </td>
+                                        <td class="align-middle text-center text-sm">
+                                            <span class="text-xs font-weight-bold">{{ $data->tgl_kembali }}</span>
+                                        </td>
+                                        <td class="align-middle text-center text-sm">
+                                            <span class="text-xs font-weight-bold">{{ $data->tgl_pengembalian }}</span>
+                                        </td>
+                                        <td class="align-middle text-center text-sm">
+                                            <span class="text-xs font-weight-bold">{{ $data->fp }}</span>
+                                        </td>
+                                        <td class="align-middle text-center text-sm">
+                                            <span class="text-xs font-weight-bold">{{ $data->keterangan }}</span>
+                                        </td>                                        
+                                        
+                                        <td class="proses">
+                                            <div class="btn-group" role="group" aria-label="Proses Buttons">
+                                                <button type="button" wire:click="edit({{ $data->id }})"
+                                                    class="btn btn-sm btn-warning me-2" data-bs-toggle="modal"
+                                                    data-bs-target="#editpage">
+                                                    Ubah
+                                                </button>
+                                                <button type="button" wire:click="confirm({{ $data->id }})"
+                                                    class="btn btn-sm btn-danger" data-bs-toggle="modal"
+                                                    data-bs-target="#deletepage">
+                                                    Hapus
+                                                </button>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                @endforeach
+                            @endif
+                        </tbody>
+                    </table>
+                    {{ $transaksi->links() }}
+                </div>
+                <a href="#" class="btn btn-info mt-3" data-bs-toggle="modal" data-bs-target="#addpage">Tambah</a>
             </div>
-            <a href="#" class="btn btn-info mt-3" data-bs-toggle="modal" data-bs-target="#addpage">Tambah</a>
         </div>
     </div>
 

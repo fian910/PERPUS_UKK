@@ -7,12 +7,22 @@ use Livewire\Component;
 
 class PenerbitComponent extends Component
 {
-    public $kode_penerbit, $nama_penerbit, $alamat_penerbit, $no_telp, $email, $fax, $website, $kontak, $id;
+    public $kode_penerbit, $nama_penerbit, $alamat_penerbit, $no_telp, $email, $fax, $website, $kontak, $id, $cari;
     public function render()
     {
         $layout['title'] = "Kelola Penerbit";
-        $data['penerbit'] = Penerbit::all();
-        return view('livewire.admin.penerbit-component', $data)->layoutData($layout);
+        if ($this->cari) {
+            $data['penerbit'] = Penerbit::where('kode_penerbit', 'like', '%' . $this->cari . '%')
+                ->orwhere('nama_penerbit', 'like', '%' . $this->cari . '%')
+                ->get();
+        } else {
+            $data['penerbit'] = Penerbit::all();
+        }
+
+        return view('livewire.admin.penerbit-component', $data)
+            ->extends('components.layouts.app')
+            ->section('content')
+            ->layoutData($layout);
     }
 
     public function store()
@@ -54,7 +64,7 @@ class PenerbitComponent extends Component
 
             'website.required' => 'Website wajib diisi.',
             'website.url' => 'Format URL tidak valid.',
-            
+
             'kontak.required' => 'Kontak wajib diisi.',
             'kontak.string' => 'Kontak harus berupa string.'
         ]);

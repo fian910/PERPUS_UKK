@@ -12,8 +12,17 @@
 
 <div>
     <div class="card">
-        <div class="card-header">
-            Kelola Pengarang Buku
+        <div class="card-header pb-0 d-flex justify-content-between align-items-center">
+            <h6>Kelola Pengarang</h6>
+            <!-- Search bar -->
+            <div class="ms-auto pe-md-3 d-flex align-items-center">
+                <div class="input-group">
+                    <span class="input-group-text text-body"><i class="fas fa-search" aria-hidden="true"></i></span>
+                    <input type="search" class="form-control search-input" wire:model.live="cari"
+                        placeholder="Cari Pengarang...">
+                </div>
+            </div>
+            <!-- End Search bar -->
         </div>
         <div class="card-body">
             @if (@session()->has('success'))
@@ -22,59 +31,82 @@
                 </div>
             @endif
 
-            <div class="table-responsive">
-                <table class="table table-striped table-bordered table-hover align-items-center mb-0">
-                    <thead>
-                        <tr>
-                            <th style="white-space: nowrap;" scope="col">No.</th>
-                            <th style="white-space: nowrap;" scope="col">Kode Pengarang Buku</th>
-                            <th style="white-space: nowrap;" scope="col">Gelar Depan</th>
-                            <th style="white-space: nowrap;" scope="col">Nama Pengarang</th>
-                            <th style="white-space: nowrap;" scope="col">Gelar Belakang</th>
-                            <th style="white-space: nowrap;" scope="col">No Telp</th>
-                            <th style="white-space: nowrap;" scope="col">Email</th>
-                            <th style="white-space: nowrap;" scope="col">Website</th>
-                            <th style="white-space: nowrap;" scope="col">Biografi</th>
-                            <th style="white-space: nowrap;" scope="col">Keterangan</th>
-                            <th style="white-space: nowrap;" scope="col">Proses</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        @if ($pengarang->isEmpty())
+            <div class="card-body px-0 pb-2">
+                <div class="table-responsive">
+                    <table class="table align-items-center mb-0">
+                        <thead>
                             <tr>
-                                <td colspan="11" class="text-center">Data belum dimasukkan</td>
+                                <th style="white-space: nowrap;" class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7" scope="col">No.</th>
+                                <th style="white-space: nowrap;" class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7" scope="col">Kode Pengarang Buku</th>
+                                <th style="white-space: nowrap;" class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7" scope="col">Gelar Depan</th>
+                                <th style="white-space: nowrap;" class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7" scope="col">Nama Pengarang</th>
+                                <th style="white-space: nowrap;" class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7" scope="col">Gelar Belakang</th>
+                                <th style="white-space: nowrap;" class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7" scope="col">No Telp</th>
+                                <th style="white-space: nowrap;" class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7" scope="col">Email</th>
+                                <th style="white-space: nowrap;" class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7" scope="col">Website</th>
+                                <th style="white-space: nowrap;" class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7" scope="col">Biografi</th>
+                                <th style="white-space: nowrap;" class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7" scope="col">Keterangan</th>
+                                <th style="white-space: nowrap;" class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7" scope="col">Proses</th>
                             </tr>
-                        @else
-                            @foreach ($pengarang as $data)
+                        </thead>
+                        <tbody>
+                            @if ($pengarang->isEmpty())
                                 <tr>
-                                    <th scope="row">{{ $loop->iteration }}</th>
-                                    <td>{{ $data->kode_pengarang }}</td>
-                                    <td>{{ $data->gelar_depan }}</td>
-                                    <td>{{ $data->nama_pengarang }}</td>
-                                    <td>{{ $data->gelar_belakang }}</td>
-                                    <td>{{ $data->no_telp }}</td>
-                                    <td>{{ $data->email }}</td>
-                                    <td>{{ $data->website }}</td>
-                                    <td>{{ $data->biografi }}</td>
-                                    <td>{{ $data->keterangan }}</td>
-                                    <td class="proses">
-                                        <div class="btn-group" role="group" aria-label="Proses Buttons">
-                                            <button type="button" wire:click="edit({{ $data->id }})"
-                                                class="btn btn-sm btn-warning me-2" data-bs-toggle="modal"
-                                                data-bs-target="#editpage">Ubah</button>
-                                            <button type="button" wire:click="confirm({{ $data->id }})"
-                                                class="btn btn-sm btn-danger" data-bs-toggle="modal"
-                                                data-bs-target="#deletepage">Hapus</button>
-                                        </div>
-                                    </td>
+                                    <td colspan="11" class="text-center">Data belum dimasukkan</td>
                                 </tr>
-                            @endforeach
-                        @endif
-                    </tbody>
-                </table>
+                            @else
+                                @foreach ($pengarang as $data)
+                                    <tr>
+                                        <th scope="row" class="align-middle text-sm text-center">
+                                            <span class="text-xs font-weight-bold">{{ $loop->iteration }}</span>
+                                        </th>
+                                        <td class="align-middle text-sm text-center">
+                                            <span class="text-xs font-weight-bold">{{ $data->kode_pengarang }}</span>
+                                        </td>
+                                        <td class="align-middle text-sm text-center">
+                                            <span class="text-xs font-weight-bold">{{ $data->gelar_depan }}</span>
+                                        </td>
+                                        <td class="align-middle text-sm text-center">
+                                            <span class="text-xs font-weight-bold">{{ $data->nama_pengarang }}</span>
+                                        </td>
+                                        <td class="align-middle text-sm text-center">
+                                            <span class="text-xs font-weight-bold">{{ $data->gelar_belakang }}</span>
+                                        </td>
+                                        <td class="align-middle text-sm text-center">
+                                            <span class="text-xs font-weight-bold">{{ $data->no_telp }}</span>
+                                        </td>
+                                        <td class="align-middle text-sm text-center">
+                                            <span class="text-xs font-weight-bold">{{ $data->email }}</span>
+                                        </td>
+                                        <td class="align-middle text-sm text-center">
+                                            <span class="text-xs font-weight-bold">{{ $data->website }}</span>
+                                        </td>
+                                        <td class="align-middle text-sm text-center">
+                                            <span class="text-xs font-weight-bold">{{ $data->biografi }}</span>
+                                        </td>
+                                        <td class="align-middle text-sm text-center">
+                                            <span class="text-xs font-weight-bold">{{ $data->keterangan }}</span>
+                                        </td>
+                                        
+                                        <td class="proses">
+                                            <div class="btn-group" role="group" aria-label="Proses Buttons">
+                                                <button type="button" wire:click="edit({{ $data->id }})"
+                                                    class="btn btn-sm btn-warning me-2" data-bs-toggle="modal"
+                                                    data-bs-target="#editpage">Ubah</button>
+                                                <button type="button" wire:click="confirm({{ $data->id }})"
+                                                    class="btn btn-sm btn-danger" data-bs-toggle="modal"
+                                                    data-bs-target="#deletepage">Hapus</button>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                @endforeach
+                            @endif
+                        </tbody>
+                    </table>
+                </div>
+                <a href="#" class="btn btn-md btn-info mt-3" data-bs-toggle="modal"
+                    data-bs-target="#addpage">Tambah</a>
             </div>
-            <a href="#" class="btn btn-md btn-info mt-3" data-bs-toggle="modal"
-                data-bs-target="#addpage">Tambah</a>
         </div>
     </div>
 
@@ -127,8 +159,8 @@
                         </div>
                         <div class="form-group">
                             <label>No Telp</label>
-                            <input type="tel" class="form-control" wire:model="no_telp" pattern="[0-9\s\-\+\(\)]*"
-                                maxlength="15" value="{{ @old('no_telp') }}">
+                            <input type="tel" class="form-control" wire:model="no_telp"
+                                pattern="[0-9\s\-\+\(\)]*" maxlength="15" value="{{ @old('no_telp') }}">
                             @error('no_telp')
                                 <small class="form-text text-danger">{{ $message }}</small>
                             @enderror

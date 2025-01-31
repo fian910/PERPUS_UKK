@@ -4,6 +4,7 @@ use App\Http\Controllers\ProfileController;
 use App\Livewire\HomeComponent;
 use App\Livewire\AnggotaComponent;
 use App\Livewire\DdcComponent;
+use App\Livewire\DetailComponent;
 use App\Livewire\FormatComponent;
 use App\Livewire\LoginComponent;
 use App\Livewire\PerpusComponent;
@@ -13,6 +14,7 @@ use App\Livewire\PengarangComponent;
 use App\Livewire\PustakaComponent;
 use App\Livewire\RakComponent;
 use App\Livewire\TransaksiComponent;
+use App\Livewire\UserHomeComponent;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
@@ -20,9 +22,8 @@ Route::get('/', function () {
 });
 
 Route::middleware(['auth', 'verified'])->group(function () {
-    Route::get('/dashboard', function () {
-        return view('dashboard');
-    })->name('dashboard');
+    Route::get('/userhome', UserHomeComponent::class)->name('user');
+    Route::get('/book/{id}', DetailComponent::class)->name('book.detail');
 });
 
 Route::middleware(['auth', 'role:admin'])->group(function () {

@@ -7,12 +7,21 @@ use Livewire\Component;
 
 class PengarangComponent extends Component
 {
-    public $kode_pengarang, $gelar_depan, $nama_pengarang, $gelar_belakang, $no_telp, $email, $website, $biografi, $keterangan, $id;
+    public $kode_pengarang, $gelar_depan, $nama_pengarang, $gelar_belakang, $no_telp, $email, $website, $biografi, $keterangan, $id, $cari;
     public function render()
     {
         $layout['title'] = "Kelola Pengarang";
-        $data['pengarang'] = Pengarang::all();
-        return view('livewire.admin.pengarang-component', $data)->layoutData($layout);
+        if ($this->cari) {
+            $data['pengarang'] = Pengarang::where('kode_pengarang', 'like', '%' . $this->cari . '%')
+                ->orwhere('nama_pengarang', 'like', '%' . $this->cari . '%')
+                ->get();
+        } else {
+            $data['pengarang'] = Pengarang::all();
+        }
+        return view('livewire.admin.pengarang-component', $data)
+            ->extends('components.layouts.app')
+            ->section('content')
+            ->layoutData($layout);
     }
 
     public function store()

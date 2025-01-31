@@ -18,7 +18,6 @@ return new class extends Migration
             $table->string('max_pinjam', 5);
             $table->string('keterangan', 50);
             $table->timestamps();
-            $table->softDeletes();
         });
     }
 

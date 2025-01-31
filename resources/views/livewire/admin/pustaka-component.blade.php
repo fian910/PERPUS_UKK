@@ -18,7 +18,7 @@
             <div class="ms-auto pe-md-3 d-flex align-items-center">
                 <div class="input-group">
                     <span class="input-group-text text-body"><i class="fas fa-search" aria-hidden="true"></i></span>
-                    <input type="search" class="form-control search-input" wire:model.live="search"
+                    <input type="search" class="form-control search-input" wire:model.live="cari"
                         placeholder="Cari Pustaka...">
                 </div>
             </div>
@@ -31,99 +31,140 @@
                     {{ session('success') }}
                 </div>
             @endif
-            <div class="table-responsive">
-                <table class="table table-striped table-bordered table-hover align-items-center mb-0">
-                    <thead>
-                        <tr>
-                            <th style="white-space: nowrap;" scope="col">No.</th>
-                            <th style="white-space: nowrap;" scope="col">Judul Pustaka</th>
-                            <th style="white-space: nowrap;" scope="col">Kode Pustaka</th>
-                            <th style="white-space: nowrap;" scope="col">ISBN</th>
-                            <th style="white-space: nowrap;" scope="col">Jenis DDC</th>
-                            <th style="white-space: nowrap;" scope="col">Jenis Format</th>
-                            <th style="white-space: nowrap;" scope="col">Penerbit</th>
-                            <th style="white-space: nowrap;" scope="col">Pengarang</th>
-                            <th style="white-space: nowrap;" scope="col">Tahun Terbit</th>
-                            <th style="white-space: nowrap;" scope="col">Keyword</th>
-                            <th style="white-space: nowrap;" scope="col">Keterangan Fisik</th>
-                            <th style="white-space: nowrap;" scope="col">Keterangan Tambahan</th>
-                            <th style="white-space: nowrap;" scope="col">Abstraksi</th>
-                            <th style="white-space: nowrap;" scope="col">Gambar</th>
-                            <th style="white-space: nowrap;" scope="col">Harga Buku</th>
-                            <th style="white-space: nowrap;" scope="col">Kondisi Buku</th>
-                            <th style="white-space: nowrap;" scope="col">Fp</th>
-                            <th style="white-space: nowrap;" scope="col">Jumlah Pinjam</th>
-                            <th style="white-space: nowrap;" scope="col">Denda Terlambat</th>
-                            <th style="white-space: nowrap;" scope="col">Denda Hilang</th>
-                            <th style="white-space: nowrap;" scope="col">Proses</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        @if ($pustaka->isEmpty())
+
+            <div class="card-body px-0 pb-2">
+                <div class="table-responsive">
+                    <table class="table align-items-center mb-0">
+                        <thead>
                             <tr>
-                                <td colspan="21" class="text-center">Data belum dimasukkan</td>
+                                <th style="white-space: nowrap;" class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7" scope="col">No.</th>
+                                <th style="white-space: nowrap;" class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7" scope="col">Judul Pustaka</th>
+                                <th style="white-space: nowrap;" class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7" scope="col">Kode Pustaka</th>
+                                <th style="white-space: nowrap;" class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7" scope="col">ISBN</th>
+                                <th style="white-space: nowrap;" class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7" scope="col">Jenis DDC</th>
+                                <th style="white-space: nowrap;" class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7" scope="col">Jenis Format</th>
+                                <th style="white-space: nowrap;" class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7" scope="col">Penerbit</th>
+                                <th style="white-space: nowrap;" class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7" scope="col">Pengarang</th>
+                                <th style="white-space: nowrap;" class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7" scope="col">Tahun Terbit</th>
+                                <th style="white-space: nowrap;" class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7" scope="col">Keyword</th>
+                                <th style="white-space: nowrap;" class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7" scope="col">Keterangan Fisik</th>
+                                <th style="white-space: nowrap;" class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7" scope="col">Keterangan Tambahan</th>
+                                <th style="white-space: nowrap;" class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7" scope="col">Abstraksi</th>
+                                <th style="white-space: nowrap;" class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7" scope="col">Gambar</th>
+                                <th style="white-space: nowrap;" class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7" scope="col">Harga Buku</th>
+                                <th style="white-space: nowrap;" class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7" scope="col">Kondisi Buku</th>
+                                <th style="white-space: nowrap;" class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7" scope="col">Fp</th>
+                                <th style="white-space: nowrap;" class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7" scope="col">Jumlah Pinjam</th>
+                                <th style="white-space: nowrap;" class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7" scope="col">Denda Terlambat</th>
+                                <th style="white-space: nowrap;" class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7" scope="col">Denda Hilang</th>
+                                <th style="white-space: nowrap;" class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7" scope="col">Proses</th>
                             </tr>
-                        @else
-                            @foreach ($pustaka as $data)
+                        </thead>
+                        <tbody>
+                            @if ($pustaka->isEmpty())
                                 <tr>
-                                    <th scope="row">{{ $loop->iteration }}</th>
-                                    <td>{{ $data->judul_pustaka }}</td>
-                                    <td>{{ $data->kode_pustaka }}</td>
-                                    <td>{{ $data->isbn }}</td>
-                                    <td>{{ $data->ddc->ddc }}</td>
-                                    <td>{{ $data->format->format }}</td>
-                                    <td>{{ $data->penerbit->nama_penerbit }}</td>
-                                    <td>{{ $data->pengarang->nama_pengarang }}</td>
-                                    <td>{{ $data->tahun_terbit }}</td>
-                                    <td>{{ $data->keyword }}</td>
-                                    <td>{{ $data->keterangan_fisik }}</td>
-                                    <td>{{ $data->keterangan_tambahan }}</td>
-                                    <td>{{ $data->abstraksi }}</td>
-                                    <td>
-                                        @if ($data->gambar)
-                                            <img src="{{ asset('storage/' . $data->gambar) }}"
-                                                alt="Foto {{ $data->judul_pustaka }}" class="img-thumbnail"
-                                                style="max-width: 100px;">
-                                        @else
-                                            <span class="text-muted">Tidak ada foto</span>
-                                        @endif
-                                    </td>
-                                    <td>Rp {{ number_format($data->harga_buku, 0, ',', '.') }}</td>
-                                    <td>{{ $data->kondisi_buku }}</td>
-                                    <td>
-                                        @if ($data->fp == '0')
-                                            Tidak
-                                        @elseif($data->fp == '1')
-                                            Ya
-                                        @else
-                                            {{ $data->fp }}
-                                        @endif
-                                    </td>
-                                    <td>{{ $data->jml_pinjam }}</td>
-                                    <td>Rp {{ number_format($data->denda_terlambat, 0, ',', '.') }}</td>
-                                    <td>Rp {{ number_format($data->denda_hilang, 0, ',', '.') }}</td>
-                                    <td class="proses">
-                                        <div class="btn-group" role="group" aria-label="Proses Buttons">
-                                            <button type="button" wire:click="edit({{ $data->id }})"
-                                                class="btn btn-sm btn-warning me-2" data-bs-toggle="modal"
-                                                data-bs-target="#editpage">
-                                                Ubah
-                                            </button>
-                                            <button type="button" wire:click="confirm({{ $data->id }})"
-                                                class="btn btn-sm btn-danger" data-bs-toggle="modal"
-                                                data-bs-target="#deletepage">
-                                                Hapus
-                                            </button>
-                                        </div>
-                                    </td>
+                                    <td colspan="21" class="text-center">Data belum dimasukkan</td>
                                 </tr>
-                            @endforeach
-                        @endif
-                    </tbody>
-                </table>
-                {{ $pustaka->links() }}
+                            @else
+                                @foreach ($pustaka as $data)
+                                    <tr>
+                                        <th scope="row" class="align-middle text-sm text-center">
+                                            <span class="text-xs font-weight-bold">{{ $loop->iteration }}</span>
+                                        </th>
+                                        <td class="align-middle text-sm text-center">
+                                            <span class="text-xs font-weight-bold">{{ $data->judul_pustaka }}</span>
+                                        </td>
+                                        <td class="align-middle text-sm text-center">
+                                            <span class="text-xs font-weight-bold">{{ $data->kode_pustaka }}</span>
+                                        </td>
+                                        <td class="align-middle text-sm text-center">
+                                            <span class="text-xs font-weight-bold">{{ $data->isbn }}</span>
+                                        </td>
+                                        <td class="align-middle text-sm text-center">
+                                            <span class="text-xs font-weight-bold">{{ $data->ddc->ddc }}</span>
+                                        </td>
+                                        <td class="align-middle text-sm text-center">
+                                            <span class="text-xs font-weight-bold">{{ $data->format->format }}</span>
+                                        </td>
+                                        <td class="align-middle text-sm text-center">
+                                            <span class="text-xs font-weight-bold">{{ $data->penerbit->nama_penerbit }}</span>
+                                        </td>
+                                        <td class="align-middle text-sm text-center">
+                                            <span class="text-xs font-weight-bold">{{ $data->pengarang->nama_pengarang }}</span>
+                                        </td>
+                                        <td class="align-middle text-sm text-center">
+                                            <span class="text-xs font-weight-bold">{{ $data->tahun_terbit }}</span>
+                                        </td>
+                                        <td class="align-middle text-sm text-center">
+                                            <span class="text-xs font-weight-bold">{{ $data->keyword }}</span>
+                                        </td>
+                                        <td class="align-middle text-sm text-center">
+                                            <span class="text-xs font-weight-bold">{{ $data->keterangan_fisik }}</span>
+                                        </td>
+                                        <td class="align-middle text-sm text-center">
+                                            <span class="text-xs font-weight-bold">{{ $data->keterangan_tambahan }}</span>
+                                        </td>
+                                        <td class="align-middle text-sm text-center">
+                                            <span class="text-xs font-weight-bold">{{ $data->abstraksi }}</span>
+                                        </td>
+                                        <td class="align-middle text-sm text-center">
+                                            <span class="text-xs font-weight-bold">
+                                                @if ($data->gambar)
+                                                    <img src="{{ asset('storage/' . $data->gambar) }}" alt="Foto {{ $data->judul_pustaka }}" class="img-thumbnail" style="max-width: 100px;">
+                                                @else
+                                                    Tidak ada foto
+                                                @endif
+                                            </span>
+                                        </td>
+                                        <td class="align-middle text-sm text-center">
+                                            <span class="text-xs font-weight-bold">Rp {{ number_format($data->harga_buku, 0, ',', '.') }}</span>
+                                        </td>
+                                        <td class="align-middle text-sm text-center">
+                                            <span class="text-xs font-weight-bold">{{ $data->kondisi_buku }}</span>
+                                        </td>
+                                        <td class="align-middle text-sm text-center">
+                                            <span class="text-xs font-weight-bold">
+                                                @if ($data->fp == '0')
+                                                    Tidak
+                                                @elseif($data->fp == '1')
+                                                    Ya
+                                                @else
+                                                    {{ $data->fp }}
+                                                @endif
+                                            </span>
+                                        </td>
+                                        <td class="align-middle text-sm text-center">
+                                            <span class="text-xs font-weight-bold">{{ $data->jml_pinjam }}</span>
+                                        </td>
+                                        <td class="align-middle text-sm text-center">
+                                            <span class="text-xs font-weight-bold">Rp {{ number_format($data->denda_terlambat, 0, ',', '.') }}</span>
+                                        </td>
+                                        <td class="align-middle text-sm text-center">
+                                            <span class="text-xs font-weight-bold">Rp {{ number_format($data->denda_hilang, 0, ',', '.') }}</span>
+                                        </td>
+                                        <td class="proses">
+                                            <div class="btn-group" role="group" aria-label="Proses Buttons">
+                                                <button type="button" wire:click="edit({{ $data->id }})"
+                                                    class="btn btn-sm btn-warning me-2" data-bs-toggle="modal"
+                                                    data-bs-target="#editpage">
+                                                    Ubah
+                                                </button>
+                                                <button type="button" wire:click="confirm({{ $data->id }})"
+                                                    class="btn btn-sm btn-danger" data-bs-toggle="modal"
+                                                    data-bs-target="#deletepage">
+                                                    Hapus
+                                                </button>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                @endforeach
+                            @endif
+                        </tbody>
+                    </table>
+                    {{ $pustaka->links() }}
+                </div>
+                <a href="#" class="btn btn-info mt-3" data-bs-toggle="modal" data-bs-target="#addpage">Tambah</a>
             </div>
-            <a href="#" class="btn btn-info mt-3" data-bs-toggle="modal" data-bs-target="#addpage">Tambah</a>
         </div>
     </div>
 

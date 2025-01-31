@@ -18,7 +18,10 @@ class PerpusComponent extends Component
         } else {
             $data['perpustakaan'] = Perpustakaan::all();
         }
-        return view('livewire.admin.perpus-component', $data)->layoutData($layout);
+        return view('livewire.admin.perpus-component', $data)
+            ->extends('components.layouts.app')
+            ->section('content')
+            ->layoutData($layout);
     }
 
     public function store()
@@ -47,7 +50,7 @@ class PerpusComponent extends Component
             'no_telp.string' => 'Nomor telepon harus berupa string.',
             'no_telp.max' => 'Nomor telepon maksimal 15 karakter.',
             'no_telp.regex' => 'Nomor telepon tidak valid.',
-            
+
             'keterangan.required' => 'Keterangan wajib diisi.'
         ]);
         Perpustakaan::create([

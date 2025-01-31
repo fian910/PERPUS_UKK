@@ -37,7 +37,6 @@ return new class extends Migration
             $table->integer('denda_terlambat');
             $table->integer('denda_hilang');
             $table->timestamps();
-            $table->softDeletes();
         });
     }
 

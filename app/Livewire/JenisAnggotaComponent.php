@@ -7,18 +7,28 @@ use Livewire\Component;
 
 class JenisAnggotaComponent extends Component
 {
-    public $kode_jenis_anggota, $jns_anggota, $max_pinjam, $keterangan, $id;
+    public $kode_jenis_anggota, $jns_anggota, $max_pinjam, $keterangan, $id, $cari;
     public function render()
     {
         $layout['title'] = "Kelola Jenis Anggota";
-        $data['jenis_anggota'] = JenisAnggota::all();
-        return view('livewire.admin.jenis-anggota-component', $data)->layoutData($layout);
+        if ($this->cari) {
+            $data['jenis_anggota'] = JenisAnggota::where('kode_jenis_anggota', 'like', '%' . $this->cari . '%')
+                ->orwhere('jns_anggota', 'like', '%' . $this->cari . '%')
+                ->get();
+        } else {
+            $data['jenis_anggota'] = JenisAnggota::all();
+        }
+
+        return view('livewire.admin.jenis-anggota-component', $data)
+            ->extends('components.layouts.app')
+            ->section('content')
+            ->layoutData($layout);
     }
 
     public function store()
     {
         $this->validate([
-            'kode_jenis_anggota' => 'required|max:10',
+            'kode_jenis_anggota' => 'required|max:20',
             'jns_anggota' => 'required',
             'max_pinjam' => 'required',
             'keterangan' => 'required',

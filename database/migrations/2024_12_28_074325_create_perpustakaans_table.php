@@ -21,7 +21,6 @@ return new class extends Migration
             $table->string('no_telp', 15);
             $table->string('keterangan', 50);
             $table->timestamps();
-            $table->softDeletes();
         });
     }
 

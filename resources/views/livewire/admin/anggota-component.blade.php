@@ -31,26 +31,27 @@
                     {{ session('success') }}
                 </div>
             @endif
+            <div class="card-body px-0 pb-2">
             <div class="table-responsive">
-                <table class="table table-striped table-bordered table-hover align-items-center mb-0">
+                <table class="table align-items-center mb-0">
                     <thead>
                         <tr>
-                            <th style="white-space: nowrap;" scope="col">No.</th>
-                            <th style="white-space: nowrap;" scope="col">Nama Anggota</th>
-                            <th style="white-space: nowrap;" scope="col">Kode Anggota</th>
-                            <th style="white-space: nowrap;" scope="col">Jenis Anggota</th>
-                            <th style="white-space: nowrap;" scope="col">Tempat</th>
-                            <th style="white-space: nowrap;" scope="col">Tanggal Lahir</th>
-                            <th style="white-space: nowrap;" scope="col">Alamat</th>
-                            <th style="white-space: nowrap;" scope="col">NoTelp</th>
-                            <th style="white-space: nowrap;" scope="col">Email</th>
-                            <th style="white-space: nowrap;" scope="col">Tanggal Daftar</th>
-                            <th style="white-space: nowrap;" scope="col">Masa Aktif</th>
-                            <th style="white-space: nowrap;" scope="col">Fa</th>
-                            <th style="white-space: nowrap;" scope="col">Keterangan</th>
-                            <th style="white-space: nowrap;" scope="col">Foto</th>
-                            <th style="white-space: nowrap;" scope="col">Username</th>
-                            <th style="white-space: nowrap;" scope="col">Proses</th>
+                            <th style="white-space: nowrap;" class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7" scope="col">No.</th>
+                            <th style="white-space: nowrap;" class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7" scope="col">Nama Anggota</th>
+                            <th style="white-space: nowrap;" class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7" scope="col">Kode Anggota</th>
+                            <th style="white-space: nowrap;" class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7" scope="col">Jenis Anggota</th>
+                            <th style="white-space: nowrap;" class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7" scope="col">Tempat</th>
+                            <th style="white-space: nowrap;" class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7" scope="col">Tanggal Lahir</th>
+                            <th style="white-space: nowrap;" class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7" scope="col">Alamat</th>
+                            <th style="white-space: nowrap;" class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7" scope="col">NoTelp</th>
+                            <th style="white-space: nowrap;" class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7" scope="col">Email</th>
+                            <th style="white-space: nowrap;" class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7" scope="col">Tanggal Daftar</th>
+                            <th style="white-space: nowrap;" class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7" scope="col">Masa Aktif</th>
+                            <th style="white-space: nowrap;" class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7" scope="col">Fa</th>
+                            <th style="white-space: nowrap;" class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7" scope="col">Keterangan</th>
+                            <th style="white-space: nowrap;" class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7" scope="col">Foto</th>
+                            <th style="white-space: nowrap;" class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7" scope="col">Username</th>
+                            <th style="white-space: nowrap;" class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7" scope="col">Proses</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -61,20 +62,46 @@
                         @else
                             @foreach ($anggota as $data)
                                 <tr>
-                                    <th scope="row">{{ $loop->iteration }}</th>
-                                    <td>{{ $data->nama_anggota }}</td>
-                                    <td>{{ $data->kode_anggota }}</td>
-                                    <td>{{ $data->jenis_anggota->jns_anggota }}</td>
-                                    <td>{{ $data->tempat }}</td>
-                                    <td>{{ $data->tgl_lahir }}</td>
-                                    <td>{{ $data->alamat }}</td>
-                                    <td>{{ $data->no_telp }}</td>
-                                    <td>{{ $data->email }}</td>
-                                    <td>{{ $data->tgl_daftar }}</td>
-                                    <td>{{ $data->masa_aktif }}</td>
-                                    <td>{{ $data->fa }}</td>
-                                    <td>{{ $data->keterangan }}</td>
-                                    <td>
+                                    <th scope="row" class="align-middle text-sm text-center">
+                                        <span class="text-xs font-weight-bold">{{ $loop->iteration }}</span>
+                                    </th>
+                                    <td class="align-middle text-sm text-center">
+                                        <span class="text-xs font-weight-bold">{{ $data->nama_anggota }}</span>
+                                    </td>
+                                    <td class="align-middle text-sm text-center">
+                                        <span class="text-xs font-weight-bold">{{ $data->kode_anggota }}</span>
+                                    </td>
+                                    <td class="align-middle text-sm text-center">
+                                        <span class="text-xs font-weight-bold">{{ $data->jenis_anggota->jns_anggota }}</span>
+                                    </td>
+                                    <td class="align-middle text-sm text-center">
+                                        <span class="text-xs font-weight-bold">{{ $data->tempat }}</span>
+                                    </td>
+                                    <td class="align-middle text-sm text-center">
+                                        <span class="text-xs font-weight-bold">{{ $data->tgl_lahir }}</span>
+                                    </td>
+                                    <td class="align-middle text-sm text-center">
+                                        <span class="text-xs font-weight-bold">{{ $data->alamat }}</span>
+                                    </td>
+                                    <td class="align-middle text-sm text-center">
+                                        <span class="text-xs font-weight-bold">{{ $data->no_telp }}</span>
+                                    </td>
+                                    <td class="align-middle text-sm text-center">
+                                        <span class="text-xs font-weight-bold">{{ $data->email }}</span>
+                                    </td>
+                                    <td class="align-middle text-sm text-center">
+                                        <span class="text-xs font-weight-bold">{{ $data->tgl_daftar }}</span>
+                                    </td>
+                                    <td class="align-middle text-sm text-center">
+                                        <span class="text-xs font-weight-bold">{{ $data->masa_aktif }}</span>
+                                    </td>
+                                    <td class="align-middle text-sm text-center">
+                                        <span class="text-xs font-weight-bold">{{ $data->fa }}</span>
+                                    </td>
+                                    <td class="align-middle text-sm text-center">
+                                        <span class="text-xs font-weight-bold">{{ $data->keterangan }}</span>
+                                    </td>
+                                    <td class="align-middle text-sm text-center">
                                         @if ($data->foto)
                                             <img src="{{ asset('storage/' . $data->foto) }}"
                                                 alt="Foto {{ $data->nama_anggota }}" class="img-thumbnail"
@@ -83,7 +110,9 @@
                                             <span class="text-muted">Tidak ada foto</span>
                                         @endif
                                     </td>
-                                    <td>{{ $data->username }}</td>
+                                    <td class="align-middle text-sm text-center">
+                                        <span class="text-xs font-weight-bold">{{ $data->username }}</span>
+                                    </td>
                                     <td class="proses">
                                         <div class="btn-group" role="group" aria-label="Proses Buttons">
                                             <button type="button" wire:click="edit({{ $data->id }})"
@@ -102,6 +131,7 @@
                 {{ $anggota->links() }}
             </div>
             <a href="#" class="btn btn-info mt-3" data-bs-toggle="modal" data-bs-target="#addpage"> Tambah</a>
+            </div>
         </div>
     </div>
 
