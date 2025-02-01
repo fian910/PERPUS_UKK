@@ -57,9 +57,9 @@
                             @else
                                 @foreach ($penerbit as $data)
                                     <tr>
-                                        <th scope="row" class="align-middle text-sm text-center">
+                                        <td scope="row" class="align-middle text-sm text-center">
                                             <span class="text-xs font-weight-bold">{{ $loop->iteration }}</span>
-                                        </th>
+                                        </td>
                                         <td class="align-middle text-sm text-center">
                                             <span class="text-xs font-weight-bold">{{ $data->kode_penerbit }}</span>
                                         </td>

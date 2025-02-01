@@ -24,12 +24,6 @@ class Transaksi extends Model
         'keterangan'
     ];
 
-    protected $casts = [
-        'tgl_pinjam' => 'date',
-        'tgl_kembali' => 'date',
-        'tgl_pengembalian' => 'date',
-        'fp' => 'boolean',
-    ];
 
     public function pustaka()
     {

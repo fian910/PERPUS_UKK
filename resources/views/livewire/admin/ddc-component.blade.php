@@ -37,12 +37,24 @@
                     <table class="table align-items-center mb-0">
                         <thead>
                             <tr>
-                                <th style="white-space: nowrap;" class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7" scope="col">No.</th>
-                                <th style="white-space: nowrap;" class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7" scope="col">DDC</th>
-                                <th style="white-space: nowrap;" class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7" scope="col">Kode DDC</th>
-                                <th style="white-space: nowrap;" class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7" scope="col">Jenis Rak</th>
-                                <th style="white-space: nowrap;" class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7" scope="col">Keterangan</th>
-                                <th style="white-space: nowrap;" class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7" scope="col">Proses</th>
+                                <th style="white-space: nowrap;"
+                                    class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7"
+                                    scope="col">No.</th>
+                                <th style="white-space: nowrap;"
+                                    class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7"
+                                    scope="col">DDC</th>
+                                <th style="white-space: nowrap;"
+                                    class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7"
+                                    scope="col">Kode DDC</th>
+                                <th style="white-space: nowrap;"
+                                    class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7"
+                                    scope="col">Jenis Rak</th>
+                                <th style="white-space: nowrap;"
+                                    class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7"
+                                    scope="col">Keterangan</th>
+                                <th style="white-space: nowrap;"
+                                    class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7"
+                                    scope="col">Proses</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -53,9 +65,9 @@
                             @else
                                 @foreach ($ddcs as $data)
                                     <tr>
-                                        <th scope="row" class="align-middle text-sm text-center">
+                                        <td scope="row" class="align-middle text-sm text-center">
                                             <span class="text-xs font-weight-bold">{{ $loop->iteration }}</span>
-                                        </th>
+                                        </td>
                                         <td class="align-middle text-sm text-center">
                                             <span class="text-xs font-weight-bold">{{ $data->ddc }}</span>
                                         </td>
@@ -68,7 +80,7 @@
                                         <td class="align-middle text-sm text-center">
                                             <span class="text-xs font-weight-bold">{{ $data->keterangan }}</span>
                                         </td>
-                                        
+
                                         <td class="proses">
                                             <div class="btn-group" role="group" aria-label="Proses Buttons">
                                                 <button type="button" wire:click="edit({{ $data->id }})"
@@ -108,8 +120,8 @@
                     <form>
                         <div class="form-group">
                             <label>DDC</label>
-                            <input type="text" class="form-control" wire:model="ddc"
-                                placeholder="Masukkan DDC" value="{{ @old('ddc') }}">
+                            <input type="text" class="form-control" wire:model="ddc" placeholder="Masukkan DDC"
+                                value="{{ @old('ddc') }}">
                             @error('ddc')
                                 <small class="form-text text-danger">{{ $message }}</small>
                             @enderror
@@ -237,3 +249,4 @@
             </div>
         </div>
     </div>
+</div>

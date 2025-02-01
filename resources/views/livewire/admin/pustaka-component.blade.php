@@ -37,27 +37,72 @@
                     <table class="table align-items-center mb-0">
                         <thead>
                             <tr>
-                                <th style="white-space: nowrap;" class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7" scope="col">No.</th>
-                                <th style="white-space: nowrap;" class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7" scope="col">Judul Pustaka</th>
-                                <th style="white-space: nowrap;" class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7" scope="col">Kode Pustaka</th>
-                                <th style="white-space: nowrap;" class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7" scope="col">ISBN</th>
-                                <th style="white-space: nowrap;" class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7" scope="col">Jenis DDC</th>
-                                <th style="white-space: nowrap;" class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7" scope="col">Jenis Format</th>
-                                <th style="white-space: nowrap;" class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7" scope="col">Penerbit</th>
-                                <th style="white-space: nowrap;" class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7" scope="col">Pengarang</th>
-                                <th style="white-space: nowrap;" class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7" scope="col">Tahun Terbit</th>
-                                <th style="white-space: nowrap;" class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7" scope="col">Keyword</th>
-                                <th style="white-space: nowrap;" class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7" scope="col">Keterangan Fisik</th>
-                                <th style="white-space: nowrap;" class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7" scope="col">Keterangan Tambahan</th>
-                                <th style="white-space: nowrap;" class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7" scope="col">Abstraksi</th>
-                                <th style="white-space: nowrap;" class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7" scope="col">Gambar</th>
-                                <th style="white-space: nowrap;" class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7" scope="col">Harga Buku</th>
-                                <th style="white-space: nowrap;" class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7" scope="col">Kondisi Buku</th>
-                                <th style="white-space: nowrap;" class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7" scope="col">Fp</th>
-                                <th style="white-space: nowrap;" class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7" scope="col">Jumlah Pinjam</th>
-                                <th style="white-space: nowrap;" class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7" scope="col">Denda Terlambat</th>
-                                <th style="white-space: nowrap;" class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7" scope="col">Denda Hilang</th>
-                                <th style="white-space: nowrap;" class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7" scope="col">Proses</th>
+                                <th style="white-space: nowrap;"
+                                    class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7"
+                                    scope="col">No.</th>
+                                <th style="white-space: nowrap;"
+                                    class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7"
+                                    scope="col">Judul Pustaka</th>
+                                <th style="white-space: nowrap;"
+                                    class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7"
+                                    scope="col">Kode Pustaka</th>
+                                <th style="white-space: nowrap;"
+                                    class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7"
+                                    scope="col">ISBN</th>
+                                <th style="white-space: nowrap;"
+                                    class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7"
+                                    scope="col">Jenis DDC</th>
+                                <th style="white-space: nowrap;"
+                                    class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7"
+                                    scope="col">Jenis Format</th>
+                                <th style="white-space: nowrap;"
+                                    class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7"
+                                    scope="col">Penerbit</th>
+                                <th style="white-space: nowrap;"
+                                    class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7"
+                                    scope="col">Pengarang</th>
+                                <th style="white-space: nowrap;"
+                                    class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7"
+                                    scope="col">Tahun Terbit</th>
+                                <th style="white-space: nowrap;"
+                                    class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7"
+                                    scope="col">Keyword</th>
+                                <th style="white-space: nowrap;"
+                                    class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7"
+                                    scope="col">Keterangan Fisik</th>
+                                <th style="white-space: nowrap;"
+                                    class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7"
+                                    scope="col">Keterangan Tambahan</th>
+                                <th style="white-space: nowrap;"
+                                    class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7"
+                                    scope="col">Abstraksi</th>
+                                <th style="white-space: nowrap;"
+                                    class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7"
+                                    scope="col">Gambar</th>
+                                <th style="white-space: nowrap;"
+                                    class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7"
+                                    scope="col">Harga Buku</th>
+                                <th style="white-space: nowrap;"
+                                    class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7"
+                                    scope="col">Kondisi Buku</th>
+                                <th style="white-space: nowrap;"
+                                    class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7"
+                                    scope="col">Fp</th>
+                                <th style="white-space: nowrap;"
+                                    class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7"
+                                    scope="col">Jumlah Pinjam</th>
+                                <th style="white-space: nowrap;"
+                                    class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7"
+                                    scope="col">Denda Terlambat</th>
+                                <th style="white-space: nowrap;"
+                                    class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7"
+                                    scope="col">Denda Hilang</th>
+                                <th style="white-space: nowrap;"
+                                    class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7"
+                                    scope="col">Stock</th>
+                                <th style="white-space: nowrap;"
+                                    class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7"
+                                    scope="col">Proses</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -68,9 +113,9 @@
                             @else
                                 @foreach ($pustaka as $data)
                                     <tr>
-                                        <th scope="row" class="align-middle text-sm text-center">
+                                        <td scope="row" class="align-middle text-sm text-center">
                                             <span class="text-xs font-weight-bold">{{ $loop->iteration }}</span>
-                                        </th>
+                                        </td>
                                         <td class="align-middle text-sm text-center">
                                             <span class="text-xs font-weight-bold">{{ $data->judul_pustaka }}</span>
                                         </td>
@@ -87,10 +132,12 @@
                                             <span class="text-xs font-weight-bold">{{ $data->format->format }}</span>
                                         </td>
                                         <td class="align-middle text-sm text-center">
-                                            <span class="text-xs font-weight-bold">{{ $data->penerbit->nama_penerbit }}</span>
+                                            <span
+                                                class="text-xs font-weight-bold">{{ $data->penerbit->nama_penerbit }}</span>
                                         </td>
                                         <td class="align-middle text-sm text-center">
-                                            <span class="text-xs font-weight-bold">{{ $data->pengarang->nama_pengarang }}</span>
+                                            <span
+                                                class="text-xs font-weight-bold">{{ $data->pengarang->nama_pengarang }}</span>
                                         </td>
                                         <td class="align-middle text-sm text-center">
                                             <span class="text-xs font-weight-bold">{{ $data->tahun_terbit }}</span>
@@ -98,11 +145,13 @@
                                         <td class="align-middle text-sm text-center">
                                             <span class="text-xs font-weight-bold">{{ $data->keyword }}</span>
                                         </td>
-                                        <td class="align-middle text-sm text-center">
-                                            <span class="text-xs font-weight-bold">{{ $data->keterangan_fisik }}</span>
+                                        <td class="align-middle text-sm">
+                                            <span
+                                                class="text-xs font-weight-bold">{{ $data->keterangan_fisik }}</span>
                                         </td>
                                         <td class="align-middle text-sm text-center">
-                                            <span class="text-xs font-weight-bold">{{ $data->keterangan_tambahan }}</span>
+                                            <span
+                                                class="text-xs font-weight-bold">{{ $data->keterangan_tambahan }}</span>
                                         </td>
                                         <td class="align-middle text-sm text-center">
                                             <span class="text-xs font-weight-bold">{{ $data->abstraksi }}</span>
@@ -110,37 +159,37 @@
                                         <td class="align-middle text-sm text-center">
                                             <span class="text-xs font-weight-bold">
                                                 @if ($data->gambar)
-                                                    <img src="{{ asset('storage/' . $data->gambar) }}" alt="Foto {{ $data->judul_pustaka }}" class="img-thumbnail" style="max-width: 100px;">
+                                                    <img src="{{ asset('storage/' . $data->gambar) }}"
+                                                        alt="Foto {{ $data->judul_pustaka }}" class="img-thumbnail"
+                                                        style="max-width: 100px;">
                                                 @else
                                                     Tidak ada foto
                                                 @endif
                                             </span>
                                         </td>
                                         <td class="align-middle text-sm text-center">
-                                            <span class="text-xs font-weight-bold">Rp {{ number_format($data->harga_buku, 0, ',', '.') }}</span>
+                                            <span class="text-xs font-weight-bold">Rp
+                                                {{ number_format($data->harga_buku, 0, ',', '.') }}</span>
                                         </td>
                                         <td class="align-middle text-sm text-center">
                                             <span class="text-xs font-weight-bold">{{ $data->kondisi_buku }}</span>
                                         </td>
-                                        <td class="align-middle text-sm text-center">
-                                            <span class="text-xs font-weight-bold">
-                                                @if ($data->fp == '0')
-                                                    Tidak
-                                                @elseif($data->fp == '1')
-                                                    Ya
-                                                @else
-                                                    {{ $data->fp }}
-                                                @endif
-                                            </span>
+                                        <td class="align-middle text-center text-sm">
+                                            <span class="text-xs font-weight-bold">{{ $data->fp }}</span>
                                         </td>
                                         <td class="align-middle text-sm text-center">
                                             <span class="text-xs font-weight-bold">{{ $data->jml_pinjam }}</span>
                                         </td>
                                         <td class="align-middle text-sm text-center">
-                                            <span class="text-xs font-weight-bold">Rp {{ number_format($data->denda_terlambat, 0, ',', '.') }}</span>
+                                            <span class="text-xs font-weight-bold">Rp
+                                                {{ number_format($data->denda_terlambat, 0, ',', '.') }}</span>
                                         </td>
                                         <td class="align-middle text-sm text-center">
-                                            <span class="text-xs font-weight-bold">Rp {{ number_format($data->denda_hilang, 0, ',', '.') }}</span>
+                                            <span class="text-xs font-weight-bold">Rp
+                                                {{ number_format($data->denda_hilang, 0, ',', '.') }}</span>
+                                        </td>
+                                        <td class="align-middle text-sm text-center">
+                                            <span class="text-xs font-weight-bold">{{ $data->stock }}</span>
                                         </td>
                                         <td class="proses">
                                             <div class="btn-group" role="group" aria-label="Proses Buttons">
@@ -163,7 +212,8 @@
                     </table>
                     {{ $pustaka->links() }}
                 </div>
-                <a href="#" class="btn btn-info mt-3" data-bs-toggle="modal" data-bs-target="#addpage">Tambah</a>
+                <a href="#" class="btn btn-info mt-3" data-bs-toggle="modal"
+                    data-bs-target="#addpage">Tambah</a>
             </div>
         </div>
     </div>
@@ -343,14 +393,6 @@
                         </div>
 
                         <div class="form-group">
-                            <label>Jumlah Pinjam</label>
-                            <input type="number" class="form-control" wire:model="jml_pinjam" min="0">
-                            @error('jml_pinjam')
-                                <small class="form-text text-danger">{{ $message }}</small>
-                            @enderror
-                        </div>
-
-                        <div class="form-group">
                             <label>Denda Terlambat</label>
                             <input type="number" class="form-control" wire:model="denda_terlambat" min="0">
                             @error('denda_terlambat')
@@ -362,6 +404,14 @@
                             <label>Denda Hilang</label>
                             <input type="number" class="form-control" wire:model="denda_hilang" min="0">
                             @error('denda_hilang')
+                                <small class="form-text text-danger">{{ $message }}</small>
+                            @enderror
+                        </div>
+
+                        <div class="form-group">
+                            <label>Stock Buku</label>
+                            <input type="number" class="form-control" wire:model="stock" min="0">
+                            @error('stock')
                                 <small class="form-text text-danger">{{ $message }}</small>
                             @enderror
                         </div>
@@ -555,27 +605,16 @@
                             <div>
                                 <div class="form-check">
                                     <input class="form-check-input" type="radio" name="fp" id="fa0"
-                                        value="0" wire:model="fp"
-                                        {{ @old('fp', $fp ?? '') == '0' ? 'checked' : '' }}>
+                                        value="0" wire:model="fp" {{ old('fp') == '0' ? 'checked' : '' }}>
                                     <label class="form-check-label" for="fa0">0</label>
                                 </div>
                                 <div class="form-check">
                                     <input class="form-check-input" type="radio" name="fp" id="fa1"
-                                        value="1" wire:model="fp"
-                                        {{ @old('fp', $fp ?? '') == '1' ? 'checked' : '' }}>
+                                        value="1" wire:model="fp" {{ old('fp') == '1' ? 'checked' : '' }}>
                                     <label class="form-check-label" for="fa1">1</label>
                                 </div>
                             </div>
                             @error('fp')
-                                <small class="form-text text-danger">{{ $message }}</small>
-                            @enderror
-                        </div>
-
-                        <div class="form-group">
-                            <label>Jumlah Pinjam</label>
-                            <input type="number" class="form-control" wire:model="jml_pinjam" min="0"
-                                value="{{ @old('jml_pinjam', $jml_pinjam ?? '') }}">
-                            @error('jml_pinjam')
                                 <small class="form-text text-danger">{{ $message }}</small>
                             @enderror
                         </div>
@@ -594,6 +633,15 @@
                             <input type="number" class="form-control" wire:model="denda_hilang" min="0"
                                 value="{{ @old('denda_hilang', $denda_hilang ?? '') }}">
                             @error('denda_hilang')
+                                <small class="form-text text-danger">{{ $message }}</small>
+                            @enderror
+                        </div>
+
+                        <div class="form-group">
+                            <label>Stock Buku</label>
+                            <input type="number" class="form-control" wire:model="stock" min="0"
+                                value="{{ @old('stock', $stock ?? '') }}">
+                            @error('stock')
                                 <small class="form-text text-danger">{{ $message }}</small>
                             @enderror
                         </div>

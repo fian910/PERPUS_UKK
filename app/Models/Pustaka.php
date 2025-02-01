@@ -31,19 +31,13 @@ class Pustaka extends Model
         'gambar',
         'harga_buku',
         'kondisi_buku',
-        'rp',
+        'fp',
         'jml_pinjam',
         'denda_terlambat',
-        'denda_hilang'
+        'denda_hilang',
+        'stock'
     ];
 
-    protected $casts = [
-        'tahun_terbit' => 'integer',
-        'harga_buku' => 'float',
-        'jml_pinjam' => 'integer',
-        'denda_terlambat' => 'float',
-        'denda_hilang' => 'float',
-    ];
 
     public function ddc()
     {

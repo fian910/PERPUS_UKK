@@ -56,9 +56,9 @@
                             @else
                                 @foreach ($perpustakaan as $data)
                                     <tr>
-                                        <th scope="row" class="align-middle text-sm text-center">
+                                        <td scope="row" class="align-middle text-sm text-center">
                                             <span class="text-xs font-weight-bold">{{ $loop->iteration }}</span>
-                                        </th>
+                                        </td>
                                         <td class="align-middle text-sm text-center">
                                             <span class="text-xs font-weight-bold">{{ $data->nama_perpustakaan }}</span>
                                         </td>
@@ -85,10 +85,10 @@
                                             <div class="btn-group" role="group" aria-label="Proses Buttons">
                                                 <button type="button" wire:click="edit({{ $data->id }})"
                                                     class="btn btn-sm btn-warning me-2" data-bs-toggle="modal"
-                                                    data-bs-target="#editperpus">Ubah</button>
+                                                    data-bs-target="#editpage">Ubah</button>
                                                 <button type="button" wire:click="confirm({{ $data->id }})"
                                                     class="btn btn-sm btn-danger" data-bs-toggle="modal"
-                                                    data-bs-target="#deleteperpus">Hapus</button>
+                                                    data-bs-target="#deletepage">Hapus</button>
                                             </div>
                                         </td>
                                     </tr>
@@ -98,13 +98,13 @@
                     </table>
                 </div>
                 <a href="#" class="btn btn-md btn-info mt-3" data-bs-toggle="modal"
-                    data-bs-target="#addperpus">Tambah</a>
+                    data-bs-target="#addpage">Tambah</a>
             </div>
         </div>
     </div>
 
     {{-- Tambah --}}
-    <div wire:ignore.self class="modal fade" id="addperpus" tabindex="-1" aria-labelledby="exampleModalLabel"
+    <div wire:ignore.self class="modal fade" id="addpage" tabindex="-1" aria-labelledby="exampleModalLabel"
         aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content">
@@ -184,7 +184,7 @@
     </div>
 
     {{-- Edit --}}
-    <div wire:ignore.self class="modal fade" id="editperpus" tabindex="-1" aria-labelledby="exampleModalLabel"
+    <div wire:ignore.self class="modal fade" id="editpage" tabindex="-1" aria-labelledby="exampleModalLabel"
         aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content">
@@ -266,7 +266,7 @@
     </div>
 
     {{-- Delete --}}
-    <div wire:ignore.self class="modal fade" id="deleteperpus" tabindex="-1" aria-labelledby="exampleModalLabel"
+    <div wire:ignore.self class="modal fade" id="deletepage" tabindex="-1" aria-labelledby="exampleModalLabel"
         aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content">

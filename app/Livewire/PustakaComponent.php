@@ -7,6 +7,7 @@ use App\Models\Format;
 use App\Models\Penerbit;
 use App\Models\Pengarang;
 use App\Models\Pustaka;
+use App\Models\Transaksi;
 use Livewire\Component;
 use Livewire\WithFileUploads;
 use Livewire\WithoutUrlPagination;
@@ -17,7 +18,7 @@ class PustakaComponent extends Component
 {
     use WithPagination, WithoutUrlPagination, WithFileUploads;
     protected $paginationTheme = 'bootstrap';
-    public $kode_pustaka, $ddc_id, $format_id, $penerbit_id, $pengarang_id, $isbn, $judul_pustaka, $tahun_terbit, $keyword, $keterangan_fisik, $keterangan_tambahan, $abstraksi, $gambar, $harga_buku, $kondisi_buku, $fp, $jml_pinjam, $denda_terlambat, $denda_hilang, $id, $cari;
+    public $kode_pustaka, $ddc_id, $format_id, $penerbit_id, $pengarang_id, $isbn, $judul_pustaka, $tahun_terbit, $keyword, $keterangan_fisik, $keterangan_tambahan, $abstraksi, $gambar, $harga_buku, $kondisi_buku, $fp, $jml_pinjam, $denda_terlambat, $denda_hilang, $stock, $id, $cari;
     public function render()
     {
         $layout['title'] = "Kelola Pustaka";
@@ -57,10 +58,10 @@ class PustakaComponent extends Component
             'gambar' => 'required|image|mimes:jpeg,png,jpg|max:2048',
             'harga_buku' => 'required|numeric',
             'kondisi_buku' => 'required|string',
-            'fp' => 'required|in:0,1',
-            'jml_pinjam' => 'required|integer',
+            'fp' => 'required|numeric',
             'denda_terlambat' => 'required|numeric',
             'denda_hilang' => 'required|numeric',
+            'stock' => 'required|integer|min:0',
         ], [
             'ddc_id.required' => 'DDC wajib dipilih',
             'ddc_id.exists' => 'DDC tidak valid',
@@ -104,11 +105,8 @@ class PustakaComponent extends Component
 
             'kondisi_buku.required' => 'Kondisi buku wajib diisi',
 
-            'fp.required' => 'FP wajib dipilih',
-            'fp.in' => 'FP harus bernilai 0 atau 1',
-
-            'jml_pinjam.required' => 'Jumlah pinjam wajib diisi',
-            'jml_pinjam.integer' => 'Jumlah pinjam harus berupa angka bulat',
+            'fp.required' => 'Jumlah denda harus diisi',
+            'fp.numeric' => 'Jumlah denda harus berupa angka',
 
             'denda_terlambat.required' => 'Denda keterlambatan wajib diisi',
 
@@ -116,7 +114,11 @@ class PustakaComponent extends Component
 
             'denda_hilang.required' => 'Denda kehilangan wajib diisi',
 
-            'denda_hilang.numeric' => 'Denda kehilangan harus berupa angka'
+            'denda_hilang.numeric' => 'Denda kehilangan harus berupa angka',
+
+            'stock.required' => 'Stock buku wajib diisi',
+            'stock.integer' => 'Stock harus berupa angka',
+            'stock.min' => 'Stock tidak boleh kurang dari 0',
         ]);
 
         $namaFoto = $this->kode_pustaka . '_' . time() . '.' . $this->gambar->getClientOriginalExtension();
@@ -139,9 +141,9 @@ class PustakaComponent extends Component
             'harga_buku' => $this->harga_buku,
             'kondisi_buku' => $this->kondisi_buku,
             'fp' => $this->fp,
-            'jml_pinjam' => $this->jml_pinjam,
             'denda_terlambat' => $this->denda_terlambat,
             'denda_hilang' => $this->denda_hilang,
+            'stock' => $this->stock,
         ]);
         $this->reset();
         session()->flash('Success', 'Berhasil Disimpan!');
@@ -168,9 +170,9 @@ class PustakaComponent extends Component
         $this->harga_buku = $pustaka->harga_buku;
         $this->kondisi_buku = $pustaka->kondisi_buku;
         $this->fp = $pustaka->fp;
-        $this->jml_pinjam = $pustaka->jml_pinjam;
         $this->denda_terlambat = $pustaka->denda_terlambat;
         $this->denda_hilang = $pustaka->denda_hilang;
+        $this->stock = $pustaka->stock;
     }
 
     public function update()
@@ -192,9 +194,9 @@ class PustakaComponent extends Component
             'harga_buku' => 'required|numeric',
             'kondisi_buku' => 'required|string',
             'fp' => 'required|in:0,1',
-            'jml_pinjam' => 'required|integer',
             'denda_terlambat' => 'required|numeric',
             'denda_hilang' => 'required|numeric',
+            'stock' => 'required|integer|min:0',
         ]);
 
         $pustaka = Pustaka::find($this->id);
@@ -232,9 +234,9 @@ class PustakaComponent extends Component
             'harga_buku' => $this->harga_buku,
             'kondisi_buku' => $this->kondisi_buku,
             'fp' => $this->fp,
-            'jml_pinjam' => $this->jml_pinjam,
             'denda_terlambat' => $this->denda_terlambat,
             'denda_hilang' => $this->denda_hilang,
+            'stock' => $this->stock,
         ]);
 
         $this->reset();

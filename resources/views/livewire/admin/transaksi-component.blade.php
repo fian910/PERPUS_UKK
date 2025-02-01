@@ -13,8 +13,8 @@
 
 <div>
     <div class="card">
-        <div class="card-header">
-            Kelola Transaksi
+        <div class="card-header pb-0 d-flex justify-content-between align-items-center">
+            <h6>Kelola Transaksi</h6>
         </div>
         <div class="card-body">
             @if (@session()->has('success'))
@@ -47,9 +47,9 @@
                             @else
                                 @foreach ($transaksi as $data)
                                     <tr>
-                                        <th scope="row" class="align-middle text-center text-sm">
+                                        <td scope="row" class="align-middle text-center text-sm">
                                             <span class="text-xs font-weight-bold">{{ $loop->iteration }}</span>
-                                        </th>
+                                        </td>
                                         <td class="align-middle text-center text-sm">
                                             <span class="text-xs font-weight-bold">{{ $data->pustaka->judul_pustaka }}</span>
                                         </td>
@@ -117,7 +117,9 @@
                             <select class="form-control" wire:model="pustaka_id">
                                 <option value="">-- Pilih Pustaka --</option>
                                 @foreach ($pustaka as $data)
-                                    <option value="{{ $data->id }}">{{ $data->judul_pustaka }}</option>
+                                    <option value="{{ $data->id }}" {{ $data->stock <= 0 ? 'disabled' : '' }}>
+                                        {{ $data->judul_pustaka }} (Stok: {{ $data->stock }})
+                                    </option>
                                 @endforeach
                             </select>
                             @error('pustaka_id')
@@ -137,27 +139,10 @@
                                 <small class="form-text text-danger">{{ $message }}</small>
                             @enderror
                         </div>
-
-                        <div class="form-group">
-                            <label>Tanggal Pinjam</label>
-                            <input type="number" class="form-control" wire:model="tgl_pinjam" min="1900"
-                                max="{{ date('Y') }}">
-                            @error('tgl_pinjam')
-                                <small class="form-text text-danger">{{ $message }}</small>
-                            @enderror
-                        </div>
-
-                        <div class="form-group">
-                            <label>Tanggal Kembali</label>
-                            <input type="text" class="form-control" wire:model="tgl_kembali">
-                            @error('tgl_kembali')
-                                <small class="form-text text-danger">{{ $message }}</small>
-                            @enderror
-                        </div>
-
+                        
                         <div class="form-group">
                             <label>Tanggal Pengembalian</label>
-                            <textarea class="form-control" wire:model="tgl_pengembalian"></textarea>
+                            <input type="date" class="form-control" wire:model="tgl_pengembalian">
                             @error('tgl_pengembalian')
                                 <small class="form-text text-danger">{{ $message }}</small>
                             @enderror
@@ -220,9 +205,9 @@
                             <select class="form-control" wire:model="pustaka_id">
                                 <option value="">-- Pilih Pustaka --</option>
                                 @foreach ($pustaka as $data)
-                                    <option value="{{ $data->id }}"
-                                        {{ old('pustaka_id') == $data->id ? 'selected' : '' }}>
-                                        {{ $data->judul_pustaka }}</option>
+                                    <option value="{{ $data->id }}" {{ $data->stock <= 0 ? 'disabled' : '' }}>
+                                        {{ $data->judul_pustaka }} (Stok: {{ $data->stock }})
+                                    </option>
                                 @endforeach
                             </select>
                             @error('pustaka_id')
@@ -246,26 +231,8 @@
                         </div>
 
                         <div class="form-group">
-                            <label>Tanggal Pinjam</label>
-                            <input type="number" class="form-control" wire:model="tgl_pinjam" min="1900"
-                                max="{{ date('Y') }}" value="{{ old('tgl_pinjam') }}">
-                            @error('tgl_pinjam')
-                                <small class="form-text text-danger">{{ $message }}</small>
-                            @enderror
-                        </div>
-
-                        <div class="form-group">
-                            <label>Tanggal Kembali</label>
-                            <input type="text" class="form-control" wire:model="tgl_kembali"
-                                value="{{ old('tgl_kembali') }}">
-                            @error('tgl_kembali')
-                                <small class="form-text text-danger">{{ $message }}</small>
-                            @enderror
-                        </div>
-
-                        <div class="form-group">
                             <label>Tanggal Pengembalian</label>
-                            <textarea class="form-control" wire:model="tgl_pengembalian">{{ old('tgl_pengembalian') }}</textarea>
+                            <input type="date" class="form-control" wire:model="tgl_pengembalian">
                             @error('tgl_pengembalian')
                                 <small class="form-text text-danger">{{ $message }}</small>
                             @enderror

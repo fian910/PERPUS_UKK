@@ -30,13 +30,14 @@ class JenisAnggotaComponent extends Component
         $this->validate([
             'kode_jenis_anggota' => 'required|max:20',
             'jns_anggota' => 'required',
-            'max_pinjam' => 'required',
+            'max_pinjam' => 'required|max:5',
             'keterangan' => 'required',
         ], [
             'kode_jenis_anggota.required' => 'Kode jenis anggota wajib diisi.',
-            'kode_jenis_anggota.max' => 'Kode jenis anggota maksimal 10 karakter',
+            'kode_jenis_anggota.max' => 'Kode jenis anggota maksimal 20 karakter',
             'jns_anggota.required' => 'Jenis anggota wajib diisi.',
             'max_pinjam.required' => 'Jumlah maksimum pinjam wajib diisi.',
+            'max_pinjam.max' => 'Jumlah pinjam maksimal 5 karakter',
             'keterangan.required' => 'Keterangan wajib diisi.'
         ]);
         JenisAnggota::create([

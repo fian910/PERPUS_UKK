@@ -38,11 +38,21 @@
                     <table class="table align-items-center mb-0">
                         <thead>
                             <tr>
-                                <th style="white-space: nowrap;" class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7" scope="col">No.</th>
-                                <th style="white-space: nowrap;" class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7" scope="col">Kode Format Buku</th>
-                                <th style="white-space: nowrap;" class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7" scope="col">Format Buku</th>
-                                <th style="white-space: nowrap;" class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7" scope="col">Keterangan</th>
-                                <th style="white-space: nowrap;" class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7" scope="col">Proses</th>
+                                <th style="white-space: nowrap;"
+                                    class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7"
+                                    scope="col">No.</th>
+                                <th style="white-space: nowrap;"
+                                    class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7"
+                                    scope="col">Kode Format Buku</th>
+                                <th style="white-space: nowrap;"
+                                    class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7"
+                                    scope="col">Format Buku</th>
+                                <th style="white-space: nowrap;"
+                                    class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7"
+                                    scope="col">Keterangan</th>
+                                <th style="white-space: nowrap;"
+                                    class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7"
+                                    scope="col">Proses</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -53,9 +63,9 @@
                             @else
                                 @foreach ($formats as $data)
                                     <tr>
-                                        <th scope="row" class="align-middle text-sm text-center">
+                                        <td scope="row" class="align-middle text-sm text-center">
                                             <span class="text-xs font-weight-bold">{{ $loop->iteration }}</span>
-                                        </th>
+                                        </td>
                                         <td class="align-middle text-sm text-center">
                                             <span class="text-xs font-weight-bold">{{ $data->kode_format }}</span>
                                         </td>
@@ -210,3 +220,4 @@
             </div>
         </div>
     </div>
+</div>

@@ -14,7 +14,7 @@ class UserHomeComponent extends Component
         // Fetch pustaka data to display on the home page
         $data['pustakas'] = Pustaka::with(['ddc', 'format', 'penerbit', 'pengarang'])
             ->latest() // Order by most recently added
-            ->take(3) // Limit to 3 books
+            ->take(4) // Limit to 3 books
             ->get();
 
         return view('livewire.user.user-home-component', $data)

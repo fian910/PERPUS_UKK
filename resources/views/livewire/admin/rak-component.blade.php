@@ -62,9 +62,9 @@
                             @else
                                 @foreach ($raks as $data)
                                     <tr>
-                                        <th scope="row" class="align-middle text-sm">
+                                        <td scope="row" class="align-middle text-sm">
                                             <span class="text-xs font-weight-bold">{{ $loop->iteration }}</span>
-                                        </th>
+                                        </td>
                                         <td class="align-middle text-sm">
                                             <span class="text-xs font-weight-bold">{{ $data->kode_rak }}</span>
                                         </td>

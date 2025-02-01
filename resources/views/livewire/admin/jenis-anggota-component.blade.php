@@ -37,12 +37,24 @@
                     <table class="table align-items-center mb-0">
                         <thead>
                             <tr>
-                                <th style="white-space: nowrap;" class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7" scope="col">No.</th>
-                                <th style="white-space: nowrap;" class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7" scope="col">Kode Jenis Anggota</th>
-                                <th style="white-space: nowrap;" class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7" scope="col">Jenis Anggota</th>
-                                <th style="white-space: nowrap;" class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7" scope="col">Batas Pinjam</th>
-                                <th style="white-space: nowrap;" class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7" scope="col">Keterangan</th>
-                                <th style="white-space: nowrap;" class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7" scope="col">Proses</th>
+                                <th style="white-space: nowrap;"
+                                    class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7"
+                                    scope="col">No.</th>
+                                <th style="white-space: nowrap;"
+                                    class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7"
+                                    scope="col">Kode Jenis Anggota</th>
+                                <th style="white-space: nowrap;"
+                                    class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7"
+                                    scope="col">Jenis Anggota</th>
+                                <th style="white-space: nowrap;"
+                                    class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7"
+                                    scope="col">Batas Pinjam</th>
+                                <th style="white-space: nowrap;"
+                                    class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7"
+                                    scope="col">Keterangan</th>
+                                <th style="white-space: nowrap;"
+                                    class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7"
+                                    scope="col">Proses</th>
 
                             </tr>
                         </thead>
@@ -58,7 +70,8 @@
                                             <span class="text-xs font-weight-bold">{{ $loop->iteration }}</span>
                                         </td>
                                         <td class="align-middle text-sm text-center">
-                                            <span class="text-xs font-weight-bold">{{ $data->kode_jenis_anggota }}</span>
+                                            <span
+                                                class="text-xs font-weight-bold">{{ $data->kode_jenis_anggota }}</span>
                                         </td>
                                         <td class="align-middle text-sm text-center">
                                             <span class="text-xs font-weight-bold">{{ $data->jns_anggota }}</span>
@@ -69,7 +82,7 @@
                                         <td class="align-middle text-sm text-center">
                                             <span class="text-xs font-weight-bold">{{ $data->keterangan }}</span>
                                         </td>
-                                        
+
                                         <td class="proses">
                                             <div class="btn-group" role="group" aria-label="Proses Buttons">
                                                 <button type="button" wire:click="edit({{ $data->id }})"
@@ -151,8 +164,8 @@
     </div>
 
     {{-- Edit --}}
-    <div wire:ignore.self class="modal fade" id="editjenisanggota" tabindex="-1" aria-labelledby="exampleModalLabel"
-        aria-hidden="true">
+    <div wire:ignore.self class="modal fade" id="editjenisanggota" tabindex="-1"
+        aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">

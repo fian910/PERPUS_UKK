@@ -2,8 +2,7 @@
 
 namespace App\Livewire;
 
-use App\Models\Rak;
-use Livewire\Attributes\Layout;
+use App\Models\Rak; 
 use Livewire\Component;
 
 class RakComponent extends Component

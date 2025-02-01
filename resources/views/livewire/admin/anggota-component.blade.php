@@ -47,7 +47,7 @@
                             <th style="white-space: nowrap;" class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7" scope="col">Email</th>
                             <th style="white-space: nowrap;" class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7" scope="col">Tanggal Daftar</th>
                             <th style="white-space: nowrap;" class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7" scope="col">Masa Aktif</th>
-                            <th style="white-space: nowrap;" class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7" scope="col">Fa</th>
+                            <th style="white-space: nowrap;" class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7" scope="col">Aktif</th>
                             <th style="white-space: nowrap;" class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7" scope="col">Keterangan</th>
                             <th style="white-space: nowrap;" class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7" scope="col">Foto</th>
                             <th style="white-space: nowrap;" class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7" scope="col">Username</th>
@@ -62,9 +62,9 @@
                         @else
                             @foreach ($anggota as $data)
                                 <tr>
-                                    <th scope="row" class="align-middle text-sm text-center">
+                                    <td scope="row" class="align-middle text-sm text-center">
                                         <span class="text-xs font-weight-bold">{{ $loop->iteration }}</span>
-                                    </th>
+                                    </td>
                                     <td class="align-middle text-sm text-center">
                                         <span class="text-xs font-weight-bold">{{ $data->nama_anggota }}</span>
                                     </td>
