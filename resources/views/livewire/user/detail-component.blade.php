@@ -75,8 +75,8 @@
 
                         <div class="row mb-4">
                             <div class="col-md-6">
-                                <h6 class="fw-bold">Abstraksi</h6>
-                                <p class="text-muted">{{ $pustaka->abstraksi ?: 'Tidak ada abstraksi' }}</p>
+                                <h6 class="fw-bold">Keterangan Fisik</h6>
+                                <p class="text-muted">{{ $pustaka->keterangan_fisik ?: 'Tidak ada keterangan' }}</p>
                             </div>
                             <div class="col-md-6">
                                 <h6 class="fw-bold">Kata Kunci</h6>
@@ -97,10 +97,11 @@
 
                         <div class="row mb-4">
                             <div class="col-md-12">
-                                <h6 class="fw-bold">Keterangan Fisik</h6>
-                                <p class="text-muted">{{ $pustaka->keterangan_fisik ?: 'Tidak ada keterangan' }}</p>
+                                <h6 class="fw-bold">Abstraksi</h6>
+                                <p class="text-muted">{{ $pustaka->abstraksi ?: 'Tidak ada abstraksi' }}</p>
                             </div>
                         </div>
+                        
 
                         <div class="row mb-4">
                             <div class="col-md-6">
@@ -125,83 +126,128 @@
 
                         <div class="d-flex justify-content-end">
                             <a class="btn btn-secondary me-2" href="{{ route('user') }}">Kembali</a>
-                            <a class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#pinjam">Pinjam
-                                Buku</a>
+                            <a class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#pinjam">Pinjam Buku</a>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
-    <div class="modal fade" id="pinjam" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-        <div class="modal-dialog modal-dialog-centered">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">Form Peminjaman Buku</h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-                <div class="modal-body">
-                    <form>
-                        <!-- Hidden input untuk pustaka_id -->
-                        <input type="hidden" wire:model="pustaka_id" value="{{ $pustaka->id }}">
+    <div>
+        <!-- Previous content remains the same until the modal part -->
+        
+        <!-- Modal Form -->
+        <div class="modal fade" id="pinjam" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel">Form Peminjaman Buku</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <form wire:submit.prevent="store">
+                            <input type="hidden" wire:model="pustaka_id" value="{{ $pustaka->id }}">
+                            <input type="hidden" wire:model="anggota_id" value="{{ auth()->user()->anggota->id }}">
     
-                        <div class="form-group mb-3">
-                            <label class="form-label">Judul Buku</label>
-                            <input type="text" class="form-control" value="{{ $pustaka->judul_pustaka }}" disabled>
-                        </div>
-    
-                        <div class="form-group mb-3">
-                            <label class="form-label">Anggota</label>
-                            <select class="form-control" wire:model="anggota_id">
-                                <option value="">-- Pilih Anggota --</option>
-                                @foreach ($anggota as $data)
-                                    <option value="{{ $data->id }}">{{ $data->nama_anggota }}</option>
-                                @endforeach
-                            </select>
-                            @error('anggota_id')
-                                <small class="text-danger">{{ $message }}</small>
-                            @enderror
-                        </div>
-    
-                        <div class="form-group mb-3">
-                            <label class="form-label">Tanggal Pengembalian</label>
-                            <input type="date" class="form-control" wire:model="tgl_pengembalian">
-                            @error('tgl_pengembalian')
-                                <small class="text-danger">{{ $message }}</small>
-                            @enderror
-                        </div>
-    
-                        <div class="form-group">
-                            <label>Fp</label>
-                            <div>
-                                <div class="form-check">
-                                    <input class="form-check-input" type="radio" name="fp" id="fa0"
-                                        value="0" wire:model="fp">
-                                    <label class="form-check-label" for="fa0">0</label>
-                                </div>
-                                <div class="form-check">
-                                    <input class="form-check-input" type="radio" name="fp" id="fa1"
-                                        value="1" wire:model="fp">
-                                    <label class="form-check-label" for="fa1">1</label>
+                            <!-- Display Anggota Information -->
+                            <div class="card bg-light mb-3">
+                                <div class="card-body">
+                                    <h6 class="card-title fw-bold">Informasi Peminjam</h6>
+                                    <div class="mb-2">
+                                        <label class="fw-bold">Nama:</label>
+                                        <span>{{ auth()->user()->anggota->nama_anggota }}</span>
+                                    </div>
+                                    <div class="mb-2">
+                                        <label class="fw-bold">No. Anggota:</label>
+                                        <span>{{ auth()->user()->anggota->kode_anggota }}</span>
+                                    </div>
+                                    <div class="mb-2">
+                                        <label class="fw-bold">Email:</label>
+                                        <span>{{ auth()->user()->email }}</span>
+                                    </div>
                                 </div>
                             </div>
-                            @error('fp')
-                                <small class="form-text text-danger">{{ $message }}</small>
-                            @enderror
-                        </div>
     
-                        <div class="form-group mb-3">
-                            <label class="form-label">Keterangan</label>
-                            <textarea class="form-control" wire:model="keterangan" rows="3"></textarea>
-                            @error('keterangan')
-                                <small class="text-danger">{{ $message }}</small>
-                            @enderror
-                        </div>
-                    </form>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Batal</button>
-                    <button type="button" class="btn btn-primary" wire:click="store">Simpan Peminjaman</button>
+                            <!-- Book Information -->
+                            <div class="card bg-light mb-3">
+                                <div class="card-body">
+                                    <h6 class="card-title fw-bold">Informasi Buku</h6>
+                                    <div class="mb-2">
+                                        <label class="fw-bold">Judul:</label>
+                                        <span>{{ $pustaka->judul_pustaka }}</span>
+                                    </div>
+                                    <div class="mb-2">
+                                        <label class="fw-bold">Pengarang:</label>
+                                        <span>{{ $pustaka->pengarang->nama_pengarang }}</span>
+                                    </div>
+                                </div>
+                            </div>
+    
+                            <!-- Tanggal Peminjaman (Readonly) -->
+                            <div class="form-group mb-3">
+                                <label class="form-label">Tanggal Peminjaman</label>
+                                <input type="date" class="form-control" value="{{ date('Y-m-d') }}" readonly>
+                            </div>
+    
+                            <!-- Tanggal Pengembalian -->
+                            <div class="form-group mb-3">
+                                <label class="form-label">Tanggal Pengembalian</label>
+                                <input type="date" class="form-control" wire:model="tgl_pengembalian" 
+                                       min="{{ date('Y-m-d', strtotime('+1 day')) }}"
+                                       max="{{ date('Y-m-d', strtotime('+14 day')) }}">
+                                @error('tgl_pengembalian')
+                                    <small class="text-danger">{{ $message }}</small>
+                                @enderror
+                            </div>
+    
+                            <!-- File Pendukung -->
+                            <div class="form-group mb-3">
+                                <label class="form-label">File Pendukung (FP)</label>
+                                <div>
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="radio" name="fp" id="fp0"
+                                            value="0" wire:model="fp">
+                                        <label class="form-check-label" for="fp0">Tidak Ada</label>
+                                    </div>
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="radio" name="fp" id="fp1"
+                                            value="1" wire:model="fp">
+                                        <label class="form-check-label" for="fp1">Ada</label>
+                                    </div>
+                                </div>
+                                @error('fp')
+                                    <small class="text-danger">{{ $message }}</small>
+                                @enderror
+                            </div>
+    
+                            <!-- Keterangan -->
+                            <div class="form-group mb-3">
+                                <label class="form-label">Keterangan</label>
+                                <textarea class="form-control" wire:model="keterangan" rows="3" 
+                                          placeholder="Tambahkan keterangan jika diperlukan"></textarea>
+                                @error('keterangan')
+                                    <small class="text-danger">{{ $message }}</small>
+                                @enderror
+                            </div>
+    
+                            <!-- Information Alert -->
+                            <div class="alert alert-info">
+                                <small>
+                                    <i class="bi bi-info-circle me-2"></i>
+                                    Batas peminjaman maksimal 14 hari. Keterlambatan akan dikenakan denda sebesar 
+                                    Rp. {{ number_format($pustaka->denda_terlambat, 0, ',', '.') }}/hari
+                                </small>
+                            </div>
+    
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Batal</button>
+                                <button type="submit" class="btn btn-primary" 
+                                        {{ $pustaka->stock <= 0 ? 'disabled' : '' }}>
+                                    Simpan Peminjaman
+                                </button>
+                            </div>
+                        </form>
+                    </div>
                 </div>
             </div>
         </div>

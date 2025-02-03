@@ -24,6 +24,16 @@ class User extends Authenticatable
         'role'
     ];
 
+
+    /**
+     * Get the anggota associated with the user.
+     */
+    public function anggota()
+    {
+        return $this->hasOne(Anggota::class, 'email', 'email');
+    }
+
+
     /**
      * The attributes that should be hidden for serialization.
      *

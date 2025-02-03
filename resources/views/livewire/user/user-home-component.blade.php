@@ -38,7 +38,7 @@
                                         <span class="text-muted">ISBN: {{ $pustaka->isbn }}</span>
                                     </div>
                                     <div class="mt-auto">
-                                        <a href="{{ route('book.detail', $pustaka->id) }}"
+                                        <a href="{{ route('book.detail', ['id' => $pustaka->id]) }}"
                                             class="btn btn-primary w-100">
                                             <i class="bi bi-eye me-2"></i>
                                             Lihat Detail
