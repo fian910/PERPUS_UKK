@@ -62,7 +62,7 @@ class TransaksiComponent extends Component
 
         // Kurangi stok buku
         $pustaka->stock -= 1;
-        $pustaka->jml_pinjam += 1; 
+        $pustaka->jml_pinjam += 1;
         $pustaka->save();
 
         $this->tgl_pinjam = date('Y-m-d');
@@ -101,9 +101,9 @@ class TransaksiComponent extends Component
         $this->validate([
             'pustaka_id' => 'required|exists:pustakas,id',
             'anggota_id' => 'required|exists:anggotas,id',
-            'tgl_pengembalian' => 'required|date|after_or_equal:tgl_pinjam',
-            'fp' => 'required|numeric',
-            'keterangan' => 'required|string|max:255',
+            'tgl_pengembalian' => 'nullable|date|after_or_equal:tgl_pinjam',
+            'fp' => 'nullable|numeric',
+            'keterangan' => 'nullable|string|max:255',
         ]);
 
         $transaksi = Transaksi::find($this->id);
@@ -143,30 +143,60 @@ class TransaksiComponent extends Component
         session()->flash('success', 'Berhasil Diubah!');
         return redirect()->route('transaksi');
     }
-    
+
     public function confirm($id)
     {
         $this->id = $id;
     }
 
     public function destroy()
-{
-    $transaksi = Transaksi::find($this->id);
+    {
+        $transaksi = Transaksi::find($this->id);
 
-    if (!$transaksi) {
-        session()->flash('error', 'Transaksi tidak ditemukan!');
-        return;
+        if (!$transaksi) {
+            session()->flash('error', 'Transaksi tidak ditemukan!');
+            return;
+        }
+
+        // Kembalikan stok buku dan kurangi jumlah pinjam
+        $pustaka = Pustaka::find($transaksi->pustaka_id);
+        $pustaka->stock += 1;
+        $pustaka->jml_pinjam -= 1; // Kurangi jumlah pinjam
+        $pustaka->save();
+
+        $transaksi->delete();
+        $this->reset();
+        session()->flash('success', 'Data Berhasil Dihapus!');
+        return redirect()->route('transaksi');
     }
 
-    // Kembalikan stok buku dan kurangi jumlah pinjam
-    $pustaka = Pustaka::find($transaksi->pustaka_id);
-    $pustaka->stock += 1;
-    $pustaka->jml_pinjam -= 1; // Kurangi jumlah pinjam
-    $pustaka->save();
+    public function approve($id)
+    {
+        $transaksi = Transaksi::find($id);
 
-    $transaksi->delete();
-    $this->reset();
-    session()->flash('success', 'Data Berhasil Dihapus!');
-    return redirect()->route('transaksi');
-}
+        if (!$transaksi) {
+            session()->flash('error', 'Transaksi tidak ditemukan!');
+            return;
+        }
+
+        // Jika sudah dikembalikan, tidak bisa diubah lagi
+        if ($transaksi->fp === '1') {
+            session()->flash('error', 'Transaksi sudah dikembalikan!');
+            return;
+        }
+
+        // Ubah status menjadi dikembalikan
+        $transaksi->fp = '1';
+        $transaksi->tgl_pengembalian = date('Y-m-d');
+        $transaksi->save();
+
+        // Kembalikan stok buku
+        $pustaka = Pustaka::find($transaksi->pustaka_id);
+        $pustaka->stock += 1;
+        $pustaka->jml_pinjam -= 1;
+        $pustaka->save();
+
+        session()->flash('success', 'Transaksi berhasil disetujui dan buku dikembalikan!');
+        return redirect()->route('transaksi');
+    }
 }

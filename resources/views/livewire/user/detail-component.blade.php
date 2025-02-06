@@ -189,37 +189,6 @@
                                 <input type="date" class="form-control" value="{{ date('Y-m-d') }}" readonly>
                             </div>
     
-                            <!-- Tanggal Pengembalian -->
-                            <div class="form-group mb-3">
-                                <label class="form-label">Tanggal Pengembalian</label>
-                                <input type="date" class="form-control" wire:model="tgl_pengembalian" 
-                                       min="{{ date('Y-m-d', strtotime('+1 day')) }}"
-                                       max="{{ date('Y-m-d', strtotime('+14 day')) }}">
-                                @error('tgl_pengembalian')
-                                    <small class="text-danger">{{ $message }}</small>
-                                @enderror
-                            </div>
-    
-                            <!-- File Pendukung -->
-                            <div class="form-group mb-3">
-                                <label class="form-label">File Pendukung (FP)</label>
-                                <div>
-                                    <div class="form-check">
-                                        <input class="form-check-input" type="radio" name="fp" id="fp0"
-                                            value="0" wire:model="fp">
-                                        <label class="form-check-label" for="fp0">Tidak Ada</label>
-                                    </div>
-                                    <div class="form-check">
-                                        <input class="form-check-input" type="radio" name="fp" id="fp1"
-                                            value="1" wire:model="fp">
-                                        <label class="form-check-label" for="fp1">Ada</label>
-                                    </div>
-                                </div>
-                                @error('fp')
-                                    <small class="text-danger">{{ $message }}</small>
-                                @enderror
-                            </div>
-    
                             <!-- Keterangan -->
                             <div class="form-group mb-3">
                                 <label class="form-label">Keterangan</label>
@@ -234,7 +203,7 @@
                             <div class="alert alert-info">
                                 <small>
                                     <i class="bi bi-info-circle me-2"></i>
-                                    Batas peminjaman maksimal 14 hari. Keterlambatan akan dikenakan denda sebesar 
+                                    Batas peminjaman maksimal 7 hari. Keterlambatan akan dikenakan denda sebesar 
                                     Rp. {{ number_format($pustaka->denda_terlambat, 0, ',', '.') }}/hari
                                 </small>
                             </div>

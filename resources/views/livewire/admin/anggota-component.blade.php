@@ -322,7 +322,7 @@
                         <div class="form-group">
                             <label>Kode Anggota</label>
                             <input type="text" class="form-control" wire:model="kode_anggota" maxlength="10"
-                                value="{{ @old('kode_anggota') }}"disabled>
+                                value="{{ @old('kode_anggota') }}">
                             @error('kode_anggota')
                                 <small class="form-text text-danger">{{ $message }}</small>
                             @enderror

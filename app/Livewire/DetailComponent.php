@@ -9,7 +9,7 @@ use Livewire\Component;
 
 class DetailComponent extends Component
 {
-    public $pustaka_id, $anggota_id, $tgl_pengembalian, $fp, $keterangan;
+    public $pustaka_id, $anggota_id, $tgl_pengembalian, $fp = 0, $keterangan;
 
     public function mount($id)
     {
@@ -29,7 +29,7 @@ class DetailComponent extends Component
         }
 
         $this->anggota_id = $anggota->id;
-    }   
+    }
 
     public function render()
     {
@@ -49,8 +49,8 @@ class DetailComponent extends Component
     {
         $this->validate([
             'anggota_id' => 'required|exists:anggotas,id',
-            'tgl_pengembalian' => 'required|date|after_or_equal:today',
-            'fp' => 'required|numeric',
+            'tgl_pengembalian' => 'nullable|date|after_or_equal:today',
+            'fp' => 'nullable|in:0,1',
             'keterangan' => 'nullable|string|max:255',
         ]);
 
@@ -66,14 +66,14 @@ class DetailComponent extends Component
         $pustaka->jml_pinjam += 1;
         $pustaka->save();
 
-        // Create transaction
+        // Create transaction with fp as string
         Transaksi::create([
             'pustaka_id' => $this->pustaka_id,
             'anggota_id' => $this->anggota_id,
             'tgl_pinjam' => now(),
             'tgl_kembali' => now()->addDays(7),
             'tgl_pengembalian' => $this->tgl_pengembalian,
-            'fp' => $this->fp,
+            'fp' => (string)$this->fp,
             'keterangan' => $this->keterangan,
         ]);
 

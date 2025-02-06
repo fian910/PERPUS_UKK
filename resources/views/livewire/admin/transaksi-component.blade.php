@@ -28,15 +28,23 @@
                     <table class="table align-items-center mb-0">
                         <thead>
                             <tr>
-                                <th style="white-space: nowrap;" class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7" scope="col">No.</th>
-                                <th style="white-space: nowrap;" class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7" scope="col">Pustaka</th>
-                                <th style="white-space: nowrap;" class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7" scope="col">Anggota</th>
-                                <th style="white-space: nowrap;" class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7" scope="col">Tanggal Pinjam</th>
-                                <th style="white-space: nowrap;" class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7" scope="col">Tanggal Kembali</th>
-                                <th style="white-space: nowrap;" class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7" scope="col">Tanggal Pengembalian</th>
-                                <th style="white-space: nowrap;" class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7" scope="col">Fp</th>
-                                <th style="white-space: nowrap;" class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7" scope="col">Keterangan</th>
-                                <th style="white-space: nowrap;" class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7" scope="col">Proses</th>
+                                <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">No.</th>
+                                <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Pustaka
+                                </th>
+                                <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Anggota
+                                </th>
+                                <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Tanggal
+                                    Pinjam</th>
+                                <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Tanggal
+                                    Kembali</th>
+                                <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Tanggal
+                                    Pengembalian</th>
+                                <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Status
+                                </th>
+                                <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">
+                                    Keterangan</th>
+                                <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Aksi
+                                </th>
                             </tr>
                         </thead>
                         <tbody>
@@ -47,14 +55,16 @@
                             @else
                                 @foreach ($transaksi as $data)
                                     <tr>
-                                        <td scope="row" class="align-middle text-center text-sm">
+                                        <td class="align-middle text-center text-sm">
                                             <span class="text-xs font-weight-bold">{{ $loop->iteration }}</span>
                                         </td>
                                         <td class="align-middle text-center text-sm">
-                                            <span class="text-xs font-weight-bold">{{ $data->pustaka->judul_pustaka }}</span>
+                                            <span
+                                                class="text-xs font-weight-bold">{{ $data->pustaka->judul_pustaka }}</span>
                                         </td>
                                         <td class="align-middle text-center text-sm">
-                                            <span class="text-xs font-weight-bold">{{ $data->anggota->nama_anggota }}</span>
+                                            <span
+                                                class="text-xs font-weight-bold">{{ $data->anggota->nama_anggota }}</span>
                                         </td>
                                         <td class="align-middle text-center text-sm">
                                             <span class="text-xs font-weight-bold">{{ $data->tgl_pinjam }}</span>
@@ -66,14 +76,24 @@
                                             <span class="text-xs font-weight-bold">{{ $data->tgl_pengembalian }}</span>
                                         </td>
                                         <td class="align-middle text-center text-sm">
-                                            <span class="text-xs font-weight-bold">{{ $data->fp }}</span>
+                                            @if ($data->fp === '0')
+                                                <span class="badge bg-warning text-white">Dipinjam</span>
+                                            @elseif($data->fp === '1')
+                                                <span class="badge bg-success text-white">Dikembalikan</span>
+                                            @endif
                                         </td>
                                         <td class="align-middle text-center text-sm">
                                             <span class="text-xs font-weight-bold">{{ $data->keterangan }}</span>
-                                        </td>                                        
-                                        
+                                        </td>
+
                                         <td class="proses">
-                                            <div class="btn-group" role="group" aria-label="Proses Buttons">
+                                            <div class="btn-group" role="group" aria-label="Aksi Buttons">
+                                                @if ($data->fp === '0')
+                                                    <button type="button" wire:click="approve({{ $data->id }})"
+                                                        class="btn btn-sm btn-success me-2">
+                                                        Konfirmasi
+                                                    </button>
+                                                @endif
                                                 <button type="button" wire:click="edit({{ $data->id }})"
                                                     class="btn btn-sm btn-warning me-2" data-bs-toggle="modal"
                                                     data-bs-target="#editpage">
@@ -139,7 +159,7 @@
                                 <small class="form-text text-danger">{{ $message }}</small>
                             @enderror
                         </div>
-                        
+
                         <div class="form-group">
                             <label>Tanggal Pengembalian</label>
                             <input type="date" class="form-control" wire:model="tgl_pengembalian">

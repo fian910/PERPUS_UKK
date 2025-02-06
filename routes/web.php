@@ -13,6 +13,7 @@ use App\Livewire\PenerbitComponent;
 use App\Livewire\PengarangComponent;
 use App\Livewire\PustakaComponent;
 use App\Livewire\RakComponent;
+use App\Livewire\RiwayatTransaksiComponent;
 use App\Livewire\TransaksiComponent;
 use App\Livewire\UserHomeComponent;
 use Illuminate\Support\Facades\Route;
@@ -23,6 +24,7 @@ Route::get('/', function () {
 
 Route::middleware(['auth', 'verified'])->group(function () {
     Route::get('/userhome', UserHomeComponent::class)->name('user');
+    Route::get('/riwayat', RiwayatTransaksiComponent::class)->name('riwayat');
     Route::get('/book/{id}', DetailComponent::class)->name('book.detail');
 });
 

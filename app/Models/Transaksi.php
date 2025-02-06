@@ -30,6 +30,11 @@ class Transaksi extends Model
         return $this->belongsTo(Pustaka::class, 'pustaka_id');
     }
 
+    public function buktiPembayaran()
+    {
+        return $this->hasOne(BuktiPembayaran::class);
+    }
+
     public function anggota()
     {
         return $this->belongsTo(Anggota::class, 'anggota_id');

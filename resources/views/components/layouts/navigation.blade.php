@@ -12,24 +12,7 @@
         </div>
         <ul class="navbar-nav  justify-content-end">
           <li class="nav-item d-flex align-items-center">
-            <div class="btn-group">
-                <form method="POST" action="{{ route('logout') }}">
-                    @csrf
-                    <a :href="route('logout')"
-                        onclick="event.preventDefault();
-                        this.closest('form').submit();" 
-                        class="btn btn-outline-danger btn-sm mb-0 me-3">
-                        {{ __('Log Out') }}
-                    </a>
-                </form>
-            </div>
-        </li>
-          <li class="nav-item d-flex align-items-center">
-            <a href="javascript:;" class="nav-link text-body font-weight-bold px-0">
-              <i class="fa fa-user me-sm-1"></i>
-              <span class="d-sm-inline d-none">Profile</span>
-            </a>
-          </li>
+          
           <li class="nav-item d-xl-none ps-3 d-flex align-items-center">
             <a href="javascript:;" class="nav-link text-body p-0" id="iconNavbarSidenav">
               <div class="sidenav-toggler-inner">
@@ -44,10 +27,6 @@
               <i class="fa fa-cog fixed-plugin-button-nav cursor-pointer"></i>
             </a>
           </li>
-          <li class="nav-item dropdown pe-2 d-flex align-items-center">
-            <a href="javascript:;" class="nav-link text-body p-0" id="dropdownMenuButton" data-bs-toggle="dropdown" aria-expanded="false">
-              <i class="fa fa-bell cursor-pointer"></i>
-            </a>
             <ul class="dropdown-menu  dropdown-menu-end  px-2 py-3 me-sm-n4" aria-labelledby="dropdownMenuButton">
               <li class="mb-2">
                 <a class="dropdown-item border-radius-md" href="javascript:;">

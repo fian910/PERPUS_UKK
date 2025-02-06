@@ -14,6 +14,8 @@
     <link rel="icon" type="image/x-icon" href="assets/favicon.ico" />
     <!-- Bootstrap icons-->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.0/font/bootstrap-icons.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet">
     <!-- Google fonts-->
     <link href="https://fonts.googleapis.com/css?family=Lato:300,400,700,300italic,400italic,700italic" rel="stylesheet"
         type="text/css" />
@@ -25,18 +27,19 @@
     <!-- Navigation-->
     <nav class="navbar navbar-light bg-warning navbar-expand-lg bg-body-tertiary">
         <div class="container-md">
-            <a class="navbar-brand mb-0 h1">
+            <a class="navbar-brand mb-0 h1 fw-semibold text-white">
                 <img src="{{ asset('assets/img/login.png') }}" alt="Logo" width="25" height="25"
-                    class="d-inline-block align-text-top">
+                    class="d-inline-block align-text-top ">
                 Perpustakaan Belajar
             </a>
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
+
                 <ul class="navbar-nav ms-auto mb-2 mb-lg-0 me-2">
                     <li class="nav-item">
-                        <a class="nav-link active" aria-current="page" href="{{ route('user') }}">Home</a>
+                        <a class="nav-link active fw-semibold text-white" aria-current="page" href="{{ route('user') }}">Home</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#">Link</a>
+                        <a class="nav-link active fw-semibold text-white" aria-current="page" href="{{ route('riwayat') }}">Riwayat</a>
                     </li>
                 </ul>
                 <form method="POST" action="{{ route('logout') }}">
@@ -44,7 +47,7 @@
                     <a :href="route('logout')"
                         onclick="event.preventDefault();
                         this.closest('form').submit();"
-                        class="btn btn-danger btn-sm mb-0 me-3">
+                        class="btn btn-danger btn-sm text-white fw-semibold mb-0 me-3">
                         {{ __('Log Out') }}
                     </a>
                 </form>
