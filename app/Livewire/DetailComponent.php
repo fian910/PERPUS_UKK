@@ -9,7 +9,7 @@ use Livewire\Component;
 
 class DetailComponent extends Component
 {
-    public $pustaka_id, $anggota_id, $tgl_pengembalian, $fp = 0, $keterangan;
+    public $pustaka_id, $anggota_id, $tgl_pengembalian, $fp = 0, $sb = 0, $keterangan;
 
     public function mount($id)
     {
@@ -51,6 +51,7 @@ class DetailComponent extends Component
             'anggota_id' => 'required|exists:anggotas,id',
             'tgl_pengembalian' => 'nullable|date|after_or_equal:today',
             'fp' => 'nullable|in:0,1',
+            'sb' => 'nullable|in:0,1,2',
             'keterangan' => 'nullable|string|max:255',
         ]);
 
@@ -74,6 +75,7 @@ class DetailComponent extends Component
             'tgl_kembali' => now()->addDays(7),
             'tgl_pengembalian' => $this->tgl_pengembalian,
             'fp' => (string)$this->fp,
+            'sb' => (string)$this->sb,
             'keterangan' => $this->keterangan,
         ]);
 

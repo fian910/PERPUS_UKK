@@ -21,6 +21,10 @@ class Transaksi extends Model
         'tgl_kembali',
         'tgl_pengembalian',
         'fp',
+        'sb',
+        'denda',
+        'pengajuan_kembali',
+        'denda_dibayar',
         'keterangan'
     ];
 

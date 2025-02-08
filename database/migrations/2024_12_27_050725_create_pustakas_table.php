@@ -32,7 +32,7 @@ return new class extends Migration
             $table->longText('gambar');
             $table->integer('harga_buku');
             $table->string('kondisi_buku', 15);
-            $table->enum('rp', ['0', '1']);
+            $table->enum('fp', ['0', '1']);
             $table->tinyInteger('jml_pinjam');
             $table->integer('denda_terlambat');
             $table->integer('denda_hilang');

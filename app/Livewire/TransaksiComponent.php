@@ -8,16 +8,24 @@ use App\Models\Transaksi;
 use Livewire\Component;
 use Livewire\WithoutUrlPagination;
 use Livewire\WithPagination;
+use Carbon\Carbon;
 
 class TransaksiComponent extends Component
 {
     use WithPagination, WithoutUrlPagination;
     protected $paginationTheme = 'bootstrap';
-    public $pustaka_id, $anggota_id, $tgl_pinjam, $tgl_kembali, $tgl_pengembalian, $fp, $keterangan, $id, $cari;
+    public $showPaymentModal = false;
+    public $selectedTransactionId;
+    public $pustaka_id, $anggota_id, $tgl_pinjam, $tgl_kembali, $tgl_pengembalian, $fp, $keterangan, $id, $cari, $sb;
     public function render()
     {
         $layout['title'] = "Kelola Transaksi";
-        $data['transaksi'] = Transaksi::paginate(5);
+        $data['transaksi'] = Transaksi::with(['pustaka', 'anggota'])
+            ->paginate(5)
+            ->through(function ($transaksi) {
+                $transaksi->denda = $this->calculateDenda($transaksi);
+                return $transaksi;
+            });
         $data['pustaka'] = Pustaka::all();
         $data['anggota'] = Anggota::all();
         return view('livewire.admin.transaksi-component', $data)
@@ -33,6 +41,7 @@ class TransaksiComponent extends Component
             'anggota_id' => 'required|exists:anggotas,id',
             'tgl_pengembalian' => 'required|date|after_or_equal:tgl_pinjam',
             'fp' => 'required|numeric',
+            'sb' => 'required|in:0,1,2',
             'keterangan' => 'required|string|max:255',
         ], [
             'pustaka_id.required' => 'Pustaka harus dipilih',
@@ -75,6 +84,7 @@ class TransaksiComponent extends Component
             'tgl_kembali' => $this->tgl_kembali,
             'tgl_pengembalian' => $this->tgl_pengembalian,
             'fp' => $this->fp,
+            'sb' => $this->sb,
             'keterangan' => $this->keterangan,
         ]);
 
@@ -92,6 +102,7 @@ class TransaksiComponent extends Component
         $this->tgl_kembali = $transaksi->tgl_kembali;
         $this->tgl_pengembalian = $transaksi->tgl_pengembalian;
         $this->fp = $transaksi->fp;
+        $this->sb = $transaksi->sb;
         $this->keterangan = $transaksi->keterangan;
         $this->id = $transaksi->id;
     }
@@ -103,6 +114,7 @@ class TransaksiComponent extends Component
             'anggota_id' => 'required|exists:anggotas,id',
             'tgl_pengembalian' => 'nullable|date|after_or_equal:tgl_pinjam',
             'fp' => 'nullable|numeric',
+            'sb' => 'nullable|in:0,1,2',
             'keterangan' => 'nullable|string|max:255',
         ]);
 
@@ -136,6 +148,7 @@ class TransaksiComponent extends Component
             'tgl_kembali' => $this->tgl_kembali,
             'tgl_pengembalian' => $this->tgl_pengembalian,
             'fp' => $this->fp,
+            'sb' => $this->sb,
             'keterangan' => $this->keterangan,
         ]);
 
@@ -170,6 +183,30 @@ class TransaksiComponent extends Component
         return redirect()->route('transaksi');
     }
 
+    public function calculateDenda($transaksi)
+    {
+        $totalDenda = 0;
+
+        // Calculate late return fine
+        if (
+            $transaksi->fp === '0' &&
+            $transaksi->tgl_pengembalian &&
+            Carbon::parse($transaksi->tgl_pengembalian) > Carbon::parse($transaksi->tgl_kembali)
+        ) {
+            $keterlambatan = Carbon::parse($transaksi->tgl_pengembalian)->diffInDays(Carbon::parse($transaksi->tgl_kembali));
+            $totalDenda += $keterlambatan * $transaksi->pustaka->denda_terlambat;
+        }
+
+        // Calculate condition-based fine
+        if ($transaksi->sb === '2') { // Book is lost
+            $totalDenda += $transaksi->pustaka->denda_hilang;
+        } elseif ($transaksi->sb === '1') { // Book is damaged
+            $totalDenda += $transaksi->pustaka->denda_hilang / 4;
+        }
+
+        return $totalDenda;
+    }
+
     public function approve($id)
     {
         $transaksi = Transaksi::find($id);
@@ -179,18 +216,19 @@ class TransaksiComponent extends Component
             return;
         }
 
-        // Jika sudah dikembalikan, tidak bisa diubah lagi
-        if ($transaksi->fp === '1') {
-            session()->flash('error', 'Transaksi sudah dikembalikan!');
+        // Calculate and check denda
+        $denda = $this->calculateDenda($transaksi);
+
+        if ($denda > 0 && !$transaksi->denda_dibayar) {
+            session()->flash('error', 'Denda sebesar Rp. ' . number_format($denda, 0, ',', '.') . ' harus dibayar terlebih dahulu!');
             return;
         }
 
-        // Ubah status menjadi dikembalikan
+        // Proceed with approval if no denda or denda has been paid
         $transaksi->fp = '1';
-        $transaksi->tgl_pengembalian = date('Y-m-d');
         $transaksi->save();
 
-        // Kembalikan stok buku
+        // Update book stock
         $pustaka = Pustaka::find($transaksi->pustaka_id);
         $pustaka->stock += 1;
         $pustaka->jml_pinjam -= 1;
@@ -198,5 +236,28 @@ class TransaksiComponent extends Component
 
         session()->flash('success', 'Transaksi berhasil disetujui dan buku dikembalikan!');
         return redirect()->route('transaksi');
+    }
+    
+    public function confirmPayment($id)
+    {
+        $transaksi = Transaksi::find($id);
+
+        if (!$transaksi) {
+            session()->flash('error', 'Transaksi tidak ditemukan!');
+            return;
+        }
+
+        $transaksi->denda_dibayar = true;
+        $transaksi->save();
+
+        session()->flash('success', 'Pembayaran denda berhasil dikonfirmasi!');
+        $this->showPaymentModal = false;
+    }
+
+    // Add method to show payment modal
+    public function showPaymentConfirmation($id)
+    {
+        $this->selectedTransactionId = $id;
+        $this->showPaymentModal = true;
     }
 }

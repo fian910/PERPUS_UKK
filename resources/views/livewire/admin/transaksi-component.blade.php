@@ -28,74 +28,91 @@
                     <table class="table align-items-center mb-0">
                         <thead>
                             <tr>
-                                <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">No.</th>
-                                <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Pustaka
-                                </th>
-                                <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Anggota
-                                </th>
-                                <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Tanggal
-                                    Pinjam</th>
-                                <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Tanggal
-                                    Kembali</th>
-                                <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Tanggal
-                                    Pengembalian</th>
-                                <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Status
-                                </th>
-                                <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">
-                                    Keterangan</th>
-                                <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Aksi
-                                </th>
+                                <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">No.</th>
+                                <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">Pustaka</th>
+                                <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">Anggota</th>
+                                <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">Tanggal Pinjam</th>
+                                <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">Tanggal Kembali</th>
+                                <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">Tanggal Pengembalian</th>
+                                <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">Status</th>
+                                <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">Status Buku</th>
+                                <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">Denda</th>
+                                <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">Keterangan</th>
+                                <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">Aksi</th>
                             </tr>
                         </thead>
                         <tbody>
                             @if ($transaksi->isEmpty())
                                 <tr>
-                                    <td colspan="9" class="text-center">Data belum dimasukkan</td>
+                                    <td colspan="11" class="text-center py-4">Data belum dimasukkan</td>
                                 </tr>
                             @else
                                 @foreach ($transaksi as $data)
                                     <tr>
-                                        <td class="align-middle text-center text-sm">
-                                            <span class="text-xs font-weight-bold">{{ $loop->iteration }}</span>
+                                        <td>
+                                            <p class="text-xs font-weight-bold mb-0 ps-3">{{ $loop->iteration }}</p>
                                         </td>
-                                        <td class="align-middle text-center text-sm">
-                                            <span
-                                                class="text-xs font-weight-bold">{{ $data->pustaka->judul_pustaka }}</span>
+                                        <td>
+                                            <p class="text-xs font-weight-bold mb-0">{{ $data->pustaka->judul_pustaka }}</p>
                                         </td>
-                                        <td class="align-middle text-center text-sm">
-                                            <span
-                                                class="text-xs font-weight-bold">{{ $data->anggota->nama_anggota }}</span>
+                                        <td>
+                                            <p class="text-xs font-weight-bold mb-0">{{ $data->anggota->nama_anggota }}</p>
                                         </td>
-                                        <td class="align-middle text-center text-sm">
-                                            <span class="text-xs font-weight-bold">{{ $data->tgl_pinjam }}</span>
+                                        <td>
+                                            <p class="text-xs font-weight-bold mb-0">{{ $data->tgl_pinjam }}</p>
                                         </td>
-                                        <td class="align-middle text-center text-sm">
-                                            <span class="text-xs font-weight-bold">{{ $data->tgl_kembali }}</span>
+                                        <td>
+                                            <p class="text-xs font-weight-bold mb-0">{{ $data->tgl_kembali }}</p>
                                         </td>
-                                        <td class="align-middle text-center text-sm">
-                                            <span class="text-xs font-weight-bold">{{ $data->tgl_pengembalian }}</span>
+                                        <td>
+                                            <p class="text-xs font-weight-bold mb-0">{{ $data->tgl_pengembalian }}</p>
                                         </td>
-                                        <td class="align-middle text-center text-sm">
+                                        <td>
                                             @if ($data->fp === '0')
                                                 <span class="badge bg-warning text-white">Dipinjam</span>
                                             @elseif($data->fp === '1')
                                                 <span class="badge bg-success text-white">Dikembalikan</span>
                                             @endif
                                         </td>
-                                        <td class="align-middle text-center text-sm">
-                                            <span class="text-xs font-weight-bold">{{ $data->keterangan }}</span>
+                                        <td>
+                                            @if ($data->sb === '0')
+                                                <span class="badge bg-warning text-white">Baik</span>
+                                            @elseif($data->sb === '1')
+                                                <span class="badge bg-success text-white">Rusak</span>
+                                            @elseif($data->sb === '2')
+                                                <span class="badge bg-danger text-white">Hilang</span>
+                                            @endif
                                         </td>
-
-                                        <td class="proses">
-                                            <div class="btn-group" role="group" aria-label="Aksi Buttons">
-                                                @if ($data->fp === '0')
+                                        <td>
+                                            <div class="d-flex flex-column">
+                                                <span class="text-xs font-weight-bold mb-0">Rp. {{ number_format($data->denda, 0, ',', '.') }}</span>
+                                                @if ($data->denda > 0)
+                                                    @if ($data->denda_dibayar)
+                                                        <span class="badge bg-success mt-1">Lunas</span>
+                                                    @else
+                                                        <span class="badge bg-warning mt-1">Belum Lunas</span>
+                                                        <button type="button" wire:click="showPaymentConfirmation({{ $data->id }})"
+                                                            class="btn btn-sm btn-info mt-1" data-bs-toggle="modal"
+                                                            data-bs-target="#paymentModal">
+                                                            Konfirmasi Pembayaran
+                                                        </button>
+                                                    @endif
+                                                @endif
+                                            </div>
+                                        </td>
+                                        <td>
+                                            <p class="text-xs font-weight-bold mb-0">{{ $data->keterangan }}</p>
+                                        </td>
+                                        <td>
+                                            <div class="d-flex flex-column gap-2">
+                                                @if ($data->fp === '0' && $data->pengajuan_kembali)
                                                     <button type="button" wire:click="approve({{ $data->id }})"
-                                                        class="btn btn-sm btn-success me-2">
+                                                        class="btn btn-sm btn-success">
                                                         Konfirmasi
                                                     </button>
                                                 @endif
                                                 <button type="button" wire:click="edit({{ $data->id }})"
-                                                    class="btn btn-sm btn-warning me-2" data-bs-toggle="modal"
+                                                    class="btn btn-sm btn-warning" data-bs-toggle="modal"
                                                     data-bs-target="#editpage">
                                                     Ubah
                                                 </button>
@@ -114,6 +131,31 @@
                     {{ $transaksi->links() }}
                 </div>
                 <a href="#" class="btn btn-info mt-3" data-bs-toggle="modal" data-bs-target="#addpage">Tambah</a>
+            </div>
+        </div>
+    </div>
+
+    {{-- Konfirmasi Pembayaran Denda --}}
+    <div wire:ignore.self class="modal fade" id="paymentModal" tabindex="-1" aria-labelledby="paymentModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="paymentModalLabel">Konfirmasi Pembayaran Denda</h5>
+                    <button type="button" class="btn-close text-dark" data-bs-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <p>Apakah Anda yakin denda telah dibayar oleh anggota?</p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Batal</button>
+                    <button type="button" wire:click="confirmPayment({{ $selectedTransactionId }})"
+                        class="btn btn-primary">
+                        Konfirmasi Pembayaran
+                    </button>
+                </div>
             </div>
         </div>
     </div>
@@ -183,6 +225,30 @@
                                 </div>
                             </div>
                             @error('fp')
+                                <small class="form-text text-danger">{{ $message }}</small>
+                            @enderror
+                        </div>
+
+                        <div class="form-group">
+                            <label>Status Buku</label>
+                            <div>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="radio" name="sb" id="fa0"
+                                        value="0" wire:model="sb">
+                                    <label class="form-check-label" for="fa0">0</label>
+                                </div>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="radio" name="sb" id="fa1"
+                                        value="1" wire:model="sb">
+                                    <label class="form-check-label" for="fa1">1</label>
+                                </div>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="radio" name="sb" id="fa2"
+                                        value="2" wire:model="sb">
+                                    <label class="form-check-label" for="fa2">2</label>
+                                </div>
+                            </div>
+                            @error('sb')
                                 <small class="form-text text-danger">{{ $message }}</small>
                             @enderror
                         </div>
@@ -273,6 +339,30 @@
                                 </div>
                             </div>
                             @error('fp')
+                                <small class="form-text text-danger">{{ $message }}</small>
+                            @enderror
+                        </div>
+
+                        <div class="form-group">
+                            <label>Status Buku</label>
+                            <div>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="radio" name="sb" id="fa0"
+                                        value="0" wire:model="sb" {{ old('sb') == '0' ? 'checked' : '' }}>
+                                    <label class="form-check-label" for="fa0">0</label>
+                                </div>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="radio" name="sb" id="fa1"
+                                        value="1" wire:model="sb" {{ old('sb') == '1' ? 'checked' : '' }}>
+                                    <label class="form-check-label" for="fa1">1</label>
+                                </div>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="radio" name="sb" id="fa2"
+                                        value="2" wire:model="sb" {{ old('sb') == '2' ? 'checked' : '' }}>
+                                    <label class="form-check-label" for="fa2">2</label>
+                                </div>
+                            </div>
+                            @error('sb')
                                 <small class="form-text text-danger">{{ $message }}</small>
                             @enderror
                         </div>
