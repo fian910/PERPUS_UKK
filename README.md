@@ -5,7 +5,7 @@ PERPUS_UKK is a comprehensive library management system built using Laravel and 
 
 ## Features
 - **User Authentication and Role-based Access Control**
-  - Admin and Staff login capabilities
+  - Admin and User login capabilities
   - Role-specific dashboards and permissions
 
 - **Book Management**
@@ -57,22 +57,27 @@ cd PERPUS_UKK
 composer install
 ```
 
-3. Install JavaScript dependencies:
+3. Install Laravel Livewire:
+```bash
+composer require livewire/livewire
+```
+
+4. Install JavaScript dependencies:
 ```bash
 npm install && npm run dev
 ```
 
-4. Create a copy of the `.env.example` file:
+5. Create a copy of the `.env.example` file:
 ```bash
 cp .env.example .env
 ```
 
-5. Generate application key:
+6. Generate application key:
 ```bash
 php artisan key:generate
 ```
 
-6. Configure your database in the `.env` file:
+7. Configure your database in the `.env` file:
 ```
 DB_CONNECTION=mysql
 DB_HOST=127.0.0.1
@@ -82,17 +87,17 @@ DB_USERNAME=root
 DB_PASSWORD=
 ```
 
-7. Run database migrations and seeders:
+8. Run database migrations and seeders:
 ```bash
 php artisan migrate --seed
 ```
 
-8. Start the local development server:
+9. Start the local development server:
 ```bash
 php artisan serve
 ```
 
-9. Access the application at `http://localhost:8000`
+10. Access the application at `http://localhost:8000`
 
 ## Default Admin Credentials
 - **Email**: admin@perpus.com
