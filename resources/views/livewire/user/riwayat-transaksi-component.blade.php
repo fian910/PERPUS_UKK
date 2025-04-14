@@ -111,7 +111,7 @@
                     return $t->denda > 0;
                 }))
                 <div class="card mt-4">
-                    <div class="card-header bg-info text-white">
+                    <div class="card-header bg-warning text-white">
                         <h5 class="mb-0">Informasi Pembayaran Denda</h5>
                     </div>
                     <div class="card-body">
